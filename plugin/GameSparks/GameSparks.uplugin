@@ -1,0 +1,23 @@
+{
+	"FileVersion" : 3,
+	"PluginFileVersion" : 1,
+
+	"FriendlyName" : "GameSparksSDK",
+	"Version" : 1,
+	"VersionName" : "0.1",
+	"CreatedBy" : "GameSparks Ltd, 2015", 
+	"CreatedByURL" : "http://www.gamesparks.com",
+	"EngineVersion" : "4.6.1",
+	"Description" : "GameSparks SDK for Unreal Engine 4. This is a beta of the plugin without fully integrated blueprint API.",
+	"Category" : "GameSparks.GameSparksSDK",
+	"EnabledByDefault" : true,
+	"CanContainContent": true,
+	"Modules" :
+	[		
+		{
+			"Name" : "GameSparks",
+			"Type" : "Runtime",
+			"LoadingPhase" : "PreDefault"
+		},	
+	]
+}
