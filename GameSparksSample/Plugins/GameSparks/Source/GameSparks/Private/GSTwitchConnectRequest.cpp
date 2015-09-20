@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSTwitchConnectRequest.h"
 
@@ -78,4 +76,13 @@ void UGSTwitchConnectRequest::Activate()
 
 UGSTwitchConnectRequest::UGSTwitchConnectRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSTwitchConnectRequest::~UGSTwitchConnectRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

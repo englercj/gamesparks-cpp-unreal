@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSIOSBuyGoodsRequest.h"
 
@@ -66,4 +64,13 @@ void UGSIOSBuyGoodsRequest::Activate()
 
 UGSIOSBuyGoodsRequest::UGSIOSBuyGoodsRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSIOSBuyGoodsRequest::~UGSIOSBuyGoodsRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

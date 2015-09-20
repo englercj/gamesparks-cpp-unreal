@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSEndSessionRequest.h"
 
@@ -54,4 +52,13 @@ void UGSEndSessionRequest::Activate()
 
 UGSEndSessionRequest::UGSEndSessionRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSEndSessionRequest::~UGSEndSessionRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

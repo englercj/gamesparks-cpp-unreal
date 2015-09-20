@@ -33,6 +33,8 @@ public:
 	static UGSTwitchConnectRequest* SendTwitchConnectRequest(FString AccessToken = "", bool DoNotLinkToCurrentPlayer = false, bool ErrorOnSwitch = false, UGameSparksScriptData* Segments = nullptr, bool SwitchIfPossible = false, bool SyncDisplayName = false,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSTwitchConnectRequest();
 
 private:
 	FString accessToken;

@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSConsumeVirtualGoodRequest.h"
 
@@ -62,4 +60,13 @@ void UGSConsumeVirtualGoodRequest::Activate()
 
 UGSConsumeVirtualGoodRequest::UGSConsumeVirtualGoodRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSConsumeVirtualGoodRequest::~UGSConsumeVirtualGoodRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

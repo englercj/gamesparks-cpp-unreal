@@ -28,6 +28,8 @@ public:
 	static UGSFindChallengeRequest* SendFindChallengeRequest(FString AccessType = "", int32 Count = 0, UGameSparksScriptData* Eligibility = nullptr, int32 Offset = 0, UGameSparksRequestArray* ShortCode = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSFindChallengeRequest();
 
 private:
 	FString accessType;

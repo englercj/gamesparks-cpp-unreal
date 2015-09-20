@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSFindMatchRequest.h"
 
@@ -70,4 +68,13 @@ void UGSFindMatchRequest::Activate()
 
 UGSFindMatchRequest::UGSFindMatchRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSFindMatchRequest::~UGSFindMatchRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

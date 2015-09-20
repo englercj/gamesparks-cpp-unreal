@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSAroundMeLeaderboardRequest.h"
 
@@ -119,4 +117,13 @@ void UGSAroundMeLeaderboardRequest::Activate()
 
 UGSAroundMeLeaderboardRequest::UGSAroundMeLeaderboardRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSAroundMeLeaderboardRequest::~UGSAroundMeLeaderboardRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

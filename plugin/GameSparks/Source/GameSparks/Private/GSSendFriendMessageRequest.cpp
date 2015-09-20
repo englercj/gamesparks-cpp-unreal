@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSSendFriendMessageRequest.h"
 
@@ -69,4 +67,13 @@ void UGSSendFriendMessageRequest::Activate()
 
 UGSSendFriendMessageRequest::UGSSendFriendMessageRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSSendFriendMessageRequest::~UGSSendFriendMessageRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

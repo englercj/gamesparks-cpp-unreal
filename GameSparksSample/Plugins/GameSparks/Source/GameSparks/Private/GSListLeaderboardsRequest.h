@@ -28,6 +28,8 @@ public:
 	static UGSListLeaderboardsRequest* SendListLeaderboardsRequest( UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSListLeaderboardsRequest();
 
 private:
 

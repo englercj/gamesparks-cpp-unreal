@@ -1,5 +1,13 @@
 # ChangeLog
 
+## rc10 (2015-09-20)
+
+### UE4
+
+- UE 4.9.1 Support
+- GameMode transitions no longer require a call to connect in each world
+- Default Connect BP node to use the preview servers
+
 ## rc9 (2015-09-07)
 
 The SDKs are now released into one repository per engine:

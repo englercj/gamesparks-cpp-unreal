@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSDropTeamRequest.h"
 
@@ -66,4 +64,13 @@ void UGSDropTeamRequest::Activate()
 
 UGSDropTeamRequest::UGSDropTeamRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSDropTeamRequest::~UGSDropTeamRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

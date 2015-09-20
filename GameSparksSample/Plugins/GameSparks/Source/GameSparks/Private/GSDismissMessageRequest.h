@@ -28,6 +28,8 @@ public:
 	static UGSDismissMessageRequest* SendDismissMessageRequest(FString MessageId = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSDismissMessageRequest();
 
 private:
 	FString messageId;

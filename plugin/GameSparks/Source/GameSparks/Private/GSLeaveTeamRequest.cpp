@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSLeaveTeamRequest.h"
 
@@ -66,4 +64,13 @@ void UGSLeaveTeamRequest::Activate()
 
 UGSLeaveTeamRequest::UGSLeaveTeamRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSLeaveTeamRequest::~UGSLeaveTeamRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

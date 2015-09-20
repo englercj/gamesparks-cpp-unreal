@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSGetRunningTotalsRequest.h"
 
@@ -69,4 +67,13 @@ void UGSGetRunningTotalsRequest::Activate()
 
 UGSGetRunningTotalsRequest::UGSGetRunningTotalsRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSGetRunningTotalsRequest::~UGSGetRunningTotalsRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

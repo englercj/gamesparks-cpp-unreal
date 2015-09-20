@@ -30,6 +30,8 @@ public:
 	static UGSWindowsBuyGoodsRequest* SendWindowsBuyGoodsRequest(FString Platform = "", FString Receipt = "", bool UniqueTransactionByPlayer = false,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSWindowsBuyGoodsRequest();
 
 private:
 	FString platform;

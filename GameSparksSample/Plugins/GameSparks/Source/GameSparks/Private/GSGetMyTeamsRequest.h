@@ -28,6 +28,8 @@ public:
 	static UGSGetMyTeamsRequest* SendGetMyTeamsRequest(bool OwnedOnly = false, UGameSparksRequestArray* TeamTypes = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSGetMyTeamsRequest();
 
 private:
 	bool ownedOnly;

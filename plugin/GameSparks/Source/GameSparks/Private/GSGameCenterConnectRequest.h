@@ -34,6 +34,8 @@ public:
 	static UGSGameCenterConnectRequest* SendGameCenterConnectRequest(FString DisplayName = "", bool DoNotLinkToCurrentPlayer = false, bool ErrorOnSwitch = false, FString ExternalPlayerId = "", FString PublicKeyUrl = "", FString Salt = "", UGameSparksScriptData* Segments = nullptr, FString Signature = "", bool SwitchIfPossible = false, bool SyncDisplayName = false, int32 Timestamp = 0,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSGameCenterConnectRequest();
 
 private:
 	FString displayName;

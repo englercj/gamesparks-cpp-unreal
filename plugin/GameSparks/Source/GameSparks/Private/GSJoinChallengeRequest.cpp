@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSJoinChallengeRequest.h"
 
@@ -66,4 +64,13 @@ void UGSJoinChallengeRequest::Activate()
 
 UGSJoinChallengeRequest::UGSJoinChallengeRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSJoinChallengeRequest::~UGSJoinChallengeRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

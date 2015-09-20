@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSChatOnChallengeRequest.h"
 
@@ -62,4 +60,13 @@ void UGSChatOnChallengeRequest::Activate()
 
 UGSChatOnChallengeRequest::UGSChatOnChallengeRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSChatOnChallengeRequest::~UGSChatOnChallengeRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

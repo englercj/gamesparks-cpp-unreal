@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSSocialStatusRequest.h"
 
@@ -54,4 +52,13 @@ void UGSSocialStatusRequest::Activate()
 
 UGSSocialStatusRequest::UGSSocialStatusRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSSocialStatusRequest::~UGSSocialStatusRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

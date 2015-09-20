@@ -16,15 +16,6 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(UGameSparksModuleLog, Log, All);
 
-namespace UGameSparksModuleNS
-{
-    static TArray< UWorld* > WorldList;
-    
-    static FWorldDelegates::FWorldInitializationEvent::FDelegate OnWorldCreatedDelegate;
-    static FWorldDelegates::FWorldEvent::FDelegate OnWorldDestroyedDelegate;
-}
-
-
 class UGameSparksModule : public IGameSparks, public FTickableGameObject
 {
 public:
@@ -55,10 +46,6 @@ public:
     
     void RegisterListeners();
     
-    // we need to notified when worlds are connected and disconnected
-    static void OnWorldConnected(UWorld* World);
-    static void OnWorldDisconnected(UWorld* World);
-
 
 private:
 

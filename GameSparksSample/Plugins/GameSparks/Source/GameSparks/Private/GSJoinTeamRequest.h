@@ -28,6 +28,8 @@ public:
 	static UGSJoinTeamRequest* SendJoinTeamRequest(FString OwnerId = "", FString TeamId = "", FString TeamType = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSJoinTeamRequest();
 
 private:
 	FString ownerId;

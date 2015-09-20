@@ -51,6 +51,11 @@ namespace GameSparks
                 {
                     m_userData = userData;
                 }
+
+				const void* GetUserData() const
+				{
+					return m_userData;
+				}
 			private:
 				// TODO: check if this works/is needed
 				bool GetDurable() const { return m_Durable; }

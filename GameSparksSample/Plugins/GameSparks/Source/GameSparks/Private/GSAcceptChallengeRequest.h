@@ -28,6 +28,8 @@ public:
 	static UGSAcceptChallengeRequest* SendAcceptChallengeRequest(FString ChallengeInstanceId = "", FString Message = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSAcceptChallengeRequest();
 
 private:
 	FString challengeInstanceId;

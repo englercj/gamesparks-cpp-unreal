@@ -29,6 +29,8 @@ public:
 	static UGSWithdrawChallengeRequest* SendWithdrawChallengeRequest(FString ChallengeInstanceId = "", FString Message = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSWithdrawChallengeRequest();
 
 private:
 	FString challengeInstanceId;

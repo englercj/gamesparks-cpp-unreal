@@ -28,6 +28,8 @@ public:
 	static UGSSendTeamChatMessageRequest* SendSendTeamChatMessageRequest(FString Message = "", FString OwnerId = "", FString TeamId = "", FString TeamType = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSSendTeamChatMessageRequest();
 
 private:
 	FString message;

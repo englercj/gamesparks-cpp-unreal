@@ -12,9 +12,8 @@ void UGSMessageListeners_OnAchievementEarnedMessage(GameSparks::Core::GS& gsInst
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnAchievementEarnedMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnAchievementEarnedMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -25,9 +24,8 @@ void UGSMessageListeners_OnChallengeAcceptedMessage(GameSparks::Core::GS& gsInst
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeAcceptedMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeAcceptedMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -38,9 +36,8 @@ void UGSMessageListeners_OnChallengeChangedMessage(GameSparks::Core::GS& gsInsta
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeChangedMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeChangedMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -51,9 +48,8 @@ void UGSMessageListeners_OnChallengeChatMessage(GameSparks::Core::GS& gsInstance
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeChatMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeChatMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -64,9 +60,8 @@ void UGSMessageListeners_OnChallengeDeclinedMessage(GameSparks::Core::GS& gsInst
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeDeclinedMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeDeclinedMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -77,9 +72,8 @@ void UGSMessageListeners_OnChallengeDrawnMessage(GameSparks::Core::GS& gsInstanc
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeDrawnMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeDrawnMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -90,9 +84,8 @@ void UGSMessageListeners_OnChallengeExpiredMessage(GameSparks::Core::GS& gsInsta
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeExpiredMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeExpiredMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -103,9 +96,8 @@ void UGSMessageListeners_OnChallengeIssuedMessage(GameSparks::Core::GS& gsInstan
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeIssuedMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeIssuedMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -116,9 +108,8 @@ void UGSMessageListeners_OnChallengeJoinedMessage(GameSparks::Core::GS& gsInstan
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeJoinedMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeJoinedMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -129,9 +120,8 @@ void UGSMessageListeners_OnChallengeLapsedMessage(GameSparks::Core::GS& gsInstan
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeLapsedMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeLapsedMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -142,9 +132,8 @@ void UGSMessageListeners_OnChallengeLostMessage(GameSparks::Core::GS& gsInstance
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeLostMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeLostMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -155,9 +144,8 @@ void UGSMessageListeners_OnChallengeStartedMessage(GameSparks::Core::GS& gsInsta
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeStartedMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeStartedMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -168,9 +156,8 @@ void UGSMessageListeners_OnChallengeTurnTakenMessage(GameSparks::Core::GS& gsIns
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeTurnTakenMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeTurnTakenMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -181,9 +168,8 @@ void UGSMessageListeners_OnChallengeWaitingMessage(GameSparks::Core::GS& gsInsta
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeWaitingMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeWaitingMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -194,9 +180,8 @@ void UGSMessageListeners_OnChallengeWithdrawnMessage(GameSparks::Core::GS& gsIns
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeWithdrawnMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeWithdrawnMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -207,9 +192,8 @@ void UGSMessageListeners_OnChallengeWonMessage(GameSparks::Core::GS& gsInstance,
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnChallengeWonMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnChallengeWonMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -220,9 +204,8 @@ void UGSMessageListeners_OnFriendMessage(GameSparks::Core::GS& gsInstance, const
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnFriendMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnFriendMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -233,9 +216,8 @@ void UGSMessageListeners_OnGlobalRankChangedMessage(GameSparks::Core::GS& gsInst
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnGlobalRankChangedMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnGlobalRankChangedMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -246,9 +228,8 @@ void UGSMessageListeners_OnNewHighScoreMessage(GameSparks::Core::GS& gsInstance,
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnNewHighScoreMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnNewHighScoreMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -259,9 +240,8 @@ void UGSMessageListeners_OnNewTeamScoreMessage(GameSparks::Core::GS& gsInstance,
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnNewTeamScoreMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnNewTeamScoreMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -272,9 +252,8 @@ void UGSMessageListeners_OnScriptMessage(GameSparks::Core::GS& gsInstance, const
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnScriptMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnScriptMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -285,9 +264,8 @@ void UGSMessageListeners_OnSessionTerminatedMessage(GameSparks::Core::GS& gsInst
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnSessionTerminatedMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnSessionTerminatedMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -298,9 +276,8 @@ void UGSMessageListeners_OnSocialRankChangedMessage(GameSparks::Core::GS& gsInst
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnSocialRankChangedMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnSocialRankChangedMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -311,9 +288,8 @@ void UGSMessageListeners_OnTeamChatMessage(GameSparks::Core::GS& gsInstance, con
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnTeamChatMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnTeamChatMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -324,9 +300,8 @@ void UGSMessageListeners_OnTeamRankChangedMessage(GameSparks::Core::GS& gsInstan
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnTeamRankChangedMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnTeamRankChangedMessage.Broadcast(unreal_message);
 		}
     }
 }
@@ -337,9 +312,8 @@ void UGSMessageListeners_OnUploadCompleteMessage(GameSparks::Core::GS& gsInstanc
     
     for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld()))
-        {
-    	    Itr->OnUploadCompleteMessage.Broadcast(unreal_message);
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnUploadCompleteMessage.Broadcast(unreal_message);
 		}
     }
 }

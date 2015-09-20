@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSListLeaderboardsRequest.h"
 
@@ -54,4 +52,13 @@ void UGSListLeaderboardsRequest::Activate()
 
 UGSListLeaderboardsRequest::UGSListLeaderboardsRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSListLeaderboardsRequest::~UGSListLeaderboardsRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

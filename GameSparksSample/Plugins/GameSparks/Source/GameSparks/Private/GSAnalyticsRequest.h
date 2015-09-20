@@ -34,6 +34,8 @@ public:
 	static UGSAnalyticsRequest* SendAnalyticsRequest(UGameSparksScriptData* Data = nullptr, bool End = false, FString Key = "", bool Start = false,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSAnalyticsRequest();
 
 private:
 	UGameSparksScriptData* data;

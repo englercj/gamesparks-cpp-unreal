@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSGetPropertyRequest.h"
 
@@ -58,4 +56,13 @@ void UGSGetPropertyRequest::Activate()
 
 UGSGetPropertyRequest::UGSGetPropertyRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSGetPropertyRequest::~UGSGetPropertyRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

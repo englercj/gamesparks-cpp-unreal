@@ -32,6 +32,8 @@ public:
 	static UGSGooglePlayBuyGoodsRequest* SendGooglePlayBuyGoodsRequest(FString Signature = "", FString SignedData = "", bool UniqueTransactionByPlayer = false,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSGooglePlayBuyGoodsRequest();
 
 private:
 

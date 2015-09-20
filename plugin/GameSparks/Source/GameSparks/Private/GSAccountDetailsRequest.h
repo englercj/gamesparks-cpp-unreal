@@ -28,6 +28,8 @@ public:
 	static UGSAccountDetailsRequest* SendAccountDetailsRequest( UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSAccountDetailsRequest();
 
 private:
 

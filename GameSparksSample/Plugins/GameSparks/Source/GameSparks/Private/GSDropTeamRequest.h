@@ -28,6 +28,8 @@ public:
 	static UGSDropTeamRequest* SendDropTeamRequest(FString OwnerId = "", FString TeamId = "", FString TeamType = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSDropTeamRequest();
 
 private:
 	FString ownerId;

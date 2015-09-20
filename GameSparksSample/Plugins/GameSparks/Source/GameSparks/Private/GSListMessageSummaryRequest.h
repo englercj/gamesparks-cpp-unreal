@@ -30,6 +30,8 @@ public:
 	static UGSListMessageSummaryRequest* SendListMessageSummaryRequest(int32 EntryCount = 0, int32 Offset = 0,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSListMessageSummaryRequest();
 
 private:
 	int32 entryCount;

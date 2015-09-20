@@ -30,6 +30,8 @@ public:
 	static UGSDeviceAuthenticationRequest* SendDeviceAuthenticationRequest(FString DeviceId = "", FString DeviceModel = "", FString DeviceName = "", FString DeviceOS = "", FString DeviceType = "", FString DisplayName = "", FString OperatingSystem = "", UGameSparksScriptData* Segments = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSDeviceAuthenticationRequest();
 
 private:
 	FString deviceId;

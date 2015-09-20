@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSSendTeamChatMessageRequest.h"
 
@@ -70,4 +68,13 @@ void UGSSendTeamChatMessageRequest::Activate()
 
 UGSSendTeamChatMessageRequest::UGSSendTeamChatMessageRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSSendTeamChatMessageRequest::~UGSSendTeamChatMessageRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

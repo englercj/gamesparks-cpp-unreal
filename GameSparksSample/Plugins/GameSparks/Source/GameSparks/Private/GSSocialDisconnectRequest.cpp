@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSSocialDisconnectRequest.h"
 
@@ -58,4 +56,13 @@ void UGSSocialDisconnectRequest::Activate()
 
 UGSSocialDisconnectRequest::UGSSocialDisconnectRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSSocialDisconnectRequest::~UGSSocialDisconnectRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

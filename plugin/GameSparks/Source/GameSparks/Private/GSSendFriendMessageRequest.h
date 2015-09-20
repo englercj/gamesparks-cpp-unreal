@@ -28,6 +28,8 @@ public:
 	static UGSSendFriendMessageRequest* SendSendFriendMessageRequest(UGameSparksRequestArray* FriendIds = nullptr, FString Message = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSSendFriendMessageRequest();
 
 private:
 	UGameSparksRequestArray* friendIds;

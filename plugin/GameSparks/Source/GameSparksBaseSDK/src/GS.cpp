@@ -264,10 +264,11 @@ void GameSparks::Core::GS::Send(GSRequest& request)
 	if (m_Connections.size() > 0 && m_Connections[0]->GetReady())
 	{
 		m_Connections[0]->SendImmediate(request);
-		return;
 	}
-
-	m_SendQueue.push_back(request);
+	else
+	{
+		m_SendQueue.push_back(request);
+	}
 }
 
 void GS::Update(Seconds deltaTimeInSeconds)
@@ -701,4 +702,30 @@ GS::t_PersistentQueue GS::DeserializeRequestQueue(const gsstl::string& s)
 GS::t_PersistentQueue& GS::GetDurableQueueEntries()
 {
 	return m_PersistentQueue;
+}
+
+struct UserDataEqualTo
+{
+	UserDataEqualTo(const void* userData) : userData_(userData) {}
+	bool operator()(const GSRequest& request) { return request.GetUserData() == userData_; }
+	bool operator()(const gsstl::pair<gsstl::string, GSRequest>& p) { return p.second.GetUserData() == userData_; }
+	const void* userData_;
+};
+
+void GS::CancelRequestWithUserData(const void *userData)
+{
+	// erase from send queue
+	m_SendQueue.remove_if(UserDataEqualTo(userData));
+
+	// erase from persistent queue
+	m_PersistentQueue.remove_if(UserDataEqualTo(userData));
+	WritePersistentQueue();
+
+	// remove from pending requests from all connections
+	for (t_ConnectionContainer::iterator i = m_Connections.begin(); i != m_Connections.end(); ++i)
+		for (GSConnection::t_RequestMap::iterator j = (*i)->m_PendingRequests.begin(); j != (*i)->m_PendingRequests.end();)
+			if (j->second.GetUserData() == userData)
+				(*i)->m_PendingRequests.erase(j++); // post-increment is important here!
+			else
+				++j;
 }

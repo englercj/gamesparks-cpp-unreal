@@ -30,6 +30,8 @@ public:
 	static UGSIOSBuyGoodsRequest* SendIOSBuyGoodsRequest(FString Receipt = "", bool Sandbox = false, bool UniqueTransactionByPlayer = false,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSIOSBuyGoodsRequest();
 
 private:
 	FString receipt;

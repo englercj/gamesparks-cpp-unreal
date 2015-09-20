@@ -134,14 +134,8 @@ namespace GameSparks
                 //! Load Value associated with *key*. returns empty string, if key could not be retrieved.
 				gsstl::string LoadValue(const gsstl::string& key) const;
 
-				#if defined(WIN32) && defined(UNICODE)
-				typedef gsstl::wstring Path;
-				#else
-				typedef gsstl::string Path;
-				#endif
-
 				/// convert desired_name into a absolute path that can be used by fopen to open a file.
-				virtual Path ToWritableLocation(gsstl::string desired_name) const;
+				virtual gsstl::string ToWritableLocation(gsstl::string desired_name) const;
 			protected:
 				gsstl::string m_AuthToken; ///< the stored auth token received from the server
 				gsstl::string m_UserId; ///< id of currently authenticated user

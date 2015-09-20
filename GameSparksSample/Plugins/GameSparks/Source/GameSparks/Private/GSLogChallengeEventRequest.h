@@ -30,6 +30,8 @@ public:
 	static UGSLogChallengeEventRequest* SendLogChallengeEventRequest(FString ChallengeInstanceId = "", FString EventKey = "",  UGameSparksLogEventData* LogEventData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSLogChallengeEventRequest();
 
 private:
 	FString challengeInstanceId;

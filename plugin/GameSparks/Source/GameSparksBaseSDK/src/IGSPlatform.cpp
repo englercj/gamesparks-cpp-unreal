@@ -197,41 +197,52 @@ gsstl::string IGSPlatform::GetPlatform() const
 	return GetDeviceOS();
 }
 
-gsstl::string concat(const gsstl::string& a, const gsstl::string& b)
+#if defined(WIN32)
+// convert UTF-8 string to wstring
+static std::wstring utf8_to_wstring(const std::string& str)
 {
-	return a + b;
+	int output_size = MultiByteToWideChar(CP_UTF8, NULL, str.c_str(), str.size(), NULL, 0);
+	assert(output_size > 0);
+	gsstl::vector<wchar_t> buffer(output_size);
+	int result = MultiByteToWideChar(CP_UTF8, NULL, str.c_str(), str.size(), buffer.data(), buffer.size());
+	assert( result == output_size );
+	std::wstring ret(buffer.begin(), buffer.end());
+	return ret;
+	//std::wstring_convert<std::codecvt_utf8<wchar_t>> myconv;
+	//return myconv.from_bytes(str);
 }
 
-#if defined(WIN32) && defined(UNICODE)
-static gsstl::wstring s2ws(const gsstl::string& s)
+// convert wstring to UTF-8 string
+static std::string wstring_to_utf8(const std::wstring& str)
 {
-	int len;
-	int slength = (int)s.length() + 1;
-	len = MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, 0, 0);
+	int output_size = WideCharToMultiByte(CP_UTF8, NULL, str.c_str(), str.size(), NULL, 0, NULL, NULL);
+	assert(output_size > 0);
+	gsstl::vector<char> buffer(output_size);
+	int result = WideCharToMultiByte(CP_UTF8, NULL, str.c_str(), str.size(), buffer.data(), buffer.size(), NULL, NULL);
+	assert(result == output_size);
+	std::string ret(buffer.begin(), buffer.end());
+	return ret;
 
-	wchar_t* tmp = new wchar_t[len];
-	MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, tmp, len);
-	gsstl::wstring r = tmp;
-	delete[] tmp;
-	return r;
-}
-
-static gsstl::wstring concat(const gsstl::wstring& a, const gsstl::string& b)
-{
-	return a + s2ws(b);
-}
-
-static FILE* fopen(const wchar_t* path, const char* mode_)
-{
-	gsstl::wstring mode = s2ws(mode_);
-	return _wfopen(path, mode.c_str());
+	//std::wstring_convert<std::codecvt_utf8<wchar_t>> myconv;
+	//return myconv.to_bytes(str);
 }
 #endif
+
+// variant of fopen that takes care of the fact, that we cannot use utf-8 for paths on windows
+static FILE* gs_fopen(const gsstl::string& path, const char* mode)
+{
+#if defined(WIN32)
+	return _wfopen(utf8_to_wstring(path).c_str(), utf8_to_wstring(mode).c_str());
+#else
+	return fopen(path.c_str(), mode);
+#endif /* WIN32 */
+}
+
 
 void IGSPlatform::StoreValue(const gsstl::string& key, const gsstl::string& value) const
 {
 	// TODO: port to all the platforms
-	FILE* f = fopen(ToWritableLocation(key).c_str(), "wb");
+	FILE* f = gs_fopen(ToWritableLocation(key), "wb");
 	assert(f);
 	if (!f)
 	{
@@ -248,7 +259,7 @@ void IGSPlatform::StoreValue(const gsstl::string& key, const gsstl::string& valu
 gsstl::string IGSPlatform::LoadValue(const gsstl::string& key) const
 {
 	// TODO: port to all the platforms
-	FILE *f = fopen(ToWritableLocation(key).c_str(), "rb");
+	FILE *f = gs_fopen(ToWritableLocation(key), "rb");
 	
     if(!f)
     {
@@ -274,7 +285,7 @@ gsstl::string IGSPlatform::LoadValue(const gsstl::string& key) const
 
 
 
-IGSPlatform::Path IGSPlatform::ToWritableLocation(gsstl::string desired_name) const
+gsstl::string IGSPlatform::ToWritableLocation(gsstl::string desired_name) const
 {
 	desired_name = "gamesparks_" + desired_name;
 
@@ -285,28 +296,25 @@ IGSPlatform::Path IGSPlatform::ToWritableLocation(gsstl::string desired_name) co
 
 	#elif GS_TARGET_PLATFORM == GS_PLATFORM_WIN32
 		#if defined(GS_WINDOWS_DESKTOP)
-			static Path base_path;
+			static gsstl::string base_path;
 
 			if (base_path.empty())
 			{
-				TCHAR szPath[MAX_PATH];
-				if (SUCCEEDED(SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, szPath)))
+				wchar_t szPath[MAX_PATH];
+				if (SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_APPDATA, NULL, 0, szPath)))
 				{
-					base_path = szPath;
+					base_path = wstring_to_utf8(szPath);
 				}
 				else
 				{
 					DebugMsg("Failed to get CSIDL_APPDATA path.");
-					base_path = Path();
-					base_path = concat(base_path, "./");
+					base_path = "./";
 					assert(false);
 				}
 
-				base_path = concat(base_path, "\\GameSparks\\");
-				base_path = concat(base_path, m_apiKey);
-				base_path = concat(base_path, "\\");
+				base_path = base_path + "\\GameSparks\\" + m_apiKey + "\\";
 
-				int result = SHCreateDirectoryEx(NULL, base_path.c_str(), NULL);
+				int result = SHCreateDirectoryExW(NULL, utf8_to_wstring(base_path).c_str(), NULL);
 
 				if (
 					result != ERROR_SUCCESS &&
@@ -323,12 +331,10 @@ IGSPlatform::Path IGSPlatform::ToWritableLocation(gsstl::string desired_name) co
 
 			assert(!base_path.empty());
 
-			return concat(base_path, desired_name);
+			return base_path + desired_name;
 		#else
-			std::wstring wbase_path = Windows::Storage::ApplicationData::Current->LocalFolder->Path->Data();
-			typedef std::codecvt_utf8<wchar_t> convert_type;
-			std::wstring_convert<convert_type, wchar_t> converter;
-			auto base_path = converter.to_bytes(wbase_path);
+			static std::wstring wbase_path = Windows::Storage::ApplicationData::Current->LocalFolder->Path->Data();
+			static auto base_path = wstring_to_utf8(wbase_path);
 			return base_path + "\\" + desired_name;
 		#endif /* defined(GS_WINDOWS_DESKTOP) */
 

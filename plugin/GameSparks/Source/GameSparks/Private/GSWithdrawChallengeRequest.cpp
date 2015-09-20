@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSWithdrawChallengeRequest.h"
 
@@ -62,4 +60,13 @@ void UGSWithdrawChallengeRequest::Activate()
 
 UGSWithdrawChallengeRequest::UGSWithdrawChallengeRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSWithdrawChallengeRequest::~UGSWithdrawChallengeRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

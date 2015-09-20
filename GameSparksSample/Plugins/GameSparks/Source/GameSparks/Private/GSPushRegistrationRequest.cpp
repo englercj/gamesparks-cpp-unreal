@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSPushRegistrationRequest.h"
 
@@ -62,4 +60,13 @@ void UGSPushRegistrationRequest::Activate()
 
 UGSPushRegistrationRequest::UGSPushRegistrationRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSPushRegistrationRequest::~UGSPushRegistrationRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

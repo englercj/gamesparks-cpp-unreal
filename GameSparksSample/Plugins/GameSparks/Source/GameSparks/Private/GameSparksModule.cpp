@@ -29,46 +29,46 @@ DEFINE_LOG_CATEGORY(UGameSparksModuleLog);
 void GameSparksAvailable_Static(GameSparks::Core::GS& gsInstance, bool available)
 {
     UE_LOG(UGameSparksModuleLog, Warning, TEXT("%s"), TEXT("GameSparks::GameSparksAvailable_Static"));
-	UGameSparksModule::GetModulePtr()->SendGameSparksAvailableToComponents(available);
+    UGameSparksModule::GetModulePtr()->SendGameSparksAvailableToComponents(available);
 }
 
 void UGameSparksModule::StartupModule()
 {
     UE_LOG(UGameSparksModuleLog, Warning, TEXT("%s"), TEXT("GameSparks::StartupModule"));
-	GS.GameSparksAvailable = GameSparksAvailable_Static;
+    GS.GameSparksAvailable = GameSparksAvailable_Static;
     UGSMessageListeners::RegisterListeners(GS);
     
 }
 
 void UGameSparksModule::ShutdownModule()
 {
-	GS.ShutDown();
+    GS.ShutDown();
     isInitialised = false;
 }
 
 bool UGameSparksModule::IsTickableWhenPaused() const
 {
-	return true;
+    return true;
 }
 
 bool UGameSparksModule::IsTickableInEditor() const
 {
-	return false;
+    return false;
 }
 
 void UGameSparksModule::Tick(float DeltaTime)
 {
-	GS.Update(DeltaTime);
+    GS.Update(DeltaTime);
 }
 
 bool UGameSparksModule::IsTickable() const
 {
-	return true;
+    return true;
 }
 
 TStatId UGameSparksModule::GetStatId() const
 {
-	RETURN_QUICK_DECLARE_CYCLE_STAT(UGameSparksModule, STATGROUP_Tickables);
+    RETURN_QUICK_DECLARE_CYCLE_STAT(UGameSparksModule, STATGROUP_Tickables);
 }
 
 void UGameSparksModule::Initialize(FString apikey, FString secret, bool previewServer, bool clearCachedAuthentication)
@@ -104,14 +104,14 @@ void UGameSparksModule::Logout()
 
 UGameSparksModule* UGameSparksModule::GetModulePtr()
 {
-	return FModuleManager::GetModulePtr<UGameSparksModule>("GameSparks");
+    return FModuleManager::GetModulePtr<UGameSparksModule>("GameSparks");
 }
 
 void UGameSparksModule::SendGameSparksAvailableToComponents(bool available)
 {
     for ( TObjectIterator<UGameSparksComponent> Itr; Itr; ++Itr )
     {
-        if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld())){
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
             Itr->OnGameSparksAvailableDelegate.Broadcast(available);
         }
     }
@@ -122,28 +122,14 @@ void UGameSparksModule::SendDebugLogToComponents(const gsstl::string& message)
     FString str = FString(message.c_str());
     
     UE_LOG(UGameSparksModuleLog, Log, TEXT("%s"), *str);
-
-	if (GEngine != NULL)
-	{
+    
+    if (GEngine != NULL)
+    {
         for ( TObjectIterator<UGameSparksComponent> Itr; Itr; ++Itr )
         {
-            if(UGameSparksModuleNS::WorldList.Contains(Itr->GetWorld())){
+            if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
                 Itr->OnGameSparksDebugLog.Broadcast(str);
             }
         }
-	}
+    }
 }
-
-
-void UGameSparksModule::OnWorldConnected(UWorld* World)
-{
-	UGameSparksModuleNS::WorldList.AddUnique(World);
-}
-
-void UGameSparksModule::OnWorldDisconnected(UWorld* World)
-{
-	UGameSparksModuleNS::WorldList.Remove(World);
-}
-
-
-

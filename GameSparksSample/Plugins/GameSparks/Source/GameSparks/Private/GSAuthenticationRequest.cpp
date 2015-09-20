@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSAuthenticationRequest.h"
 
@@ -62,4 +60,13 @@ void UGSAuthenticationRequest::Activate()
 
 UGSAuthenticationRequest::UGSAuthenticationRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSAuthenticationRequest::~UGSAuthenticationRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

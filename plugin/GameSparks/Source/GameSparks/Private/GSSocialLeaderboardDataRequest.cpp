@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSSocialLeaderboardDataRequest.h"
 
@@ -123,4 +121,13 @@ void UGSSocialLeaderboardDataRequest::Activate()
 
 UGSSocialLeaderboardDataRequest::UGSSocialLeaderboardDataRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSSocialLeaderboardDataRequest::~UGSSocialLeaderboardDataRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

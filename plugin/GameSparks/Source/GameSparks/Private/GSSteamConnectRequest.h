@@ -34,6 +34,8 @@ public:
 	static UGSSteamConnectRequest* SendSteamConnectRequest(bool DoNotLinkToCurrentPlayer = false, bool ErrorOnSwitch = false, UGameSparksScriptData* Segments = nullptr, FString SessionTicket = "", bool SwitchIfPossible = false, bool SyncDisplayName = false,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSSteamConnectRequest();
 
 private:
 	bool doNotLinkToCurrentPlayer;

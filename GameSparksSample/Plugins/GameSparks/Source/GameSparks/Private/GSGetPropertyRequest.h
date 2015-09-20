@@ -28,6 +28,8 @@ public:
 	static UGSGetPropertyRequest* SendGetPropertyRequest(FString PropertyShortCode = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSGetPropertyRequest();
 
 private:
 	FString propertyShortCode;

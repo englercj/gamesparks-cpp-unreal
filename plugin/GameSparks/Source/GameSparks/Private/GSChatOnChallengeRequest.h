@@ -29,6 +29,8 @@ public:
 	static UGSChatOnChallengeRequest* SendChatOnChallengeRequest(FString ChallengeInstanceId = "", FString Message = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSChatOnChallengeRequest();
 
 private:
 	FString challengeInstanceId;

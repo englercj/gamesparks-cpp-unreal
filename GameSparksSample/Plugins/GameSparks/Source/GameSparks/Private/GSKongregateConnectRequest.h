@@ -33,6 +33,8 @@ public:
 	static UGSKongregateConnectRequest* SendKongregateConnectRequest(bool DoNotLinkToCurrentPlayer = false, bool ErrorOnSwitch = false, FString GameAuthToken = "", UGameSparksScriptData* Segments = nullptr, bool SwitchIfPossible = false, bool SyncDisplayName = false, FString UserId = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSKongregateConnectRequest();
 
 private:
 	bool doNotLinkToCurrentPlayer;

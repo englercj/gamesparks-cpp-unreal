@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSAnalyticsRequest.h"
 
@@ -70,4 +68,13 @@ void UGSAnalyticsRequest::Activate()
 
 UGSAnalyticsRequest::UGSAnalyticsRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSAnalyticsRequest::~UGSAnalyticsRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

@@ -64,7 +64,7 @@ namespace GameSparks
 
 			virtual gsstl::string GetLiveServiceUrl() const
 			{
-				return "wss://preview.gamesparks.net/ws/" + m_apiKey;
+				return "wss://live.gamesparks.net/ws/" + m_apiKey;
 			}
 
 			virtual void DebugMsg(const gsstl::string& message) const
@@ -73,7 +73,7 @@ namespace GameSparks
 					UGameSparksModule::GetModulePtr()->SendDebugLogToComponents(message);
 			}
 
-            virtual Path ToWritableLocation(gsstl::string desired_name) const{
+            virtual gsstl::string ToWritableLocation(gsstl::string desired_name) const{
                 #if PLATFORM_IOS || PLATFORM_ANDROID
 					// Conditional since ConvertRelativePathToFull does not work on mobile devices.
 					// see https://answers.unrealengine.com/questions/120796/adding-custom-files-to-the-android-content.html
@@ -82,11 +82,7 @@ namespace GameSparks
                     FString writeableLocation = FPaths::ConvertRelativePathToFull(FPaths::GameSavedDir());
                     writeableLocation += "gamesparks_";
                     writeableLocation += desired_name.c_str();
-                    #if defined(WIN32) && defined(UNICODE)
-                    	return *writeableLocation;
-                    #else
-	                    return TCHAR_TO_UTF8(*writeableLocation);
-    	            #endif
+                    return TCHAR_TO_UTF8(*writeableLocation);
 	            #endif
             }
 		};

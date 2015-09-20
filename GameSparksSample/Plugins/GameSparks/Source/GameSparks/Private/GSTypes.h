@@ -2697,6 +2697,12 @@ struct FGSCreateChallengeResponse
 	FGSCreateChallengeResponse(const GameSparks::Core::GSData& wrappedData){
 	
 		
+	if(wrappedData.ContainsKey("challengeInstanceId")){
+		HasChallengeInstanceId = true;
+			ChallengeInstanceId = wrappedData.GetString("challengeInstanceId").GetValue().c_str();
+		}
+		
+		
 	if(wrappedData.ContainsKey("requestId")){
 		HasRequestId = true;
 			RequestId = wrappedData.GetString("requestId").GetValue().c_str();
@@ -2719,6 +2725,12 @@ struct FGSCreateChallengeResponse
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
 	UGameSparksScriptData* Errors = nullptr;
 	
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	bool HasChallengeInstanceId = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	FString ChallengeInstanceId;
 	
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
 	bool HasRequestId = false;
@@ -2767,6 +2779,18 @@ struct FGSCreateTeamResponse
 		}
 		
 		
+	if(wrappedData.ContainsKey("requestId")){
+		HasRequestId = true;
+			RequestId = wrappedData.GetString("requestId").GetValue().c_str();
+		}
+		
+		
+	if(wrappedData.ContainsKey("scriptData")){
+		HasScriptData = true;
+			ScriptData = NewObject<UGameSparksScriptData>();ScriptData->SetGSData(wrappedData.GetGSDataObject("scriptData").GetValue());
+		}
+		
+		
 	if(wrappedData.ContainsKey("teamId")){
 		HasTeamId = true;
 			TeamId = wrappedData.GetString("teamId").GetValue().c_str();
@@ -2802,6 +2826,18 @@ struct FGSCreateTeamResponse
 	
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
 	FGSPlayer Owner;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	bool HasRequestId = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	FString RequestId;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	bool HasScriptData = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	UGameSparksScriptData* ScriptData = nullptr;
 	
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
 	bool HasTeamId = false;
@@ -2972,6 +3008,18 @@ struct FGSDropTeamResponse
 		}
 		
 		
+	if(wrappedData.ContainsKey("requestId")){
+		HasRequestId = true;
+			RequestId = wrappedData.GetString("requestId").GetValue().c_str();
+		}
+		
+		
+	if(wrappedData.ContainsKey("scriptData")){
+		HasScriptData = true;
+			ScriptData = NewObject<UGameSparksScriptData>();ScriptData->SetGSData(wrappedData.GetGSDataObject("scriptData").GetValue());
+		}
+		
+		
 	if(wrappedData.ContainsKey("teamId")){
 		HasTeamId = true;
 			TeamId = wrappedData.GetString("teamId").GetValue().c_str();
@@ -3007,6 +3055,18 @@ struct FGSDropTeamResponse
 	
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
 	FGSPlayer Owner;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	bool HasRequestId = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	FString RequestId;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	bool HasScriptData = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	UGameSparksScriptData* ScriptData = nullptr;
 	
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
 	bool HasTeamId = false;
@@ -3960,6 +4020,18 @@ struct FGSGetTeamResponse
 		}
 		
 		
+	if(wrappedData.ContainsKey("requestId")){
+		HasRequestId = true;
+			RequestId = wrappedData.GetString("requestId").GetValue().c_str();
+		}
+		
+		
+	if(wrappedData.ContainsKey("scriptData")){
+		HasScriptData = true;
+			ScriptData = NewObject<UGameSparksScriptData>();ScriptData->SetGSData(wrappedData.GetGSDataObject("scriptData").GetValue());
+		}
+		
+		
 	if(wrappedData.ContainsKey("teamId")){
 		HasTeamId = true;
 			TeamId = wrappedData.GetString("teamId").GetValue().c_str();
@@ -3969,6 +4041,15 @@ struct FGSGetTeamResponse
 	if(wrappedData.ContainsKey("teamType")){
 		HasTeamType = true;
 			TeamType = wrappedData.GetString("teamType").GetValue().c_str();
+		}
+		
+		
+	if(wrappedData.ContainsKey("teams")){
+		HasTeams = true;
+			for(int i=0; i < wrappedData.GetGSDataObjectList("teams").size(); i++){
+				FGSTeam Teams_tmp = FGSTeam(wrappedData.GetGSDataObjectList("teams")[i]);
+				Teams.Add(Teams_tmp);
+            }
 		}
 		
 		if(wrappedData.ContainsKey("error")){
@@ -3997,6 +4078,18 @@ struct FGSGetTeamResponse
 	FGSPlayer Owner;
 	
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	bool HasRequestId = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	FString RequestId;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	bool HasScriptData = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	UGameSparksScriptData* ScriptData = nullptr;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
 	bool HasTeamId = false;
 	
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
@@ -4007,6 +4100,13 @@ struct FGSGetTeamResponse
 	
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
 	FString TeamType;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	bool HasTeams = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	TArray<FGSTeam> Teams;
+	
 	
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Authentication")
     FString JSONString;
@@ -4244,6 +4344,18 @@ struct FGSJoinTeamResponse
 		}
 		
 		
+	if(wrappedData.ContainsKey("requestId")){
+		HasRequestId = true;
+			RequestId = wrappedData.GetString("requestId").GetValue().c_str();
+		}
+		
+		
+	if(wrappedData.ContainsKey("scriptData")){
+		HasScriptData = true;
+			ScriptData = NewObject<UGameSparksScriptData>();ScriptData->SetGSData(wrappedData.GetGSDataObject("scriptData").GetValue());
+		}
+		
+		
 	if(wrappedData.ContainsKey("teamId")){
 		HasTeamId = true;
 			TeamId = wrappedData.GetString("teamId").GetValue().c_str();
@@ -4279,6 +4391,18 @@ struct FGSJoinTeamResponse
 	
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
 	FGSPlayer Owner;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	bool HasRequestId = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	FString RequestId;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	bool HasScriptData = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	UGameSparksScriptData* ScriptData = nullptr;
 	
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
 	bool HasTeamId = false;
@@ -4454,6 +4578,18 @@ struct FGSLeaveTeamResponse
 		}
 		
 		
+	if(wrappedData.ContainsKey("requestId")){
+		HasRequestId = true;
+			RequestId = wrappedData.GetString("requestId").GetValue().c_str();
+		}
+		
+		
+	if(wrappedData.ContainsKey("scriptData")){
+		HasScriptData = true;
+			ScriptData = NewObject<UGameSparksScriptData>();ScriptData->SetGSData(wrappedData.GetGSDataObject("scriptData").GetValue());
+		}
+		
+		
 	if(wrappedData.ContainsKey("teamId")){
 		HasTeamId = true;
 			TeamId = wrappedData.GetString("teamId").GetValue().c_str();
@@ -4489,6 +4625,18 @@ struct FGSLeaveTeamResponse
 	
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
 	FGSPlayer Owner;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	bool HasRequestId = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	FString RequestId;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	bool HasScriptData = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
+	UGameSparksScriptData* ScriptData = nullptr;
 	
 	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Teams")
 	bool HasTeamId = false;

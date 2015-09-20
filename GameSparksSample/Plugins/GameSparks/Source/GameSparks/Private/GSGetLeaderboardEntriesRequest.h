@@ -28,6 +28,8 @@ public:
 	static UGSGetLeaderboardEntriesRequest* SendGetLeaderboardEntriesRequest(UGameSparksRequestArray* Challenges = nullptr, bool InverseSocial = false, UGameSparksRequestArray* Leaderboards = nullptr, FString Player = "", bool Social = false, UGameSparksRequestArray* TeamTypes = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSGetLeaderboardEntriesRequest();
 
 private:
 	UGameSparksRequestArray* challenges;

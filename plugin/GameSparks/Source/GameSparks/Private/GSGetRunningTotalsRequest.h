@@ -28,6 +28,8 @@ public:
 	static UGSGetRunningTotalsRequest* SendGetRunningTotalsRequest(UGameSparksRequestArray* FriendIds = nullptr, FString ShortCode = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSGetRunningTotalsRequest();
 
 private:
 	UGameSparksRequestArray* friendIds;

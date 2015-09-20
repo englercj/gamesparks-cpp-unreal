@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSGetLeaderboardEntriesRequest.h"
 
@@ -99,4 +97,13 @@ void UGSGetLeaderboardEntriesRequest::Activate()
 
 UGSGetLeaderboardEntriesRequest::UGSGetLeaderboardEntriesRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSGetLeaderboardEntriesRequest::~UGSGetLeaderboardEntriesRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

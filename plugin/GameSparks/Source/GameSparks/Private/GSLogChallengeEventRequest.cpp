@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksLogEventData.h"
 #include "GSLogChallengeEventRequest.h"
 
@@ -62,4 +60,13 @@ void UGSLogChallengeEventRequest::Activate()
 
 UGSLogChallengeEventRequest::UGSLogChallengeEventRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSLogChallengeEventRequest::~UGSLogChallengeEventRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

@@ -30,6 +30,8 @@ public:
 	static UGSCreateChallengeRequest* SendCreateChallengeRequest(FString AccessType = "", bool AutoStartJoinedChallengeOnMaxPlayers = false, FString ChallengeMessage = "", FString ChallengeShortCode = "", int32 Currency1Wager = 0, int32 Currency2Wager = 0, int32 Currency3Wager = 0, int32 Currency4Wager = 0, int32 Currency5Wager = 0, int32 Currency6Wager = 0, UGameSparksScriptData* EligibilityCriteria = nullptr, FString EndTime = "", FString ExpiryTime = "", int32 MaxAttempts = 0, int32 MaxPlayers = 0, int32 MinPlayers = 0, bool Silent = false, FString StartTime = "", UGameSparksRequestArray* UsersToChallenge = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSCreateChallengeRequest();
 
 private:
 	FString accessType;

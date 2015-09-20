@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSKongregateConnectRequest.h"
 
@@ -82,4 +80,13 @@ void UGSKongregateConnectRequest::Activate()
 
 UGSKongregateConnectRequest::UGSKongregateConnectRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSKongregateConnectRequest::~UGSKongregateConnectRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

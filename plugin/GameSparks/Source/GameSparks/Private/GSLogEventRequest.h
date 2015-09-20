@@ -30,6 +30,8 @@ public:
 	static UGSLogEventRequest* SendLogEventRequest(FString EventKey = "",  UGameSparksLogEventData* LogEventData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSLogEventRequest();
 
 private:
 	FString eventKey;

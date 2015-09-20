@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSListVirtualGoodsRequest.h"
 
@@ -54,4 +52,13 @@ void UGSListVirtualGoodsRequest::Activate()
 
 UGSListVirtualGoodsRequest::UGSListVirtualGoodsRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSListVirtualGoodsRequest::~UGSListVirtualGoodsRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

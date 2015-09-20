@@ -2233,24 +2233,6 @@ namespace GameSparks
 			};
 			
 			/*!
-			\ingroup Player
-			Returns a list of non game friends.
-			A non game friend is someone in their social network who does not play the game.
-			*/
-			class ListInviteFriendsRequest : public GameSparks::Core::GSTypedRequest < ListInviteFriendsRequest, GameSparks::Api::Responses::ListInviteFriendsResponse >
-			{
-			public:
-				ListInviteFriendsRequest(Core::GS& gsInstance)
-					: GSTypedRequest(gsInstance, ".ListInviteFriendsRequest")
-				{
-
-				}
-			
-
-
-			};
-			
-			/*!
 			\ingroup Leaderboards
 			Returns a list of all leaderboards configured in the game.
 			*/
@@ -2608,7 +2590,7 @@ namespace GameSparks
 
 
 			/// <summary>
-			/// The type of id, valid values are ios, android, wp8, w8 or kindle
+			/// The type of id, valid values are ios, android, wp8, w8, kindle or viber
 			/// </summary>
 			PushRegistrationRequest& SetDeviceOS( const gsstl::string& deviceOS )
 			{
@@ -3133,6 +3115,79 @@ namespace GameSparks
 			/// Indicates that the associated players displayName should be kept in syn with this profile when it's updated by the external provider.
 			/// </summary>
 			TwitterConnectRequest& SetSyncDisplayName( bool syncDisplayName )
+			{
+				m_Request.AddBoolean("syncDisplayName", syncDisplayName);
+				return *this;
+			}
+			};
+			
+			/*!
+			\ingroup Authentication
+			Allows a Viber account to be used as an authentication mechanism.
+			Once authenticated the platform can determine the current players details from the Viber platform and store them within GameSparks.
+			A successful authentication will also register the player to receive Viber push notifications.
+			GameSparks will determine the player's friends and whether any of them are currently registered with the game.
+			If the Viber user is already linked to a player, the current session will switch to the linked player.
+			If the current player has previously created an account using either DeviceAuthentictionRequest or RegistrationRequest AND the Viber user is not already registered with the game, the Viber user will be linked to the current player.
+			If the current player has not authenticated and the Viber user is not known, a new player will be created using the Viber details and the session will be authenticated against the new player.
+			If the Viber user is already known, the session will switch to being the previously created user.
+			*/
+			class ViberConnectRequest : public GameSparks::Core::GSTypedRequest < ViberConnectRequest, GameSparks::Api::Responses::AuthenticationResponse >
+			{
+			public:
+				ViberConnectRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".ViberConnectRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// The accessToken represents a player's permission to share access to their account with your application.
+			/// </summary>
+			ViberConnectRequest& SetAccessToken( const gsstl::string& accessToken )
+			{
+				m_Request.AddString("accessToken", accessToken);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates that the server should not try to link the external profile with the current player.  If false, links the external profile to the currently signed in player.  If true, creates a new player and links the external profile to them.  Defaults to false.
+			/// </summary>
+			ViberConnectRequest& SetDoNotLinkToCurrentPlayer( bool doNotLinkToCurrentPlayer )
+			{
+				m_Request.AddBoolean("doNotLinkToCurrentPlayer", doNotLinkToCurrentPlayer);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates whether the server should return an error if an account switch would have occurred, rather than switching automatically.  Defaults to false.
+			/// </summary>
+			ViberConnectRequest& SetErrorOnSwitch( bool errorOnSwitch )
+			{
+				m_Request.AddBoolean("errorOnSwitch", errorOnSwitch);
+				return *this;
+			}
+			/// <summary>
+			/// An optional segment configuration for this request.
+			/// If this request creates a new player on the gamesparks platform, the segments of the new player will match the values provided
+			/// </summary>
+			ViberConnectRequest& SetSegments( const GameSparks::Core::GSRequestData& segments )
+			{
+				m_Request.AddObject("segments", segments);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates that the server should switch to the supplied profile if it isalready associated to a player. Defaults to false.
+			/// </summary>
+			ViberConnectRequest& SetSwitchIfPossible( bool switchIfPossible )
+			{
+				m_Request.AddBoolean("switchIfPossible", switchIfPossible);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates that the associated players displayName should be kept in syn with this profile when it's updated by the external provider.
+			/// </summary>
+			ViberConnectRequest& SetSyncDisplayName( bool syncDisplayName )
 			{
 				m_Request.AddBoolean("syncDisplayName", syncDisplayName);
 				return *this;

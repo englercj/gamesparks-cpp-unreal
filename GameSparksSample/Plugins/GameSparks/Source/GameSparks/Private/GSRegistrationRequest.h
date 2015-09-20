@@ -28,6 +28,8 @@ public:
 	static UGSRegistrationRequest* SendRegistrationRequest(FString DisplayName = "", FString Password = "", UGameSparksScriptData* Segments = nullptr, FString UserName = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSRegistrationRequest();
 
 private:
 	FString displayName;

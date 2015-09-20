@@ -29,6 +29,8 @@ public:
 	static UGSAuthenticationRequest* SendAuthenticationRequest(FString Password = "", FString UserName = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSAuthenticationRequest();
 
 private:
 	FString password;

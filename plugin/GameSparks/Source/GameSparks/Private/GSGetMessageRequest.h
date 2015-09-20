@@ -28,6 +28,8 @@ public:
 	static UGSGetMessageRequest* SendGetMessageRequest(FString MessageId = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSGetMessageRequest();
 
 private:
 	FString messageId;

@@ -1073,66 +1073,6 @@ namespace GameSparks
 
 			/*!
 			\ingroup Types
-			A nested object that represents the achievement data.
-			*/
-			class Achievement : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				Achievement(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				Achievement(const Achievement& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// The desciption of the Achievement
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetDescription () const
-					{
-						return m_Response.GetString("description");
-					}
-			/// <summary>
-			/// Whether to current player has earned the achievement
-			/// </summary>
-					// method type 4
-					Optional::t_BoolOptional GetEarned () const
-					{
-						return m_Response.GetBoolean("earned");
-					}
-			/// <summary>
-			/// The name of the Achievement
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetName () const
-					{
-						return m_Response.GetString("name");
-					}
-			/// <summary>
-			/// The custom property set configured on this Achievement
-			/// </summary>
-					// method type 4
-					GameSparks::Core::GSData::t_Optional GetPropertySet () const
-					{
-						return m_Response.GetGSDataObject("propertySet");
-					}
-			/// <summary>
-			/// The shortCode of the Achievement
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetShortCode () const
-					{
-						return m_Response.GetString("shortCode");
-					}
-			};
-
-			/*!
-			\ingroup Types
 			
 			*/
 			class ChallengeType : public  GameSparks::Core::GSTypedResponse
@@ -1188,6 +1128,66 @@ namespace GameSparks
 					Optional::t_StringOptional GetTags () const
 					{
 						return m_Response.GetString("tags");
+					}
+			};
+
+			/*!
+			\ingroup Types
+			A nested object that represents the achievement data.
+			*/
+			class Achievement : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				Achievement(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				Achievement(const Achievement& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The desciption of the Achievement
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetDescription () const
+					{
+						return m_Response.GetString("description");
+					}
+			/// <summary>
+			/// Whether to current player has earned the achievement
+			/// </summary>
+					// method type 4
+					Optional::t_BoolOptional GetEarned () const
+					{
+						return m_Response.GetBoolean("earned");
+					}
+			/// <summary>
+			/// The name of the Achievement
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetName () const
+					{
+						return m_Response.GetString("name");
+					}
+			/// <summary>
+			/// The custom property set configured on this Achievement
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSData::t_Optional GetPropertySet () const
+					{
+						return m_Response.GetGSDataObject("propertySet");
+					}
+			/// <summary>
+			/// The shortCode of the Achievement
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetShortCode () const
+					{
+						return m_Response.GetString("shortCode");
 					}
 			};
 		}

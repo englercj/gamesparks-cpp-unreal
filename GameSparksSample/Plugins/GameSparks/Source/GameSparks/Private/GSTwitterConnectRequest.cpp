@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSTwitterConnectRequest.h"
 
@@ -82,4 +80,13 @@ void UGSTwitterConnectRequest::Activate()
 
 UGSTwitterConnectRequest::UGSTwitterConnectRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSTwitterConnectRequest::~UGSTwitterConnectRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

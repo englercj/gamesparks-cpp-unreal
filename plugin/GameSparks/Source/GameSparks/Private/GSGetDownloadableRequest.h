@@ -28,6 +28,8 @@ public:
 	static UGSGetDownloadableRequest* SendGetDownloadableRequest(FString ShortCode = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSGetDownloadableRequest();
 
 private:
 

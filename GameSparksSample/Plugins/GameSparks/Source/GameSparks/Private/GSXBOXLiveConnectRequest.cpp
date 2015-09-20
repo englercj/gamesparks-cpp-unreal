@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSXBOXLiveConnectRequest.h"
 
@@ -78,4 +76,13 @@ void UGSXBOXLiveConnectRequest::Activate()
 
 UGSXBOXLiveConnectRequest::UGSXBOXLiveConnectRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSXBOXLiveConnectRequest::~UGSXBOXLiveConnectRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSGetUploadedRequest.h"
 
@@ -58,4 +56,13 @@ void UGSGetUploadedRequest::Activate()
 
 UGSGetUploadedRequest::UGSGetUploadedRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSGetUploadedRequest::~UGSGetUploadedRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

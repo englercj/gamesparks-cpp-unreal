@@ -34,6 +34,8 @@ public:
 	static UGSFacebookConnectRequest* SendFacebookConnectRequest(FString AccessToken = "", FString Code = "", bool DoNotLinkToCurrentPlayer = false, bool ErrorOnSwitch = false, UGameSparksScriptData* Segments = nullptr, bool SwitchIfPossible = false, bool SyncDisplayName = false,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSFacebookConnectRequest();
 
 private:
 	FString accessToken;

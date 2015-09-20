@@ -28,6 +28,8 @@ public:
 	static UGSBuyVirtualGoodsRequest* SendBuyVirtualGoodsRequest(int32 CurrencyType = 0, int32 Quantity = 0, FString ShortCode = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSBuyVirtualGoodsRequest();
 
 private:
 	int32 currencyType;

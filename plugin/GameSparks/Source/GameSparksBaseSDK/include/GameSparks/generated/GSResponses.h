@@ -545,6 +545,14 @@ namespace GameSparks
 				{
 				}
 
+			/// <summary>
+			/// The challenge instance id
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetChallengeInstanceId () const
+					{
+						return m_Response.GetString("challengeInstanceId");
+					}
 			};
 			/*!
 			\ingroup Teams
@@ -1159,6 +1167,20 @@ namespace GameSparks
 					Optional::t_StringOptional GetTeamType () const
 					{
 						return m_Response.GetString("teamType");
+					}
+			/// <summary>
+			/// A JSON array of teams.
+			/// </summary>
+					// method type 1
+					gsstl::vector<Types::Team> GetTeams() const
+					{
+						gsstl::vector<Types::Team> result;
+						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("teams");
+						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
+						{
+							result.push_back(Types::Team(*it));
+						}
+						return result; 
 					}
 			};
 			/*!

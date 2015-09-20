@@ -28,6 +28,8 @@ public:
 	static UGSCreateTeamRequest* SendCreateTeamRequest(FString TeamId = "", FString TeamName = "", FString TeamType = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSCreateTeamRequest();
 
 private:
 

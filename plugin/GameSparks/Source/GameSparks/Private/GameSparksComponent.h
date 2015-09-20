@@ -11,15 +11,15 @@ class GAMESPARKS_API UGameSparksComponent : public USceneComponent
 
 public:
 
-    UGameSparksComponent();
+    UGameSparksComponent(const FObjectInitializer& ObjectInitializer);
     
     // Connects to the GameSparks service with the supplied details
     // * apiKey - The API Key of the game to connect to
     // * secret - The API Secret of the game to connect to
-    // * apiKey - Whether to connect to the live, or preview servers
+    // * Preview Server - Whether to connect to the live, or preview servers
     // * clearCachedAuthentication - Forgets any cached authentication details before connecting
     UFUNCTION(Category = GameSparks, BlueprintCallable)
-    void Connect(FString apikey, FString secret, bool previewServer, bool clearCachedAuthentication);
+    void Connect(FString apikey, FString secret, bool previewServer=true, bool clearCachedAuthentication=false);
 
     // Disconnects the socket, clears cached authentication details, and reconnects
     UFUNCTION(Category = GameSparks, BlueprintCallable)

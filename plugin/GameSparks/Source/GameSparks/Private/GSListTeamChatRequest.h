@@ -28,6 +28,8 @@ public:
 	static UGSListTeamChatRequest* SendListTeamChatRequest(int32 EntryCount = 0, int32 Offset = 0, FString OwnerId = "", FString TeamId = "", FString TeamType = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSListTeamChatRequest();
 
 private:
 	int32 entryCount;

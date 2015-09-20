@@ -36,6 +36,8 @@ public:
 	static UGSListChallengeRequest* SendListChallengeRequest(int32 EntryCount = 0, int32 Offset = 0, FString ShortCode = "", FString State = "", UGameSparksRequestArray* States = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSListChallengeRequest();
 
 private:
 	int32 entryCount;

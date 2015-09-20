@@ -28,6 +28,8 @@ public:
 	static UGSGetUploadedRequest* SendGetUploadedRequest(FString UploadId = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSGetUploadedRequest();
 
 private:
 

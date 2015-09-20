@@ -1,7 +1,5 @@
 #pragma once
 #include "GameSparksPrivatePCH.h"
-#include "Engine.h"
-#include "GameSparksClasses.h"
 #include "GameSparksScriptData.h"
 #include "GSChangeUserDetailsRequest.h"
 
@@ -74,4 +72,13 @@ void UGSChangeUserDetailsRequest::Activate()
 
 UGSChangeUserDetailsRequest::UGSChangeUserDetailsRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
 }
+
+UGSChangeUserDetailsRequest::~UGSChangeUserDetailsRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  module->GetGSInstance().CancelRequestWithUserData(this);
+ }
+}
+
 

@@ -28,6 +28,8 @@ public:
 	static UGSConsumeVirtualGoodRequest* SendConsumeVirtualGoodRequest(int32 Quantity = 0, FString ShortCode = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
+	
+	~UGSConsumeVirtualGoodRequest();
 
 private:
 	int32 quantity;
