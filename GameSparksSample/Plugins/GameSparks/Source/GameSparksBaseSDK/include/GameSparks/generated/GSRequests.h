@@ -961,7 +961,7 @@ namespace GameSparks
 			Once authenticated the platform can determine the current players details from the Facebook platform and store them within GameSparks.
 			GameSparks will determine the player's friends and whether any of them are currently registered with the game.
 			If the Facebook user is already linked to a player, the current session will switch to the linked player.
-			If the current player has previously created an account using either DeviceAuthentictionRequest or RegistrationRequest AND the Facebook user is not already registered with the game, the Facebook user will be linked to the current player.
+			If the current player has previously created an account using either DeviceAuthenticationRequest or RegistrationRequest AND the Facebook user is not already registered with the game, the Facebook user will be linked to the current player.
 			If the current player has not authenticated and the Facebook user is not known, a new player will be created using the Facebook details and the session will be authenticated against the new player.
 			If the Facebook user is already known, the session will switch to being the previously created user.
 			*/
@@ -2274,6 +2274,14 @@ namespace GameSparks
 				return *this;
 			}
 			/// <summary>
+			/// An optional filter that limits the message types returned
+			/// </summary>
+			ListMessageRequest& SetInclude( const gsstl::string& include )
+			{
+				m_Request.AddString("include", include);
+				return *this;
+			}
+			/// <summary>
 			/// The offset (page number) to start from (default=0)
 			/// </summary>
 			ListMessageRequest& SetOffset( long offset )
@@ -2603,6 +2611,96 @@ namespace GameSparks
 			PushRegistrationRequest& SetPushId( const gsstl::string& pushId )
 			{
 				m_Request.AddString("pushId", pushId);
+				return *this;
+			}
+			};
+			
+			/*!
+			\ingroup Authentication
+			Allows a QQ access token to be used as an authentication mechanism.
+			Once authenticated the platform can determine the current players details from the QQ platform and store them within GameSparks.
+			If the QQ user is already linked to a player, the current session will switch to the linked player.
+			If the current player has previously created an account using either DeviceAuthenticationRequest or RegistrationRequest AND the QQ user is not already registered with the game, the QQ user will be linked to the current player.
+			If the current player has not authenticated and the QQ user is not known, a new player will be created using the QQ details and the session will be authenticated against the new player.
+			If the QQ user is already known, the session will switch to being the previously created user.
+			*/
+			class QQConnectRequest : public GameSparks::Core::GSTypedRequest < QQConnectRequest, GameSparks::Api::Responses::AuthenticationResponse >
+			{
+			public:
+				QQConnectRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".QQConnectRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// The access token is used by the client to make authenticated requests on behalf of the end user.
+			/// When the access token expires, attempts to use it will fail, and a new access token must be obtained using the refresh token.
+			/// </summary>
+			QQConnectRequest& SetAccessToken( const gsstl::string& accessToken )
+			{
+				m_Request.AddString("accessToken", accessToken);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates that the server should not try to link the external profile with the current player.  If false, links the external profile to the currently signed in player.  If true, creates a new player and links the external profile to them.  Defaults to false.
+			/// </summary>
+			QQConnectRequest& SetDoNotLinkToCurrentPlayer( bool doNotLinkToCurrentPlayer )
+			{
+				m_Request.AddBoolean("doNotLinkToCurrentPlayer", doNotLinkToCurrentPlayer);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates whether the server should return an error if an account switch would have occurred, rather than switching automatically.  Defaults to false.
+			/// </summary>
+			QQConnectRequest& SetErrorOnSwitch( bool errorOnSwitch )
+			{
+				m_Request.AddBoolean("errorOnSwitch", errorOnSwitch);
+				return *this;
+			}
+			/// <summary>
+			/// The open ID corresponding to the QQ user
+			/// </summary>
+			QQConnectRequest& SetOpenId( const gsstl::string& openId )
+			{
+				m_Request.AddString("openId", openId);
+				return *this;
+			}
+			/// <summary>
+			/// If the refresh token is provided, then it is used by the client to obtain valid access tokens.
+			/// If a new access token is requested, then the old one will be invalidated.
+			/// Providing the refresh token means that Gamesparks has the ownership of the access tokens.
+			/// </summary>
+			QQConnectRequest& SetRefreshToken( const gsstl::string& refreshToken )
+			{
+				m_Request.AddString("refreshToken", refreshToken);
+				return *this;
+			}
+			/// <summary>
+			/// An optional segment configuration for this request.
+			/// If this request creates a new player on the gamesparks platform, the segments of the new player will match the values provided
+			/// </summary>
+			QQConnectRequest& SetSegments( const GameSparks::Core::GSRequestData& segments )
+			{
+				m_Request.AddObject("segments", segments);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates that the server should switch to the supplied profile if it isalready associated to a player. Defaults to false.
+			/// </summary>
+			QQConnectRequest& SetSwitchIfPossible( bool switchIfPossible )
+			{
+				m_Request.AddBoolean("switchIfPossible", switchIfPossible);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates that the associated players displayName should be kept in syn with this profile when it's updated by the external provider.
+			/// </summary>
+			QQConnectRequest& SetSyncDisplayName( bool syncDisplayName )
+			{
+				m_Request.AddBoolean("syncDisplayName", syncDisplayName);
 				return *this;
 			}
 			};
@@ -3188,6 +3286,86 @@ namespace GameSparks
 			/// Indicates that the associated players displayName should be kept in syn with this profile when it's updated by the external provider.
 			/// </summary>
 			ViberConnectRequest& SetSyncDisplayName( bool syncDisplayName )
+			{
+				m_Request.AddBoolean("syncDisplayName", syncDisplayName);
+				return *this;
+			}
+			};
+			
+			/*!
+			\ingroup Authentication
+			Allows a WeChat access token to be used as an authentication mechanism.
+			Once authenticated the platform can determine the current players details from the WeChat platform and store them within GameSparks.
+			If the WeChat user is already linked to a player, the current session will switch to the linked player.
+			If the current player has previously created an account using either DeviceAuthenticationRequest or RegistrationRequest AND the WeChat user is not already registered with the game, the WeChat user will be linked to the current player.
+			If the current player has not authenticated and the WeChat user is not known, a new player will be created using the WeChat details and the session will be authenticated against the new player.
+			If the WeChat user is already known, the session will switch to being the previously created user.
+			*/
+			class WeChatConnectRequest : public GameSparks::Core::GSTypedRequest < WeChatConnectRequest, GameSparks::Api::Responses::AuthenticationResponse >
+			{
+			public:
+				WeChatConnectRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".WeChatConnectRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// The access token sould be obtained from WeChat
+			/// It is used by the client to make authenticated requests on behalf of the end user.
+			/// </summary>
+			WeChatConnectRequest& SetAccessToken( const gsstl::string& accessToken )
+			{
+				m_Request.AddString("accessToken", accessToken);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates that the server should not try to link the external profile with the current player.  If false, links the external profile to the currently signed in player.  If true, creates a new player and links the external profile to them.  Defaults to false.
+			/// </summary>
+			WeChatConnectRequest& SetDoNotLinkToCurrentPlayer( bool doNotLinkToCurrentPlayer )
+			{
+				m_Request.AddBoolean("doNotLinkToCurrentPlayer", doNotLinkToCurrentPlayer);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates whether the server should return an error if an account switch would have occurred, rather than switching automatically.  Defaults to false.
+			/// </summary>
+			WeChatConnectRequest& SetErrorOnSwitch( bool errorOnSwitch )
+			{
+				m_Request.AddBoolean("errorOnSwitch", errorOnSwitch);
+				return *this;
+			}
+			/// <summary>
+			/// The open ID corresponding to the WeChat user
+			/// </summary>
+			WeChatConnectRequest& SetOpenId( const gsstl::string& openId )
+			{
+				m_Request.AddString("openId", openId);
+				return *this;
+			}
+			/// <summary>
+			/// An optional segment configuration for this request.
+			/// If this request creates a new player on the gamesparks platform, the segments of the new player will match the values provided
+			/// </summary>
+			WeChatConnectRequest& SetSegments( const GameSparks::Core::GSRequestData& segments )
+			{
+				m_Request.AddObject("segments", segments);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates that the server should switch to the supplied profile if it isalready associated to a player. Defaults to false.
+			/// </summary>
+			WeChatConnectRequest& SetSwitchIfPossible( bool switchIfPossible )
+			{
+				m_Request.AddBoolean("switchIfPossible", switchIfPossible);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates that the associated players displayName should be kept in syn with this profile when it's updated by the external provider.
+			/// </summary>
+			WeChatConnectRequest& SetSyncDisplayName( bool syncDisplayName )
 			{
 				m_Request.AddBoolean("syncDisplayName", syncDisplayName);
 				return *this;

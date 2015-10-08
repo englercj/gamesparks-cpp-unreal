@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksScriptData.h"
 #include "GSCreateTeamRequest.h"
 
 void CreateTeamRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::CreateTeamResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSCreateTeamResponse unreal_response = FGSCreateTeamResponse(response.GetBaseData());
     
@@ -69,7 +72,10 @@ UGSCreateTeamRequest::~UGSCreateTeamRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

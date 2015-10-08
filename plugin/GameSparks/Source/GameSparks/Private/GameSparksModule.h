@@ -46,6 +46,8 @@ public:
     
     void RegisterListeners();
     
+	/// returns true, iff the GameSparks instance is ready to be used
+	bool IsInitialized() const;
 
 private:
 

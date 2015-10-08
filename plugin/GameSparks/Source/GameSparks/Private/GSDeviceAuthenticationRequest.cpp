@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksScriptData.h"
 #include "GSDeviceAuthenticationRequest.h"
 
 void DeviceAuthenticationRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::AuthenticationResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSAuthenticationResponse unreal_response = FGSAuthenticationResponse(response.GetBaseData());
     
@@ -89,7 +92,10 @@ UGSDeviceAuthenticationRequest::~UGSDeviceAuthenticationRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

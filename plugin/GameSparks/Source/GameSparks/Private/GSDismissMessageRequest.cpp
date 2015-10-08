@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksScriptData.h"
 #include "GSDismissMessageRequest.h"
 
 void DismissMessageRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::DismissMessageResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSDismissMessageResponse unreal_response = FGSDismissMessageResponse(response.GetBaseData());
     
@@ -61,7 +64,10 @@ UGSDismissMessageRequest::~UGSDismissMessageRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

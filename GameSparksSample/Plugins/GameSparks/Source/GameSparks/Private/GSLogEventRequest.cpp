@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksLogEventData.h"
 #include "GSLogEventRequest.h"
 
 void LogEventRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::LogEventResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSLogEventResponse unreal_response = FGSLogEventResponse(response.GetBaseData());
     
@@ -61,7 +64,10 @@ UGSLogEventRequest::~UGSLogEventRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

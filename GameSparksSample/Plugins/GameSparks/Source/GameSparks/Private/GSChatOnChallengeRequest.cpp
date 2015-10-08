@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksScriptData.h"
 #include "GSChatOnChallengeRequest.h"
 
 void ChatOnChallengeRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::ChatOnChallengeResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSChatOnChallengeResponse unreal_response = FGSChatOnChallengeResponse(response.GetBaseData());
     
@@ -65,7 +68,10 @@ UGSChatOnChallengeRequest::~UGSChatOnChallengeRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksScriptData.h"
 #include "GSListTeamChatRequest.h"
 
 void ListTeamChatRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::ListTeamChatResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSListTeamChatResponse unreal_response = FGSListTeamChatResponse(response.GetBaseData());
     
@@ -77,7 +80,10 @@ UGSListTeamChatRequest::~UGSListTeamChatRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

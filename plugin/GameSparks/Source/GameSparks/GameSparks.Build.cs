@@ -47,40 +47,38 @@ public class GameSparks : ModuleRules
     private void AddGameSparksSDK(TargetInfo Target)
     {
         AddPublicIncludePath(Path.Combine(GameSparksPath, "include"));
-        AddPublicIncludePath(Path.Combine(GameSparksPath, "dependencies", "eastl", "include"));
 
-        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src"));
-        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "dependencies", "cjson"));
-        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "dependencies", "eastl", "src"));
-        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "dependencies", "easywsclient"));
-        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "dependencies", "google"));
-        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "dependencies", "hmac"));
-        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "dependencies", "openssl", "include"));
+        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src", "GameSparks"));
+        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src", "cjson"));
+        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src", "eastl"));
+        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src", "easywsclient"));
+        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src", "google"));
+        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src", "hmac"));
 
         switch (Target.Platform)
         {
             case UnrealTargetPlatform.Win32:
-                AddLibrary(Path.Combine(GameSparksPath, "dependencies", "openssl", "libVSWin32", "libeay32.lib"));
-                AddLibrary(Path.Combine(GameSparksPath, "dependencies", "openssl", "libVSWin32", "ssleay32.lib"));
+                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libVSWin32", "libeay32.lib"));
+                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libVSWin32", "ssleay32.lib"));
                 break;
             case UnrealTargetPlatform.Win64:
-                AddLibrary(Path.Combine(GameSparksPath, "dependencies", "openssl", "libVSWin64", "libeay32.lib"));
-                AddLibrary(Path.Combine(GameSparksPath, "dependencies", "openssl", "libVSWin64", "ssleay32.lib"));
+                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libVSWin64", "libeay32.lib"));
+                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libVSWin64", "ssleay32.lib"));
                 break;
             case UnrealTargetPlatform.Android:
-                AddLibrary(Path.Combine(GameSparksPath, "dependencies", "openssl", "libAndroid", "arm", "libcrypto.a"));
-                AddLibrary(Path.Combine(GameSparksPath, "dependencies", "openssl", "libAndroid", "arm", "libssl.a"));
-                AddLibrary(Path.Combine(GameSparksPath, "dependencies", "openssl", "libAndroid", "x86", "libcrypto.a"));
-                AddLibrary(Path.Combine(GameSparksPath, "dependencies", "openssl", "libAndroid", "x86", "libssl.a"));
+                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libAndroid", "arm", "libcrypto.a"));
+                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libAndroid", "arm", "libssl.a"));
+                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libAndroid", "x86", "libcrypto.a"));
+                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libAndroid", "x86", "libssl.a"));
                 break;
             case UnrealTargetPlatform.IOS:
-                AddLibrary(Path.Combine(GameSparksPath, "dependencies", "openssl", "libIOS", "libcrypto.a"));
-                AddLibrary(Path.Combine(GameSparksPath, "dependencies", "openssl", "libIOS", "libssl.a"));
+                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libIOS", "libcrypto.a"));
+                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libIOS", "libssl.a"));
                 AddLibrary("c++");
                 break;
             case UnrealTargetPlatform.Mac:
-                AddLibrary(Path.Combine(GameSparksPath, "dependencies", "openssl", "libOSX", "libcrypto.a"));
-                AddLibrary(Path.Combine(GameSparksPath, "dependencies", "openssl", "libOSX", "libssl.a"));
+                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libOSX", "libcrypto.a"));
+                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libOSX", "libssl.a"));
                 break;
             case UnrealTargetPlatform.XboxOne:
             case UnrealTargetPlatform.PS4:

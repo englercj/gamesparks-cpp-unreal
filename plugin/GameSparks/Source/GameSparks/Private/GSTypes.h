@@ -1525,6 +1525,91 @@ struct FGSVirtualGood
 };
 
 USTRUCT(BlueprintType)
+struct FGSChallengeType
+{
+	GENERATED_USTRUCT_BODY()
+	
+	FGSChallengeType(){}
+	
+	FGSChallengeType(const GameSparks::Core::GSData& wrappedData){
+	
+		
+	if(wrappedData.ContainsKey("challengeShortCode")){
+		HasChallengeShortCode = true;
+			ChallengeShortCode = wrappedData.GetString("challengeShortCode").GetValue().c_str();
+		}
+		
+		
+	if(wrappedData.ContainsKey("description")){
+		HasDescription = true;
+			Description = wrappedData.GetString("description").GetValue().c_str();
+		}
+		
+		
+	if(wrappedData.ContainsKey("getleaderboardName")){
+		HasGetleaderboardName = true;
+			GetleaderboardName = wrappedData.GetString("getleaderboardName").GetValue().c_str();
+		}
+		
+		
+	if(wrappedData.ContainsKey("name")){
+		HasName = true;
+			Name = wrappedData.GetString("name").GetValue().c_str();
+		}
+		
+		
+	if(wrappedData.ContainsKey("tags")){
+		HasTags = true;
+			Tags = wrappedData.GetString("tags").GetValue().c_str();
+		}
+		
+	
+	    JSONString = wrappedData.GetJSON().c_str();
+	}
+
+	
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	bool HasChallengeShortCode = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	FString ChallengeShortCode;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	bool HasDescription = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	FString Description;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	bool HasGetleaderboardName = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	FString GetleaderboardName;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	bool HasName = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	FString Name;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	bool HasTags = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	FString Tags;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Authentication")
+    FString JSONString;
+	
+	
+	void Destroy()
+	{
+	}
+	
+};
+
+USTRUCT(BlueprintType)
 struct FGSAchievement
 {
 	GENERATED_USTRUCT_BODY()
@@ -1606,91 +1691,6 @@ struct FGSAchievement
 	void Destroy()
 	{
 		PropertySet = nullptr;
-	}
-	
-};
-
-USTRUCT(BlueprintType)
-struct FGSChallengeType
-{
-	GENERATED_USTRUCT_BODY()
-	
-	FGSChallengeType(){}
-	
-	FGSChallengeType(const GameSparks::Core::GSData& wrappedData){
-	
-		
-	if(wrappedData.ContainsKey("challengeShortCode")){
-		HasChallengeShortCode = true;
-			ChallengeShortCode = wrappedData.GetString("challengeShortCode").GetValue().c_str();
-		}
-		
-		
-	if(wrappedData.ContainsKey("description")){
-		HasDescription = true;
-			Description = wrappedData.GetString("description").GetValue().c_str();
-		}
-		
-		
-	if(wrappedData.ContainsKey("getleaderboardName")){
-		HasGetleaderboardName = true;
-			GetleaderboardName = wrappedData.GetString("getleaderboardName").GetValue().c_str();
-		}
-		
-		
-	if(wrappedData.ContainsKey("name")){
-		HasName = true;
-			Name = wrappedData.GetString("name").GetValue().c_str();
-		}
-		
-		
-	if(wrappedData.ContainsKey("tags")){
-		HasTags = true;
-			Tags = wrappedData.GetString("tags").GetValue().c_str();
-		}
-		
-	
-	    JSONString = wrappedData.GetJSON().c_str();
-	}
-
-	
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	bool HasChallengeShortCode = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	FString ChallengeShortCode;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	bool HasDescription = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	FString Description;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	bool HasGetleaderboardName = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	FString GetleaderboardName;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	bool HasName = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	FString Name;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	bool HasTags = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	FString Tags;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Authentication")
-    FString JSONString;
-	
-	
-	void Destroy()
-	{
 	}
 	
 };

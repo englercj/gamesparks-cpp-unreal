@@ -26,7 +26,7 @@ public:
 	Once authenticated the platform can determine the current players details from the Facebook platform and store them within GameSparks.
 	GameSparks will determine the player's friends and whether any of them are currently registered with the game.
 	If the Facebook user is already linked to a player, the current session will switch to the linked player.
-	If the current player has previously created an account using either DeviceAuthentictionRequest or RegistrationRequest AND the Facebook user is not already registered with the game, the Facebook user will be linked to the current player.
+	If the current player has previously created an account using either DeviceAuthenticationRequest or RegistrationRequest AND the Facebook user is not already registered with the game, the Facebook user will be linked to the current player.
 	If the current player has not authenticated and the Facebook user is not known, a new player will be created using the Facebook details and the session will be authenticated against the new player.
 	If the Facebook user is already known, the session will switch to being the previously created user.
 	*/

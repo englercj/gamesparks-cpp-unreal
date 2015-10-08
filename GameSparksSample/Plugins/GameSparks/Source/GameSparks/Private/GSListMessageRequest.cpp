@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksScriptData.h"
 #include "GSListMessageRequest.h"
 
 void ListMessageRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::ListMessageResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSListMessageResponse unreal_response = FGSListMessageResponse(response.GetBaseData());
     
@@ -19,10 +22,11 @@ void ListMessageRequestResponseCallback(GameSparks::Core::GS& gsInstance, const 
     }
 }
 
-UGSListMessageRequest* UGSListMessageRequest::SendListMessageRequest(int32 EntryCount, int32 Offset,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+UGSListMessageRequest* UGSListMessageRequest::SendListMessageRequest(int32 EntryCount, FString Include, int32 Offset,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
 {
 	UGSListMessageRequest* proxy = NewObject<UGSListMessageRequest>();
 	proxy->entryCount = EntryCount;
+	proxy->include = Include;
 	proxy->offset = Offset;
 	proxy->scriptData = ScriptData;
 	proxy->durable = Durable;
@@ -35,6 +39,9 @@ void UGSListMessageRequest::Activate()
 	GameSparks::Api::Requests::ListMessageRequest gsRequest(UGameSparksModule::GetModulePtr()->GetGSInstance());
 	if(entryCount != 0){
 		gsRequest.SetEntryCount(entryCount);
+	}
+	if(include != ""){
+		gsRequest.SetInclude(TCHAR_TO_UTF8(*include));
 	}
 	if(offset != 0){
 		gsRequest.SetOffset(offset);
@@ -65,7 +72,10 @@ UGSListMessageRequest::~UGSListMessageRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

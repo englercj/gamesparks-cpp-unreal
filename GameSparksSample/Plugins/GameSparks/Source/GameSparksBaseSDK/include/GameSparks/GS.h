@@ -184,10 +184,10 @@ namespace GameSparks
 	            	return m_GSPlatform->GetDeviceOS();
 	            }*/
 
-	            /// delete all requests that have *userData* asigned from the outgoing queues
+	            /// change user-data to *to* for all requests that currently have user-data *from*
 	            /// If the request was already delivered, but the response is outstanding, the callbacks
             	/// wont be called. This is usefull if the object userData is pointing to gets destroyed
-				void CancelRequestWithUserData(const void *userData);
+				void ChangeUserDataForRequests(const void *from, void* to);
 			private:
 				friend class GSConnection;
 				void OnWebSocketClientError(const easywsclient::WSError& errorMessage, GSConnection* connection);

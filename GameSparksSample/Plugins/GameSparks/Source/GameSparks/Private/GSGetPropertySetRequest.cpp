@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksScriptData.h"
 #include "GSGetPropertySetRequest.h"
 
 void GetPropertySetRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::GetPropertySetResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSGetPropertySetResponse unreal_response = FGSGetPropertySetResponse(response.GetBaseData());
     
@@ -61,7 +64,10 @@ UGSGetPropertySetRequest::~UGSGetPropertySetRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

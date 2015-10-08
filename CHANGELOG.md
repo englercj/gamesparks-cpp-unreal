@@ -1,5 +1,16 @@
 # ChangeLog
 
+## rc11 (2015-10-01)
+
+### base SDK (affects all platforms)
+- cleaner structure for sources and headers for easier project setup
+  - all .c/.cpp/.mm files are not in base/src
+  - all headers are in base/include
+  - so you only need to add one include directory when setting up a new project and add the sources to the project
+
+### UE4
+- fixed a crash that occured when the editor was closed without starting the game once
+
 ## rc10 (2015-09-20)
 
 ### UE4

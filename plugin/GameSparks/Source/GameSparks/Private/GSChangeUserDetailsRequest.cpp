@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksScriptData.h"
 #include "GSChangeUserDetailsRequest.h"
 
 void ChangeUserDetailsRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::ChangeUserDetailsResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSChangeUserDetailsResponse unreal_response = FGSChangeUserDetailsResponse(response.GetBaseData());
     
@@ -77,7 +80,10 @@ UGSChangeUserDetailsRequest::~UGSChangeUserDetailsRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

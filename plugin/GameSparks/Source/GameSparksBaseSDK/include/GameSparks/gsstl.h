@@ -52,11 +52,11 @@
 
 // include required headers
 #if defined(GS_USE_EASTL)
-#	include "EASTL/string.h"
-#	include "EASTL/vector.h"
-#	include "EASTL/list.h"
-#	include "EASTL/map.h"
-#	include "EASTL/set.h"
+#	include <EASTL/string.h>
+#	include <EASTL/vector.h>
+#	include <EASTL/list.h>
+#	include <EASTL/map.h>
+#	include <EASTL/set.h>
 #	include <EASTL/algorithm.h>
 #else
 #	include <string>

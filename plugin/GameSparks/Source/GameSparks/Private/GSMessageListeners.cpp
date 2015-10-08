@@ -1,5 +1,3 @@
-#pragma once
-
 #include "GameSparksPrivatePCH.h"
 #include "GameSparks/GS.h"
 #include "GameSparks/generated/GSMessages.h"

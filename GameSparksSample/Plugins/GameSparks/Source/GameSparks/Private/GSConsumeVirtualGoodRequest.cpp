@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksScriptData.h"
 #include "GSConsumeVirtualGoodRequest.h"
 
 void ConsumeVirtualGoodRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::ConsumeVirtualGoodResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSConsumeVirtualGoodResponse unreal_response = FGSConsumeVirtualGoodResponse(response.GetBaseData());
     
@@ -65,7 +68,10 @@ UGSConsumeVirtualGoodRequest::~UGSConsumeVirtualGoodRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

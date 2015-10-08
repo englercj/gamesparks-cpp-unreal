@@ -1,4 +1,3 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "Engine.h"
 #include "GameSparksClasses.h"

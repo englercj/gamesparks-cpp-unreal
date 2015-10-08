@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksScriptData.h"
 #include "GSGetDownloadableRequest.h"
 
 void GetDownloadableRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::GetDownloadableResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSGetDownloadableResponse unreal_response = FGSGetDownloadableResponse(response.GetBaseData());
     
@@ -61,7 +64,10 @@ UGSGetDownloadableRequest::~UGSGetDownloadableRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

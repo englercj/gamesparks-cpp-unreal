@@ -6,7 +6,7 @@
 
 #include "GSRequestData.h"
 #include "GSOptional.h"
-#include "cJSON.h"
+#include <cjson/cJSON.h>
 #include <GameSparks/GSLeakDetector.h>
 
 namespace GameSparks

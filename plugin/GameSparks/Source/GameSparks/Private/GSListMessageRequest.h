@@ -26,7 +26,7 @@ public:
 	The list only contains un-dismissed messages, to dismiss a message see DismissMessageRequest Read the section on Messages to the the complete list of messages and their meaning.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS ListMessageRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Player")
-	static UGSListMessageRequest* SendListMessageRequest(int32 EntryCount = 0, int32 Offset = 0,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	static UGSListMessageRequest* SendListMessageRequest(int32 EntryCount = 0, FString Include = "", int32 Offset = 0,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
 	
@@ -34,6 +34,7 @@ public:
 
 private:
 	int32 entryCount;
+	FString include;
 	int32 offset;
 
 	

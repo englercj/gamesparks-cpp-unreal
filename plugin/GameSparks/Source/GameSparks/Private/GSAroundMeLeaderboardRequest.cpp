@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksScriptData.h"
 #include "GSAroundMeLeaderboardRequest.h"
 
 void AroundMeLeaderboardRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::AroundMeLeaderboardResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSAroundMeLeaderboardResponse unreal_response = FGSAroundMeLeaderboardResponse(response.GetBaseData());
     
@@ -122,7 +125,10 @@ UGSAroundMeLeaderboardRequest::~UGSAroundMeLeaderboardRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

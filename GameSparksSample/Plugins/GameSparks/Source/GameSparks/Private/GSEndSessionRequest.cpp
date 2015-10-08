@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksScriptData.h"
 #include "GSEndSessionRequest.h"
 
 void EndSessionRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::EndSessionResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSEndSessionResponse unreal_response = FGSEndSessionResponse(response.GetBaseData());
     
@@ -57,7 +60,10 @@ UGSEndSessionRequest::~UGSEndSessionRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

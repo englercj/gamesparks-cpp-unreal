@@ -133,3 +133,8 @@ void UGameSparksModule::SendDebugLogToComponents(const gsstl::string& message)
         }
     }
 }
+
+bool UGameSparksModule::IsInitialized() const
+{
+	return isInitialised;
+}

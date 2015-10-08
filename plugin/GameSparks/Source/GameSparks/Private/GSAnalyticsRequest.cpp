@@ -1,9 +1,12 @@
-#pragma once
 #include "GameSparksPrivatePCH.h"
 #include "GameSparksScriptData.h"
 #include "GSAnalyticsRequest.h"
 
 void AnalyticsRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::AnalyticsResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
     
     FGSAnalyticsResponse unreal_response = FGSAnalyticsResponse(response.GetBaseData());
     
@@ -73,7 +76,10 @@ UGSAnalyticsRequest::~UGSAnalyticsRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
-  module->GetGSInstance().CancelRequestWithUserData(this);
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
  }
 }
 

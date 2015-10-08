@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "cJSON.h"
+#include <cjson/cJSON.h>
 #include <GameSparks/GSLeakDetector.h>
 
 namespace GameSparks
