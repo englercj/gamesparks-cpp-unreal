@@ -16,7 +16,7 @@
 #include <easywsclient/easywsclient.hpp>
 
 #include <stdio.h>
-#if (defined(WIN32) || defined(WINAPI_FAMILY)) && !defined(MARMALADE)
+#if (defined(WIN32) || defined(WINAPI_FAMILY)) && !defined(MARMALADE) && !defined(snprintf)
 #	define snprintf _snprintf
 #endif /* WIN32 */
 
@@ -77,12 +77,6 @@ void GS::Initialise(IGSPlatform* gSPlatform)
     InitialisePersistentQueue();
     SetDurableQueueRunning(true);
 	
-#if defined(WINDOWS_PHONE8) || defined(WIN32) || defined(WINAPI_FAMILY)
-	easywsclient::initEasyWSClient();
-#else
-	//_gsInitOutcome = true;
-#endif
-
 	m_Connections.push_back(new GSConnection(this, m_GSPlatform));
 	DebugLog("Initialized");
 
@@ -688,6 +682,7 @@ GS::t_PersistentQueue GS::DeserializeRequestQueue(const gsstl::string& s)
 			if (cJSON* item = cJSON_GetArrayItem(list, i))
 			{
 				GSRequest request(*this, item);
+                request.SetDurable(true); // every request from the queue is durable!
 				result.push_back(request);
 			}
 		}

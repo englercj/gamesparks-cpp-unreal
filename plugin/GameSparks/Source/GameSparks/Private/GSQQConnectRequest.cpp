@@ -22,14 +22,12 @@ void QQConnectRequestResponseCallback(GameSparks::Core::GS& gsInstance, const Ga
     }
 }
 
-UGSQQConnectRequest* UGSQQConnectRequest::SendQQConnectRequest(FString AccessToken, bool DoNotLinkToCurrentPlayer, bool ErrorOnSwitch, FString OpenId, FString RefreshToken, UGameSparksScriptData* Segments, bool SwitchIfPossible, bool SyncDisplayName,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+UGSQQConnectRequest* UGSQQConnectRequest::SendQQConnectRequest(FString AccessToken, bool DoNotLinkToCurrentPlayer, bool ErrorOnSwitch, UGameSparksScriptData* Segments, bool SwitchIfPossible, bool SyncDisplayName,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
 {
 	UGSQQConnectRequest* proxy = NewObject<UGSQQConnectRequest>();
 	proxy->accessToken = AccessToken;
 	proxy->doNotLinkToCurrentPlayer = DoNotLinkToCurrentPlayer;
 	proxy->errorOnSwitch = ErrorOnSwitch;
-	proxy->openId = OpenId;
-	proxy->refreshToken = RefreshToken;
 	proxy->segments = Segments;
 	proxy->switchIfPossible = SwitchIfPossible;
 	proxy->syncDisplayName = SyncDisplayName;
@@ -50,12 +48,6 @@ void UGSQQConnectRequest::Activate()
 	}
 	if(errorOnSwitch != false){
 		gsRequest.SetErrorOnSwitch(errorOnSwitch);
-	}
-	if(openId != ""){
-		gsRequest.SetOpenId(TCHAR_TO_UTF8(*openId));
-	}
-	if(refreshToken != ""){
-		gsRequest.SetRefreshToken(TCHAR_TO_UTF8(*refreshToken));
 	}
 	if(segments != nullptr){
 		gsRequest.SetSegments(segments->ToRequestData());

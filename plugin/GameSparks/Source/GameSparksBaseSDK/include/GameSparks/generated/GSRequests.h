@@ -2661,24 +2661,6 @@ namespace GameSparks
 				return *this;
 			}
 			/// <summary>
-			/// The open ID corresponding to the QQ user
-			/// </summary>
-			QQConnectRequest& SetOpenId( const gsstl::string& openId )
-			{
-				m_Request.AddString("openId", openId);
-				return *this;
-			}
-			/// <summary>
-			/// If the refresh token is provided, then it is used by the client to obtain valid access tokens.
-			/// If a new access token is requested, then the old one will be invalidated.
-			/// Providing the refresh token means that Gamesparks has the ownership of the access tokens.
-			/// </summary>
-			QQConnectRequest& SetRefreshToken( const gsstl::string& refreshToken )
-			{
-				m_Request.AddString("refreshToken", refreshToken);
-				return *this;
-			}
-			/// <summary>
 			/// An optional segment configuration for this request.
 			/// If this request creates a new player on the gamesparks platform, the segments of the new player will match the values provided
 			/// </summary>

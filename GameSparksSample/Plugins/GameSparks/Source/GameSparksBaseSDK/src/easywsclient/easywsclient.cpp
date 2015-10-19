@@ -1,118 +1,27 @@
-#ifdef _WIN32
-#   if defined(_MSC_VER)
-#       pragma warning(disable : 4996)
-#   endif
-#   if defined(_MSC_VER) && !defined(_CRT_SECURE_NO_WARNINGS)
-#       define _CRT_SECURE_NO_WARNINGS // _CRT_SECURE_NO_WARNINGS for sscanf errors in MSVC2013 Express
-#   endif
-#   ifndef WIN32_LEAN_AND_MEAN
-#       define WIN32_LEAN_AND_MEAN
-#   endif
-#   define _WINSOCK_DEPRECATED_NO_WARNINGS
-#   if !defined(UNREAL)
-#       include <WinSock2.h>
-#       include <WS2tcpip.h>
-#       pragma comment( lib, "ws2_32" )
-#   endif
-#   include <fcntl.h>
-#   include <stdio.h>
-#   include <stdlib.h>
-#   include <string.h>
-#   include <sys/types.h>
-#   include <io.h>
-#   ifndef _SSIZE_T_DEFINED
-        typedef long ssize_t;
-#       define _SSIZE_T_DEFINED
-#   endif
-#   ifndef _SOCKET_T_DEFINED
-        typedef SOCKET socket_t;
-#       define _SOCKET_T_DEFINED
-#   endif
-#   ifndef snprintf
-#       define snprintf _snprintf_s
-#   endif
-#   if _MSC_VER >=1600
-    // vs2010 or later
-#       include <stdint.h>
-#   else
-        typedef __int8 int8_t;
-        typedef unsigned __int8 uint8_t;
-        typedef __int32 int32_t;
-        typedef unsigned __int32 uint32_t;
-        typedef __int64 int64_t;
-        typedef unsigned __int64 uint64_t;
-#   endif
-#   define socketerrno WSAGetLastError()
-#   define SOCKET_EAGAIN_EINPROGRESS WSAEINPROGRESS
-#   define SOCKET_EWOULDBLOCK WSAEWOULDBLOCK
-#else
-#   include <fcntl.h>
-#   include <netdb.h>
-#   include <netinet/tcp.h>
-#   include <netinet/in.h>
-#   include <stdio.h>
-#   include <stdlib.h>
-#   include <string.h>
-#   include <sys/socket.h>
-#   include <sys/time.h>
-#   include <sys/types.h>
-#   include <unistd.h>
-#   include <stdint.h>
-#   ifndef _SOCKET_T_DEFINED
-        typedef int socket_t;
-#       define _SOCKET_T_DEFINED
-#   endif
-#   ifndef INVALID_SOCKET
-#       define INVALID_SOCKET (-1)
-#   endif
-#   ifndef SOCKET_ERROR
-#       define SOCKET_ERROR   (-1)
-#   endif
-#   define closesocket(s) ::close(s)
-#   include <errno.h>
-#   define socketerrno errno
-#   define SOCKET_EAGAIN_EINPROGRESS EAGAIN
-#   define SOCKET_EWOULDBLOCK EWOULDBLOCK
-#endif
-
-#include <GameSparks/gsstl.h>
-
 #include <easywsclient/easywsclient.hpp>
-#include <cassert>
 
-#ifdef SSL_SUPPORT
-#include <openssl/ssl.h>
-#include <openssl/err.h>
-#include <openssl/crypto.h>
-#endif
+#include <mbedtls/entropy.h>
+#include <mbedtls/ctr_drbg.h>
+#include <mbedtls/net.h>
+#include <mbedtls/error.h>
+#include <mbedtls/platform.h>
+#include <mbedtls/debug.h>
+#include <cassert>
+#include <cstdio>
 
 // use std::thread in MSVC11 (2012) or newer
 #if _MSC_VER >= 1700 && !defined(MARMALADE)
 #	include <thread>
 #	include <mutex>
 #	define USE_STD_THREAD 1
+#   ifndef snprintf
+#       define snprintf _snprintf_s
+#   endif
 #else
 #	include <pthread.h>    /* POSIX Threads */
 #	undef USE_STD_THREAD
 #endif /* WIN32 */
 
-
-#ifdef GS_TESTING
-namespace gs_testing
-{
-	// variabled for messing with the socket during the tests
-	bool close_websocket = false;
-}
-#endif /* GS_TESTING */
-
-inline void closesocket_safe(socket_t& sockfd)
-{
-    if ( sockfd == INVALID_SOCKET )
-        return;
-
-    closesocket(sockfd);
-    sockfd = INVALID_SOCKET;
-}
 
 namespace { // private module-only namespace
 
@@ -203,6 +112,244 @@ namespace { // private module-only namespace
 		#endif
 	}
 
+	class BaseSocket
+	{
+			gsstl::string error_string;
+
+		protected:
+			BaseSocket()
+			{
+				// reserve space for the error message, because marmalades memory manager is not threwad-safe
+				error_string.reserve(512);
+			}
+			
+			void set_errstr(int res)
+			{
+				char buf[256];
+				mbedtls_strerror(res, buf, sizeof(buf));
+				error_string = buf;
+			}
+
+			void set_errstr(gsstl::string e)
+			{
+				error_string = e;
+			}
+
+		public:
+			virtual bool connect(const char *host, short port) = 0;
+			virtual void close() = 0;
+			virtual void set_blocking(bool should_block) = 0;
+
+			virtual int send(const char *buf, size_t siz) = 0;
+			virtual int recv(char *buf, size_t siz) = 0;
+			
+			gsstl::string get_error_string() { return error_string; }
+			virtual ~BaseSocket() {}
+	};
+
+	class TCPSocket : public BaseSocket
+	{
+		private:
+			bool is_connected;
+		protected:
+			mbedtls_net_context net;
+		public:
+			TCPSocket():is_connected(false)
+			{
+				mbedtls_net_init(&net);
+			}
+
+			virtual ~TCPSocket()
+			{
+				mbedtls_net_free(&net);
+			}
+
+			virtual bool connect(const char *host, short port)
+			{
+				if (is_connected)
+					return true;
+
+				char port_str[8];
+				snprintf(port_str, 8, "%hu", port);
+
+				int res = mbedtls_net_connect(&net, host, port_str, MBEDTLS_NET_PROTO_TCP);
+				if (res != 0)
+				{
+					set_errstr(res);
+					close();
+					return false;
+				}
+
+				is_connected = true;
+				return true;
+			}
+
+			virtual void close()
+			{
+				is_connected = false;
+			}
+
+			virtual int send(const char *buf, size_t siz)
+			{
+				return mbedtls_net_send(&net, (unsigned char *)buf, siz);
+			}
+
+			virtual int recv(char *buf, size_t siz)
+			{
+				return mbedtls_net_recv(&net, (unsigned char *)buf, siz);
+			}
+
+			virtual void set_blocking(bool should_block)
+			{
+				assert(is_connected);
+
+				if (should_block)
+					mbedtls_net_set_block(&net);
+				else
+					mbedtls_net_set_nonblock(&net);
+			}
+	};
+
+
+	class TLSSocket : public TCPSocket
+	{
+		private:
+			bool is_connected;
+			mbedtls_ssl_context ssl;
+			mbedtls_ssl_config conf;
+			mbedtls_entropy_context entropy;
+			mbedtls_ctr_drbg_context ctr_drbg;
+			//mbedtls_x509_crt cacert;
+
+			static void debug_print(void *ctx, int level, const char *file, int line, const char *str)
+			{
+				((void)level);
+				mbedtls_fprintf((FILE *)ctx, "%s:%04d: %s", file, line, str);
+				//fflush((FILE *)ctx);
+			}
+	public:
+		TLSSocket():is_connected(false)
+		{
+			//mbedtls_debug_set_threshold( 1000 );
+			mbedtls_ssl_init(&ssl);
+			mbedtls_ssl_config_init(&conf);
+
+			//mbedtls_x509_crt_init( &cacert );
+			mbedtls_ctr_drbg_init(&ctr_drbg);
+			mbedtls_entropy_init(&entropy);
+		}
+
+		virtual ~TLSSocket()
+		{
+			//mbedtls_x509_crt_free( &cacert );
+			mbedtls_ssl_free(&ssl);
+			mbedtls_ssl_config_free(&conf);
+			mbedtls_ctr_drbg_free(&ctr_drbg);
+			mbedtls_entropy_free(&entropy);
+		}
+
+		virtual bool connect(const char *host, short port)
+		{
+			if (is_connected)
+				return true;
+
+			if (!TCPSocket::connect(host, port))
+			{
+				return false;
+			}
+
+			int res = mbedtls_ctr_drbg_seed(&ctr_drbg, mbedtls_entropy_func, &entropy, nullptr, 0);
+			res = mbedtls_ssl_config_defaults(&conf,
+				MBEDTLS_SSL_IS_CLIENT,
+				MBEDTLS_SSL_TRANSPORT_STREAM,
+				MBEDTLS_SSL_PRESET_DEFAULT);
+
+			if (res != 0)
+			{
+				set_errstr(res);
+				close();
+				return false;
+			}
+
+			/* OPTIONAL is not optimal for security,
+			* but makes interop easier in this simplified example */
+			//mbedtls_ssl_conf_authmode(&conf, MBEDTLS_SSL_VERIFY_REQUIRED);
+			mbedtls_ssl_conf_authmode(&conf, MBEDTLS_SSL_VERIFY_NONE);
+
+			//ret = mbedtls_x509_crt_parse( &cacert, (const unsigned char *) mbedtls_test_cas_pem, mbedtls_test_cas_pem_len );
+			//mbedtls_ssl_conf_ca_chain( &conf, &cacert, NULL );
+
+			mbedtls_ssl_conf_rng(&conf, mbedtls_ctr_drbg_random, &ctr_drbg);
+			mbedtls_ssl_conf_dbg(&conf, debug_print, stderr);
+
+			res = mbedtls_ssl_setup(&ssl, &conf);
+			if (res != 0)
+			{
+				set_errstr(res);
+				close();
+				return false;
+			}
+
+			res = mbedtls_ssl_set_hostname(&ssl, host);
+			if (res != 0)
+			{
+				set_errstr(res);
+				close();
+				return false;
+			}
+
+			mbedtls_ssl_set_bio(&ssl, &net, mbedtls_net_send, mbedtls_net_recv, 0);// , mbedtls_net_recv_timeout);
+
+			do res = mbedtls_ssl_handshake(&ssl);
+			while (res == MBEDTLS_ERR_SSL_WANT_READ || res == MBEDTLS_ERR_SSL_WANT_WRITE);
+
+			if (res != 0)
+			{
+				set_errstr(res);
+				close();
+				return false;
+			}
+
+			uint32_t flags;
+			if ((flags = mbedtls_ssl_get_verify_result(&ssl)) != 0)
+			{
+				char vrfy_buf[512];
+				mbedtls_x509_crt_verify_info(vrfy_buf, sizeof(vrfy_buf), "  ! ", flags);
+				set_errstr(vrfy_buf);
+				close();
+				return false;
+			}
+
+			is_connected = true;
+			return true;
+		}
+
+		virtual void close()
+		{
+			TCPSocket::close();
+			is_connected = false;
+		}
+
+		virtual int send(const char *buf, size_t siz)
+		{
+			return mbedtls_ssl_write(&ssl, (unsigned char *)buf, siz);
+			/*int ret = 0;
+			do ret = mbedtls_ssl_write(&ssl, (unsigned char *)buf, siz);
+			while (ret == MBEDTLS_ERR_SSL_WANT_READ || ret == MBEDTLS_ERR_SSL_WANT_WRITE);
+			if (ret < 0) set_errstr(ret);
+			return ret;*/
+		}
+
+		virtual int recv(char *buf, size_t siz)
+		{
+			return mbedtls_ssl_read(&ssl, (unsigned char *)buf, siz);
+			/*int ret = 0;
+			do ret = mbedtls_ssl_read(&ssl, (unsigned char *)buf, siz);
+			while (ret == MBEDTLS_ERR_SSL_WANT_READ || ret == MBEDTLS_ERR_SSL_WANT_WRITE);
+			if (ret < 0) set_errstr(ret);
+			return ret;*/
+		}
+	};
 
 	class _RealWebSocket : public easywsclient::WebSocket
 	{
@@ -247,19 +394,13 @@ namespace { // private module-only namespace
 		gsstl::vector<char> rxbuf;
 		gsstl::vector<char> txbuf;
 
-        socket_t sockfd;
+		threading::thread dns_thread;
 		readyStateValues readyState;
         bool useMask;
-        bool useSSL;
+		BaseSocket* socket;
         
 		threading::mutex lock;
         
-        sockaddr_in result;
-        
-#ifdef SSL_SUPPORT
-		SSL *sslHandle;
-		SSL_CTX *sslContext;
-
         _RealWebSocket(gsstl::string host, gsstl::string path, int port, gsstl::string url, gsstl::string origin, bool _useMask, bool _useSSL)
         {
             m_host = host;
@@ -269,36 +410,24 @@ namespace { // private module-only namespace
             m_origin = origin;
             
             useMask = _useMask;
-            useSSL = _useSSL;
             
-            sslContext = 0;
-            sslHandle = 0;
-            
+			if (_useSSL)
+				socket = new TLSSocket();
+			else
+				socket = new TCPSocket();
+
             readyState = CONNECTING;
             ipLookup = keNone;
-
-            sockfd = INVALID_SOCKET;
         }
-        
-		_RealWebSocket(socket_t sockfd_, bool useMask_, SSL* ssl, SSL_CTX* sslctx) : sockfd(sockfd_),readyState(CLOSED), useMask(useMask_),  sslHandle(ssl), sslContext(sslctx)
-        {
-            ipLookup = keNone;
-		}
-#endif
-		_RealWebSocket(socket_t sockfd_, bool useMask_) : sockfd(sockfd_), readyState(CLOSED), useMask(useMask_)
-        {
-            ipLookup = keNone;
-		}
         
         virtual ~_RealWebSocket()
         {
-            if(sslContext) SSL_CTX_free(sslContext);
-            if(sslHandle) SSL_free(sslHandle);
-
 			if (threading::thread_is_joinable(dns_thread))
 			{
 				threading::thread_join(dns_thread);
 			}
+
+			delete socket;
         }
 
 		readyStateValues getReadyState() const {
@@ -307,6 +436,8 @@ namespace { // private module-only namespace
        
 		void poll(int timeout, WSErrorCallback errorCallback, void* userData)  // timeout in milliseconds
         {
+        	(void)timeout; //unused
+
 			using namespace easywsclient;
 
             if(readyState == CONNECTING)
@@ -315,8 +446,10 @@ namespace { // private module-only namespace
                 {
 					// join the dns_thread
 					threading::thread_join(dns_thread);
-
-					if (!doConnect2(errorCallback, userData))
+					assert(socket);
+					
+					// establish the ssl connection and do websocket handshaking
+					if (!socket->connect(m_host.c_str(), m_port) || !doConnect2(errorCallback, userData))
                     {
                         forceClose();
                     }
@@ -334,36 +467,12 @@ namespace { // private module-only namespace
                 }
             }
             else if(ipLookup == keComplete)
-            {
-                #ifdef GS_TESTING
-                if (gs_testing::close_websocket)
-                {
-                    forceClose();
-                    gs_testing::close_websocket = false;
-                }
-                #endif
+            {           
+				assert(timeout == 0); // not implemented yet: use mbedtls_net_recv_timeout et. all.
 
-                
                 if (readyState == CLOSED)
                 {
-                    if (timeout > 0)
-                    {
-                        timeval tv = { timeout/1000, (timeout%1000) * 1000 };
-                        select(0, NULL, NULL, NULL, &tv);
-                    }
                     return;
-                }
-                if (timeout > 0)
-                {
-                    fd_set rfds;
-                    fd_set wfds;
-                    timeval tv = { timeout/1000, (timeout%1000) * 1000 };
-                    FD_ZERO(&rfds);
-                    FD_ZERO(&wfds);
-                    FD_SET(sockfd, &rfds);
-                    if (txbuf.size()) { FD_SET(sockfd, &wfds); }
-                    // http://stackoverflow.com/questions/8695678/what-is-the-nfds-from-select-used-for
-                    select(int(sockfd + 1), &rfds, &wfds, NULL, &tv);
                 }
 
 				using namespace easywsclient;
@@ -372,16 +481,13 @@ namespace { // private module-only namespace
                 {
                     // FD_ISSET(0, &rfds) will be true
                     gsstl::vector<char>::size_type N = rxbuf.size();
-                    ssize_t ret;
-                    rxbuf.resize(N + 1500);
+					rxbuf.resize(N + 1500);
 
-                    #ifdef SSL_SUPPORT
-                        ret = SSL_read(sslHandle, (char*)&rxbuf[0] + N, 1500);
-                    #else
-                        ret = recv(sockfd, (char*)&rxbuf[0] + N, 1500, 0);
-                    #endif
+					assert(socket);
 
-                    if (ret < 0 && (socketerrno == SOCKET_EWOULDBLOCK || socketerrno == SOCKET_EAGAIN_EINPROGRESS))
+					int ret = socket->recv(&rxbuf[0] + N, 1500);
+
+                    if (ret < 0 && (ret == MBEDTLS_ERR_SSL_WANT_READ || ret == MBEDTLS_ERR_SSL_WANT_WRITE))
                     {
                         rxbuf.resize(N);
                         break;
@@ -389,7 +495,7 @@ namespace { // private module-only namespace
                     else if (ret <= 0)
                     {
                         rxbuf.resize(N);
-                        closesocket_safe(sockfd);
+						socket->close();
                         readyState = CLOSED;
 						if (ret < 0)
 						{
@@ -408,21 +514,20 @@ namespace { // private module-only namespace
                         rxbuf.resize(static_cast<gsstl::vector<char>::size_type>(N + ret));
                     }
                 }
-                while (txbuf.size())
-                {
-                    #ifdef SSL_SUPPORT
-                        int ret = SSL_write(sslHandle, &txbuf[0], static_cast<int>(txbuf.size()));
-                    #else
-                        int ret = ::send(sockfd, (char*)&txbuf[0], txbuf.size(), 0);
-                    #endif
 
-                    if (ret < 0 && (socketerrno == SOCKET_EWOULDBLOCK || socketerrno == SOCKET_EAGAIN_EINPROGRESS))
+				while (txbuf.size())
+                {
+					assert(socket);
+
+					int ret = socket->send(&txbuf[0], txbuf.size());
+
+					if (ret < 0 && (ret == MBEDTLS_ERR_SSL_WANT_READ || ret == MBEDTLS_ERR_SSL_WANT_WRITE))
                     {
                         break;
                     }
                     else if (ret <= 0)
                     {
-                        closesocket_safe(sockfd);
+						socket->close();
                         readyState = CLOSED;
 						if (ret < 0)
 						{
@@ -446,7 +551,7 @@ namespace { // private module-only namespace
             
             if (!txbuf.size() && readyState == CLOSING)
             {
-                closesocket_safe(sockfd);
+				socket->close();
                 readyState = CLOSED;
 				errorCallback(WSError(WSError::CONNECTION_CLOSED, "Connection closed"), userData);
             }
@@ -635,38 +740,28 @@ namespace { // private module-only namespace
         static void* _s_dns_Lookup(void *ptr)
         {
             _RealWebSocket *self = (_RealWebSocket*)ptr;
-           
-            struct hostent *server_hostent = gethostbyname(self->m_host.c_str());
-            
+
+			assert(self->socket);
+
 			threading::mutex_lock(self->lock);
-            if (!server_hostent)
+
+			// here we're calling TCPSocket::connect, because we only want to to dns lookup and the initial connect in this thread.
+			// no TLS/SSL handshake is performed just yet. This is because we cannot allocate memory on platforms like marmalade in a different thread.
+            if (!((TCPSocket*)(self->socket))->TCPSocket::connect(self->m_host.c_str(), self->m_port))
             {
                 self->ipLookup = keFailed;
             }
             else
             {
-                memset(&self->result, 0, sizeof(self->result));
-                self->result.sin_family = AF_INET;
-                self->result.sin_port = htons((uint16_t)self->m_port);
-                self->result.sin_addr = *( (struct in_addr *)server_hostent->h_addr );
                 self->ipLookup = keComplete;
             }
             
 			threading::mutex_unlock(self->lock);
-            
 			threading::thread_exit(self->dns_thread);
-
-            /*#if defined (WINDOWS_32) || defined(WIN_32)
-                return 0;
-            #else
-                pthread_exit(0); // An implicit call to pthread_exit() is made when a thread other than the thread in which main() was first invoked returns from the start routine that was used to create it. 
-            #endif*/
 
 			return 0;
         }
         
-		threading::thread dns_thread;
-
         bool doConnect()
         {
             readyState = CONNECTING;
@@ -682,132 +777,8 @@ namespace { // private module-only namespace
         {
 			using namespace easywsclient;
 
-            sockfd = socket(AF_INET, SOCK_STREAM, 0);
-            if (sockfd == INVALID_SOCKET)
-            {
-                closesocket_safe(sockfd);
-                sockfd = INVALID_SOCKET;
-				errorCallback(WSError(WSError::SOCKET_CREATION_FAILED, "Socket creation failed"), userData);
-				return false;
-            }
-
-			if (connect(sockfd, (sockaddr*)&result, sizeof(struct sockaddr)) == SOCKET_ERROR)
-			{
-				closesocket_safe(sockfd);
-				sockfd = INVALID_SOCKET;
-				errorCallback(WSError(WSError::CONNECT_FAILED, "connect() failed."), userData);
-				return false;
-			}
-
-            #ifdef SSL_SUPPORT
-                static bool ssl_initialized = false;
-            
-                #ifdef USE_CYASSL
-                    InitCyaSSL();
-                #else
-                    sslContext = new SSL_CTX;
-                    sslHandle = new SSL;
-                #endif
-            
-                if (!ssl_initialized)
-                {
-                    SSL_load_error_strings();
-                    SSL_library_init();
-                    ssl_initialized = true;
-                }
-    
-				#define SEND(buf)  SSL_write(sslHandle, buf, (int)strlen(buf))
-				#define RECV(buf)  SSL_read(sslHandle, buf, 1)
-    
-                if ( sockfd != INVALID_SOCKET && useSSL )
-                {
-					sslContext = SSL_CTX_new (TLSv1_client_method());
-                    if (sslContext == NULL)
-                    {
-                        #ifndef USE_CYASSL
-                            ERR_print_errors_fp (stderr);
-						#else
-							fprintf(stderr, "failed to create SSL Context\n");
-						#endif
-
-						errorCallback(WSError(WSError::SSL_CTX_NEW_FAILED, "Failed to create SSL Context."), userData);
-
-						return false;
-                    }
-                    
-					// this is probably not a good idea in terms of privacy.
-                    SSL_CTX_set_verify(sslContext, SSL_VERIFY_NONE, NULL);
-                    
-                    sslHandle = SSL_new (sslContext);
-                    if (sslHandle == NULL)
-                    {
-                        #ifndef USE_CYASSL
-                            ERR_print_errors_fp (stderr);
-						#else
-							fprintf(stderr, "failed to create SSL Handle\n");
-						#endif
-
-						SSL_CTX_free(sslContext);
-                        sslContext = 0;
-
-						errorCallback(WSError(WSError::SSL_NEW_FAILED, "Failed to create SSL handle."), userData);
-
-						return false;
-					}
-                    
-                    if (!SSL_set_fd (sslHandle, (int)sockfd))
-                    {
-                        #ifndef USE_CYASSL
-                            ERR_print_errors_fp (stderr);
-						#else
-							fprintf(stderr, "failed to set SSL file descriptor\n");
-						#endif
-
-						SSL_CTX_free(sslContext);
-                        sslContext = 0;
-						SSL_free(sslHandle);
-                        sslHandle = 0;
-
-						errorCallback(WSError(WSError::SSL_SET_FD_FAILED, "Failed to set SSL file descriptor."), userData);
-
-						return false;
-                    }
-                    
-                    if (SSL_connect (sslHandle) != 1)
-                    {
-                        #ifndef USE_CYASSL
-                            ERR_print_errors_fp (stderr);
-						#else
-							fprintf(stderr, "failed to SSL-Connect\n");
-						#endif
-
-						SSL_CTX_free(sslContext);
-                        sslContext = 0;
-						SSL_free(sslHandle);
-                        sslHandle = 0;
-
-						errorCallback(WSError(WSError::SSL_CONNECT_FAILED, "SSL_connect failed."), userData);
-
-						return false;
-                    }
-                    fprintf(stderr, "SSL handshake success with: %s\n", m_url.c_str());
-                }
-                else
-                {
-					// I don't think that we'll ever end up here, because we're returning at the to in case sockfd == INVALID_SOCKET
-                    fprintf(stderr, "Unable to connect to %s:%d\n", m_host.c_str(), m_port);
-                    return false;
-                }
-            #else
-            #define SEND(buf)  ::send(sockfd, buf, strlen(buf), 0)
-            #define RECV(buf)  ::recv(sockfd, buf, 1, 0)
-    
-                if (sockfd == INVALID_SOCKET) {
-                    fprintf(stderr, "Unable to connect to %s:%d\n", host, port);
-                    return false;
-                }
-            #endif
-    
+            #define SEND(buf)  socket->send(buf, strlen(buf))
+            #define RECV(buf)  socket->recv(buf, 1)
     
             {
                 // XXX: this should be done non-blocking,
@@ -868,19 +839,9 @@ namespace { // private module-only namespace
 					}
                 }
             }
-            int flag = 1;
-            
-            #ifndef MARMALADE
-                setsockopt(sockfd, IPPROTO_TCP, TCP_NODELAY, (char*) &flag, sizeof(flag)); // Disable Nagle's algorithm
-            #endif
-            
-            #ifdef _WIN32
-                u_long on = 1;
-                ioctlsocket(sockfd, FIONBIO, &on);
-            #else
-                fcntl(sockfd, F_SETFL, O_NONBLOCK);
-            #endif
-                fprintf(stderr, "Connected to: %s\n", m_url.c_str());
+
+			socket->set_blocking(false);
+			fprintf(stderr, "Connected to: %s\n", m_url.c_str());
             
             return true;
         }
@@ -892,9 +853,7 @@ namespace { // private module-only namespace
 		int port;
 		char path[128];
 
-        #ifdef SSL_SUPPORT
-            bool secure_connection = false;
-        #endif
+        bool secure_connection = false;
 		
         if (url.size() >= 128) {
 			fprintf(stderr, "ERROR: url size limit exceeded: %s\n", url.c_str());
@@ -917,7 +876,6 @@ namespace { // private module-only namespace
 			port = 80;
 			path[0] = '\0';
 		}
-#ifdef SSL_SUPPORT
 		else if (sscanf(url.c_str(), "wss://%[^:/]:%d/%s", host, &port, path) == 3) {
 			secure_connection = true;
 		}
@@ -934,7 +892,6 @@ namespace { // private module-only namespace
 			path[0] = '\0';
 			secure_connection = true;
 		}
-#endif
 		else
         {
 			fprintf(stderr, "ERROR: Could not parse WebSocket url: %s\n", url.c_str());
@@ -950,12 +907,6 @@ namespace { // private module-only namespace
         }
         
         return easywsclient::WebSocket::pointer(nWebsocket);
-
-        //#ifdef SSL_SUPPORT
-        //		return easywsclient::WebSocket::pointer(new _RealWebSocket(sockfd, useMask, sslHandle, sslContext));
-        //#else
-        //		return easywsclient::WebSocket::pointer(new _RealWebSocket(sockfd, useMask));
-        //#endif
 	}
 } // end of module-only namespace
 
@@ -968,28 +919,5 @@ namespace easywsclient {
 
 	WebSocket::pointer WebSocket::from_url_no_mask(const gsstl::string& url, const gsstl::string& origin) {
 		return ::from_url(url, false, origin);
-	}
-
-	bool initEasyWSClient ()
-	{
-#if (defined(WIN32) || defined(WINAPI_FAMILY)) && !defined(MARMALADE)
-		INT rc;
-		WSADATA wsaData;
-
-		rc = WSAStartup(MAKEWORD(2, 2), &wsaData);
-		if (rc) {
-			printf("WSAStartup Failed.\n");
-			return false;
-		}
-#endif
-
-		return true;
-	}
-
-	void cleanupEasyWSClient ()
-	{
-#if (defined(WIN32) || defined(WINAPI_FAMILY)) && !defined(MARMALADE)
-		WSACleanup();
-#endif
 	}
 } // namespace easywsclient

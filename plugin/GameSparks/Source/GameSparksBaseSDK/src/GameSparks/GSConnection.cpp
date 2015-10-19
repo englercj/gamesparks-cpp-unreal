@@ -16,6 +16,7 @@ GameSparks::Core::GSConnection::GSConnection(GS* gs, IGSPlatform* gsPlatform)
 	, m_WebSocket(NULL)
 	, m_Initialized(false)
 	, m_Stopped(false)
+    , m_lastActivity(0)
 {
 	m_URL = gs->GetServiceUrl();
 	/*m_URL += "?deviceOS=" + m_GSPlatform->GetDeviceOS();
@@ -81,6 +82,7 @@ void GameSparks::Core::GSConnection::SendImmediate(GSRequest& request)
 	}
 
 	m_GS->DebugLog("Send immediate request: " + request.GetJSON());
+    m_lastActivity = 0;
 	m_WebSocket->send(request.GetJSON().c_str());
 }
 
@@ -137,7 +139,7 @@ void GSConnection::OnWebSocketError(const easywsclient::WSError& error, void* us
 
 bool GSConnection::Update(float deltaTime)
 {
-    (void)(deltaTime); // unused
+    m_lastActivity += deltaTime;
 
 	if (m_WebSocket != NULL)
 	{
@@ -147,6 +149,12 @@ bool GSConnection::Update(float deltaTime)
 			if (m_Stopped) return false;
 			m_WebSocket->dispatch(OnWebSocketCallback, OnWebSocketError, this);
 			if (m_Stopped) return false;
+            
+            if(m_lastActivity > 60){
+                m_lastActivity = 0;
+                m_WebSocket->send(" ");
+            }
+            
 		}
 		else if (m_WebSocket->getReadyState() == WebSocket::CLOSED)
 		{

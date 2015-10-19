@@ -30,7 +30,7 @@ public:
 	If the QQ user is already known, the session will switch to being the previously created user.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS QQConnectRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Authentication")
-	static UGSQQConnectRequest* SendQQConnectRequest(FString AccessToken = "", bool DoNotLinkToCurrentPlayer = false, bool ErrorOnSwitch = false, FString OpenId = "", FString RefreshToken = "", UGameSparksScriptData* Segments = nullptr, bool SwitchIfPossible = false, bool SyncDisplayName = false,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	static UGSQQConnectRequest* SendQQConnectRequest(FString AccessToken = "", bool DoNotLinkToCurrentPlayer = false, bool ErrorOnSwitch = false, UGameSparksScriptData* Segments = nullptr, bool SwitchIfPossible = false, bool SyncDisplayName = false,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
 	
@@ -40,8 +40,6 @@ private:
 	FString accessToken;
 	bool doNotLinkToCurrentPlayer;
 	bool errorOnSwitch;
-	FString openId;
-	FString refreshToken;
 
 	UGameSparksScriptData* segments;
 	bool switchIfPossible;

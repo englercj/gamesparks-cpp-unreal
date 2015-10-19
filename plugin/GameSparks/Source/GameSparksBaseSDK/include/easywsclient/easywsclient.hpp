@@ -10,21 +10,7 @@
 
 #include <GameSparks/gsstl.h>
 
-#if !defined(SSL_SUPPORT)
-#   define SSL_SUPPORT	//We always want SSL Support
-#endif
-
-/*#ifdef SSL_SUPPORT
-    #include <openssl/ssl.h>
-    #include <openssl/err.h>
-    #include <openssl/crypto.h>
-#endif*/
-
 namespace easywsclient {
-
-	bool initEasyWSClient ();
-	void cleanupEasyWSClient ();
-
 	/* Used to pass Errors to the error callback */
 	struct WSError
 	{

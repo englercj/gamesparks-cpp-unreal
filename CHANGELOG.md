@@ -1,5 +1,27 @@
 # ChangeLog
 
+## rc12 (2015-10-19)
+
+### base SDK (affects all platforms)
+- removed dependency: EASTL
+- removed dependency OpenSSL
+- switched to mbed TLS for SSL support
+- Note: the distribution is now source only. So you only have to add one include directory and add the source files. No linking to OpenSSL needed anymore.
+- added PS4 support (please contact GameSparks support for details)
+- sending a keep-alive packed every 60 seconds
+- fixed a bug, that might have caused some responses to not being removed from the durable queue
+- Server API Updates
+
+### Marmalade
+- added support for Windows 10 Universal Apps / WinRT
+
+### Unreal Engine
+- added PS4 support to the UE Plugin (please contact GameSparks support for details)
+
+### WinRT
+- fixed certification issues
+- removed german comments
+
 ## rc11 (2015-10-01)
 
 ### base SDK (affects all platforms)

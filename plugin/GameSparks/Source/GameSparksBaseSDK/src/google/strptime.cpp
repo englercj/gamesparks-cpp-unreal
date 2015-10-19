@@ -1,4 +1,4 @@
-#if defined(WINAPI_FAMILY) && !defined(MARMALADE)
+#if defined(WIN32) || defined(__ORBIS__) || defined(MARMALADE)
 
 #include <ctype.h>
 #include <string.h>
@@ -383,11 +383,6 @@ int strncasecmp(char *s1, char *s2, size_t n)
 	}
 
 	return tolower(*(unsigned char *)s1) - tolower(*(unsigned char *)s2);
-}
-
-extern "C" char* getenv(const char*)
-{
-	return 0;
 }
 
 #endif

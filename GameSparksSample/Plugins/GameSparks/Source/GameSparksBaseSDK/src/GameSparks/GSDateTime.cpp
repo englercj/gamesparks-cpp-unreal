@@ -7,6 +7,10 @@
 char * strptime(const char *buf, const char *fmt, struct tm *tm);
 #endif
 
+#if defined(__ORBIS__ )
+char * strptime(const char *buf, const char *fmt, struct tm *tm);
+#endif
+
 #include <GameSparks/GSDateTime.h>
 
 #include <ctime>

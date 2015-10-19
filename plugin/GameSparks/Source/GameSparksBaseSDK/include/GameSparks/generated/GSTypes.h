@@ -51,50 +51,6 @@ namespace GameSparks
 
 			/*!
 			\ingroup Types
-			A the details of a social connection
-			*/
-			class SocialStatus : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				SocialStatus(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				SocialStatus(const SocialStatus& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// When the token is still active.
-			/// </summary>
-					// method type 4
-					Optional::t_BoolOptional GetActive () const
-					{
-						return m_Response.GetBoolean("active");
-					}
-			/// <summary>
-			/// When the token expires (if available).
-			/// </summary>
-					// method type 4
-					GameSparks::Core::GSDateTime::t_Optional GetExpires () const
-					{
-						return m_Response.GetDate("expires");
-					}
-			/// <summary>
-			/// The identifier of the external platform.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetSystemId () const
-					{
-						return m_Response.GetString("systemId");
-					}
-			};
-
-			/*!
-			\ingroup Types
 			A nested object that represents the invitable friend.
 			*/
 			class InvitableFriend : public  GameSparks::Core::GSTypedResponse
@@ -134,6 +90,50 @@ namespace GameSparks
 					Optional::t_StringOptional GetProfilePic () const
 					{
 						return m_Response.GetString("profilePic");
+					}
+			};
+
+			/*!
+			\ingroup Types
+			A the details of a social connection
+			*/
+			class SocialStatus : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				SocialStatus(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				SocialStatus(const SocialStatus& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// When the token is still active.
+			/// </summary>
+					// method type 4
+					Optional::t_BoolOptional GetActive () const
+					{
+						return m_Response.GetBoolean("active");
+					}
+			/// <summary>
+			/// When the token expires (if available).
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSDateTime::t_Optional GetExpires () const
+					{
+						return m_Response.GetDate("expires");
+					}
+			/// <summary>
+			/// The identifier of the external platform.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetSystemId () const
+					{
+						return m_Response.GetString("systemId");
 					}
 			};
 
@@ -660,42 +660,6 @@ namespace GameSparks
 
 			/*!
 			\ingroup Types
-			A nested object that represents a bought item.
-			*/
-			class Boughtitem : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				Boughtitem(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				Boughtitem(const Boughtitem& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// The quantity of the bought item
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetQuantity () const
-					{
-						return m_Response.GetLong("quantity");
-					}
-			/// <summary>
-			/// The short code of the bought item
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetShortCode () const
-					{
-						return m_Response.GetString("shortCode");
-					}
-			};
-
-			/*!
-			\ingroup Types
 			A nested object that represents the challenge data.
 			*/
 			class Challenge : public  GameSparks::Core::GSTypedResponse
@@ -904,6 +868,42 @@ namespace GameSparks
 							result.push_back(PlayerTurnCount(*it));
 						}
 						return result; 
+					}
+			};
+
+			/*!
+			\ingroup Types
+			A nested object that represents a bought item.
+			*/
+			class Boughtitem : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				Boughtitem(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				Boughtitem(const Boughtitem& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The quantity of the bought item
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetQuantity () const
+					{
+						return m_Response.GetLong("quantity");
+					}
+			/// <summary>
+			/// The short code of the bought item
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetShortCode () const
+					{
+						return m_Response.GetString("shortCode");
 					}
 			};
 

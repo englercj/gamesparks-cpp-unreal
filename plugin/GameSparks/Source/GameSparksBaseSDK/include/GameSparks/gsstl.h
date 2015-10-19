@@ -14,9 +14,6 @@
 
 
 #if defined(DOXYGEN)
-/// wether to use EASTL or the STL provided by the compiler
-/// @ingroup CompileOptions
-#define GS_USE_EASTL <platform-dependend>
 
 /// if set to 1, the stl provided by the compiler is used.
 /// @ingroup CompileOptions
@@ -29,13 +26,7 @@
 
 #endif
 
-
-
-#if defined(GS_USE_EASTL)
-#	undef USE_STD_STL
-#else
-#	define USE_STD_STL 1
-#endif /* defined(GS_USE_EASTL) */
+#define USE_STD_STL 1
 
 
 #if !defined(STL_FUNCTIONAL_SUPPORTED) && !defined(MARMALADE)
@@ -51,30 +42,21 @@
 #endif /* __cplusplus >= 201103L */
 
 // include required headers
-#if defined(GS_USE_EASTL)
-#	include <EASTL/string.h>
-#	include <EASTL/vector.h>
-#	include <EASTL/list.h>
-#	include <EASTL/map.h>
-#	include <EASTL/set.h>
-#	include <EASTL/algorithm.h>
-#else
+#if defined(USE_STD_STL)
 #	include <string>
 #	include <vector>
 #	include <list>
 #	include <map>
 #	include <algorithm>
 #	include <set>
-#endif /* defined(GS_USE_EASTL */
+#endif /* defined(USE_STD_STL) */
 
-//! This namespace provides forwarding to the concrete STL implementation used. If GS_USE_EASTL is set to 1, EASTL (https://github.com/paulhodge/EASTL) is used. The STL provided by your compiler otherwise.
+//! This namespace provides forwarding to the concrete STL implementation used.
 namespace gsstl
 {
-#if defined(GS_USE_EASTL)
-    using namespace eastl;
-#else
+#if defined(USE_STD_STL)
     using namespace std;
-#endif /* defined(USE_EASTL */
+#endif /* defined(USE_STD_STL) */
     
 #if GS_USE_STD_FUNCTION
     using std::function;

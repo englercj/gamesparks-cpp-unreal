@@ -13,9 +13,14 @@
 // limitations under the License.
 
 #if defined(WINAPI_FAMILY)
+#undef __STDC_WANT_SECURE_LIB__
 #define __STDC_WANT_SECURE_LIB__ 0
 #define sprintf_s(buf, size, fmt, ...) sprintf(buf, fmt, __VA_ARGS__)
 #define swprintf_s(buf, size, fmt, ...) swprintf(buf, size, fmt, __VA_ARGS__)
+char * strptime(const char *buf, const char *fmt, struct tm *tm);
+#endif
+
+#if defined(__ORBIS__)
 char * strptime(const char *buf, const char *fmt, struct tm *tm);
 #endif
 
@@ -29,7 +34,7 @@ char * strptime(const char *buf, const char *fmt, struct tm *tm);
 #	define strnicmp _strnicmp
 #endif
 
-#if defined(WIN32) || defined(MARMALADE)
+#if 0 && (defined(WIN32) || defined(MARMALADE) || defined(__ORBIS__))
 // Implement strptime under windows
 static const char* kWeekFull[] = {
   "Sunday", "Monday", "Tuesday", "Wednesday",
@@ -53,7 +58,7 @@ static const char* kMonthAbbr[] = {
 
 static const char* _parse_num(const char* s, int low, int high, int* value) {
   const char* p = s;
-  for (*value = 0; *p != NULL && isdigit(*p); ++p) {
+  for (*value = 0; *p != 0 && isdigit(*p); ++p) {
     *value = (*value) * 10 + static_cast<int>(*p) - static_cast<int>('0');
   }
 
@@ -62,7 +67,7 @@ static const char* _parse_num(const char* s, int low, int high, int* value) {
 }
 
 static char* _strptime(const char *s, const char *format, struct tm *tm) {
-  while (*format != NULL && *s != NULL) {
+  while (*format != 0 && *s != 0) {
     if (*format != '%') {
       if (*s != *format) return NULL;
 
@@ -184,7 +189,7 @@ static char* _strptime(const char *s, const char *format, struct tm *tm) {
     ++format;
   }
 
-  if (*format != NULL) {
+  if (*format != 0) {
     return NULL;
   } else {
     return const_cast<char*>(s);

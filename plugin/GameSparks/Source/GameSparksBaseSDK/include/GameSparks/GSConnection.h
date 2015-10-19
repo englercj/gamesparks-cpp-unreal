@@ -54,6 +54,7 @@ namespace GameSparks
 			gsstl::string m_URL;
 			bool m_Initialized;
 			bool m_Stopped;
+            float m_lastActivity;
 
 			typedef gsstl::map<gsstl::string, GSRequest> t_RequestMap;
 			typedef gsstl::pair<gsstl::string, GSRequest> t_RequestMapPair;

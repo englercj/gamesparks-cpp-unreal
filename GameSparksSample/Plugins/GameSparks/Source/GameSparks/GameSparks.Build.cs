@@ -50,38 +50,40 @@ public class GameSparks : ModuleRules
 
         PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src", "GameSparks"));
         PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src", "cjson"));
-        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src", "eastl"));
         PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src", "easywsclient"));
         PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src", "google"));
         PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src", "hmac"));
+        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src", "mbedtls"));
+        PrivateIncludePaths.Add(Path.Combine(GameSparksPath, "src"));
 
         switch (Target.Platform)
         {
             case UnrealTargetPlatform.Win32:
-                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libVSWin32", "libeay32.lib"));
-                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libVSWin32", "ssleay32.lib"));
+                //AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libVSWin32", "libeay32.lib"));
+                //AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libVSWin32", "ssleay32.lib"));
                 break;
             case UnrealTargetPlatform.Win64:
-                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libVSWin64", "libeay32.lib"));
-                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libVSWin64", "ssleay32.lib"));
+                //AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libVSWin64", "libeay32.lib"));
+                //AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libVSWin64", "ssleay32.lib"));
                 break;
             case UnrealTargetPlatform.Android:
-                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libAndroid", "arm", "libcrypto.a"));
-                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libAndroid", "arm", "libssl.a"));
-                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libAndroid", "x86", "libcrypto.a"));
-                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libAndroid", "x86", "libssl.a"));
+                //AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libAndroid", "arm", "libcrypto.a"));
+                //AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libAndroid", "arm", "libssl.a"));
+                //AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libAndroid", "x86", "libcrypto.a"));
+                //AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libAndroid", "x86", "libssl.a"));
                 break;
             case UnrealTargetPlatform.IOS:
-                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libIOS", "libcrypto.a"));
-                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libIOS", "libssl.a"));
+                //AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libIOS", "libcrypto.a"));
+                //AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libIOS", "libssl.a"));
                 AddLibrary("c++");
                 break;
             case UnrealTargetPlatform.Mac:
-                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libOSX", "libcrypto.a"));
-                AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libOSX", "libssl.a"));
+                //AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libOSX", "libcrypto.a"));
+                //AddLibrary(Path.Combine(GameSparksPath, "lib", "openssl", "libOSX", "libssl.a"));
+                break;
+            case UnrealTargetPlatform.PS4:
                 break;
             case UnrealTargetPlatform.XboxOne:
-            case UnrealTargetPlatform.PS4:
             case UnrealTargetPlatform.WinRT:
             case UnrealTargetPlatform.WinRT_ARM:
             case UnrealTargetPlatform.HTML5:
@@ -104,3 +106,4 @@ public class GameSparks : ModuleRules
         PublicAdditionalLibraries.Add(locationOfLibFile);
     }
 }
+

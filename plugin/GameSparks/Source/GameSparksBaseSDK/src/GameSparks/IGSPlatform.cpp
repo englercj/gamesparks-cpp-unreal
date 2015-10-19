@@ -57,6 +57,10 @@ extern "C" int _getch(void) { return 0; }
 #elif GS_TARGET_PLATFORM == GS_PLATFORM_IOS
     gsstl::string gs_ios_get_writeable_base_path();
     gsstl::string get_ios_device_id();
+#elif defined(__ORBIS__)
+#	include <save_data.h>
+#	include <cassert>
+#	include <stdlib.h>
 #else
 //#	include <uuid/uuid.h>
 #endif
@@ -116,6 +120,28 @@ static gsstl::string generate_guid()
 	#elif defined(ANDROID)
 		gsstl::ifstream ifs("/proc/sys/kernel/random/uuid");
 		ifs >> ret;
+	#elif defined(__ORBIS__)
+	SceKernelUuid uuid;
+	int result = sceKernelUuidCreate(&uuid);
+	assert(result == 0);
+
+	char hex[sizeof(uuid)*2+1];
+	snprintf(hex, sizeof(hex), "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x"
+		, (int)uuid.timeLow
+		, (int)uuid.timeMid
+		, (int)uuid.timeHiAndVersion
+		, (int)uuid.clockSeqHiAndReserved
+		, (int)uuid.clockSeqLow
+		, (int)uuid.node[0]
+		, (int)uuid.node[1]
+		, (int)uuid.node[2]
+		, (int)uuid.node[3]
+		, (int)uuid.node[4]
+		, (int)uuid.node[5]
+
+	);
+	ret = hex;
+
 	#endif
 	/*#else
 		uuid_t uuid;
@@ -143,8 +169,12 @@ gsstl::string IGSPlatform::GetDeviceId() const
 		#elif GS_TARGET_PLATFORM == GS_PLATFORM_IOS
 			device_id = get_ios_device_id();
 		#else
-			device_id = generate_guid();
-			StoreValue("device_id", device_id);
+			device_id = LoadValue("device_id");
+			if (device_id.empty())
+			{
+				device_id = generate_guid();
+				StoreValue("device_id", device_id);
+			}
 		#endif
 
 		device_id = trim(device_id);
@@ -392,6 +422,9 @@ gsstl::string IGSPlatform::ToWritableLocation(gsstl::string desired_name) const
     #elif GS_TARGET_PLATFORM == GS_PLATFORM_IOS
     static gsstl::string base_path = gs_ios_get_writeable_base_path();
     return base_path + "/" + desired_name;
+
+	#elif defined(__ORBIS__)
+	return "/data/" + desired_name;
 	#else
     #   error "ToWritableLocation not implemented for this platform. If you're planing on overriding it yourself, please define GS_OVERRIDE_TOWRITABLELOCATION"
 	#endif
