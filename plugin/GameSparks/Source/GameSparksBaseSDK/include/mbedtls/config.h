@@ -767,6 +767,13 @@
 #	define MBEDTLS_NO_PLATFORM_ENTROPY 1
 #endif
 
+#ifdef WIN32
+#   include <winapifamily.h>
+#   if !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+#       define MBEDTLS_NO_PLATFORM_ENTROPY 1
+#   endif
+#endif
+
 /**
  * \def MBEDTLS_ENTROPY_FORCE_SHA256
  *
