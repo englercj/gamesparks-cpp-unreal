@@ -220,6 +220,42 @@ void UGSMessageListeners_OnGlobalRankChangedMessage(GameSparks::Core::GS& gsInst
     }
 }
 
+void UGSMessageListeners_OnMatchFoundMessage(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Messages::MatchFoundMessage& message)
+{
+    FGSMatchFoundMessage unreal_message(message.GetBaseData());
+    
+    for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
+    {
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnMatchFoundMessage.Broadcast(unreal_message);
+		}
+    }
+}
+
+void UGSMessageListeners_OnMatchNotFoundMessage(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Messages::MatchNotFoundMessage& message)
+{
+    FGSMatchNotFoundMessage unreal_message(message.GetBaseData());
+    
+    for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
+    {
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnMatchNotFoundMessage.Broadcast(unreal_message);
+		}
+    }
+}
+
+void UGSMessageListeners_OnMatchUpdatedMessage(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Messages::MatchUpdatedMessage& message)
+{
+    FGSMatchUpdatedMessage unreal_message(message.GetBaseData());
+    
+    for ( TObjectIterator<UGSMessageListeners> Itr; Itr; ++Itr )
+    {
+        if(Itr->GetWorld() != nullptr && (Itr->GetWorld()->WorldType.GetValue() == EWorldType::Game || Itr->GetWorld()->WorldType.GetValue() == EWorldType::PIE) && (!Itr->HasAnyFlags(RF_PendingKill))){
+               Itr->OnMatchUpdatedMessage.Broadcast(unreal_message);
+		}
+    }
+}
+
 void UGSMessageListeners_OnNewHighScoreMessage(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Messages::NewHighScoreMessage& message)
 {
     FGSNewHighScoreMessage unreal_message(message.GetBaseData());
@@ -339,6 +375,9 @@ void UGSMessageListeners::RegisterListeners(GS& GS)
     GS.SetMessageListener<GameSparks::Api::Messages::ChallengeWonMessage>(UGSMessageListeners_OnChallengeWonMessage);
     GS.SetMessageListener<GameSparks::Api::Messages::FriendMessage>(UGSMessageListeners_OnFriendMessage);
     GS.SetMessageListener<GameSparks::Api::Messages::GlobalRankChangedMessage>(UGSMessageListeners_OnGlobalRankChangedMessage);
+    GS.SetMessageListener<GameSparks::Api::Messages::MatchFoundMessage>(UGSMessageListeners_OnMatchFoundMessage);
+    GS.SetMessageListener<GameSparks::Api::Messages::MatchNotFoundMessage>(UGSMessageListeners_OnMatchNotFoundMessage);
+    GS.SetMessageListener<GameSparks::Api::Messages::MatchUpdatedMessage>(UGSMessageListeners_OnMatchUpdatedMessage);
     GS.SetMessageListener<GameSparks::Api::Messages::NewHighScoreMessage>(UGSMessageListeners_OnNewHighScoreMessage);
     GS.SetMessageListener<GameSparks::Api::Messages::NewTeamScoreMessage>(UGSMessageListeners_OnNewTeamScoreMessage);
     GS.SetMessageListener<GameSparks::Api::Messages::ScriptMessage>(UGSMessageListeners_OnScriptMessage);

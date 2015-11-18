@@ -320,6 +320,9 @@ void GameSparks::Core::GS::OnWebSocketClientError(const easywsclient::WSError& e
 
 	if(!m_Connections.empty() && m_Connections.front() == connection)
 	{
+        //Reset the url to the load balancer url in case the server being connected to no longer exsts
+        m_ServiceUrl = m_GSPlatform->GetServiceUrl();
+        
 		DebugLog("Received websocket error: " + error.message);
 		DebugLog("Got websocket error. Please make sure, that you've setup you credentials.");
 		DebugLog("Backing off for one seconds");

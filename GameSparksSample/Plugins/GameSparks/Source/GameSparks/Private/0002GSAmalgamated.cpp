@@ -15,8 +15,11 @@
 
 //dependencies
 #if defined(WIN32)
-#define _CRTIMP __declspec(dllimport)
-_CRTIMP bool __cdecl __uncaught_exception();
+#	ifdef _MSC_VER
+#		include <eh.h>
+#	endif
+#else 
+# 	define _CRTIMP __declspec(dllimport) _CRTIMP bool __cdecl __uncaught_exception();
 #endif
 
 #include <easywsclient.cpp>

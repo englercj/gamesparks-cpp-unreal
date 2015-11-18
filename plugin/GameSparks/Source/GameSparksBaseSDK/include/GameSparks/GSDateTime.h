@@ -23,8 +23,6 @@ namespace GameSparks
 			GSDateTime(int day, int month, int year, int hour, int minute, int second, bool isLocalTime);
 			GSDateTime(time_t time, bool isLocalTime);
 			GSDateTime(const gsstl::string& iso8601_str);
-			GSDateTime(const GSDateTime& other);
-			GSDateTime& operator=(const GSDateTime& other);
 			static GSDateTime Now();
 
 			GSDateTime ToLocalTime() const;
@@ -40,13 +38,18 @@ namespace GameSparks
 			int GetSecond() const;
 			bool IsLocalTime() const;
 
+			/// caution: Those do NOT account for leap-seconds and DST switches
+			/// add *seconds* seconds
 			GSDateTime AddSeconds(int seconds);
+			/// add 60 seconds
 			GSDateTime AddMinutes(int minutes);
+			/// add 60*60 seconds
 			GSDateTime AddHours(int hours);
+			/// add 24*60*60 seconds
 			GSDateTime AddDays(int days);
-			GSDateTime AddMonths(int months);
-			GSDateTime AddYears(int years);
 
+			/// equality means, both time have to be equal and either both in UTC or both in local time. So timezone conversion will be attempted.
+			bool operator == (const GSDateTime& o) const;
 		private:
 			time_t m_time;
 			bool m_IsLocalTime;

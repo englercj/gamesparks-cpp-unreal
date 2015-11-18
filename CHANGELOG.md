@@ -1,5 +1,19 @@
 # ChangeLog
 
+## rc13 (2015-11-18)
+
+### UE4
+- support for 4.10
+
+### base SDK (affects all platforms)
+- fixed a bug in GSDateTime::GetYear(), removed AddMonth() and AddYear()
+- added documentation to GSDateTime
+- resetting service URL on web-socket error
+- updated READMEs
+
+[Cocos2d-x](https://bitbucket.org/gamesparks/gamesparks-cpp-cocos2dx.git)
+- updated sample to Cocos2d-x 3.8.1
+
 ## rc12 (2015-10-19)
 
 ### base SDK (affects all platforms)

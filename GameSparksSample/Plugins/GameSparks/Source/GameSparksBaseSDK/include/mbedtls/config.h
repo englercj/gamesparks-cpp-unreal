@@ -767,7 +767,7 @@
 #	define MBEDTLS_NO_PLATFORM_ENTROPY 1
 #endif
 
-#ifdef WIN32
+#if (defined(_MSC_VER) && defined(WINAPI_FAMILY)) || defined(__cplusplus_winrt)
 #   include <winapifamily.h>
 #   if !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 #       define MBEDTLS_NO_PLATFORM_ENTROPY 1

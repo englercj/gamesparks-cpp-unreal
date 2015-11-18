@@ -485,7 +485,7 @@ int mbedtls_net_set_block(mbedtls_net_context *ctx)
 	u_long n = 0;
 	return(ioctlsocket(ctx->fd, FIONBIO, &n));
 #elif defined(__ORBIS__)
-	orbis_set_socket_blocking(ctx->fd);
+	return orbis_set_socket_blocking(ctx->fd);
 #else
 	return(fcntl(ctx->fd, F_SETFL, fcntl(ctx->fd, F_GETFL) & ~O_NONBLOCK));
 #endif
@@ -498,7 +498,7 @@ int mbedtls_net_set_nonblock(mbedtls_net_context *ctx)
 	u_long n = 1;
 	return(ioctlsocket(ctx->fd, FIONBIO, &n));
 #elif defined(__ORBIS__)
-	orbis_set_socket_non_blocking(ctx->fd);
+	return orbis_set_socket_non_blocking(ctx->fd);
 #else
 	return(fcntl(ctx->fd, F_SETFL, fcntl(ctx->fd, F_GETFL) | O_NONBLOCK));
 #endif

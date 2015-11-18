@@ -1099,13 +1099,7 @@ namespace GameSparks
 			\ingroup Challenges
 			Find a match for this player, using the given skill and matchShortCode.
 			Players looking for a match using the same matchShortCode will be considered for a match, based on the matchConfig.
-			The mathConfig can be overridden in this request.
 			Each player must match the other for the match to be found.
-			The matchConfig contains an array of thresholds that determine what constitutes an acceptable match.
-			Each threshold specifies a period in seconds from when that threshold will be considered when matching this player.
-			Thresholds contain a min and max value that determine the range that the other player's skill must lie within for a match to be found.
-			The range calculation can be one of PERCENT, RELATIVE or ABSOLUTE.  PERCENT and RELATIVE both start from the current player's skill and look between min and max (subtracting min and adding max to calculate the range) for a suitable match.  ABSOLUTE looks for a player with skill that lies between the provided min and max values.  In all cases we will attempt to match a player with the nearest skill to the current player, as long as they are within range.
-			Optionally, the threshold can specify a maxDistance in metres as well.  If specified, we will only match this player with players who are within maxDistance of the current player.
 			*/
 			class FindMatchRequest : public GameSparks::Core::GSTypedRequest < FindMatchRequest, GameSparks::Api::Responses::FindMatchResponse >
 			{
@@ -2577,6 +2571,138 @@ namespace GameSparks
 			MatchDetailsRequest& SetMatchId( const gsstl::string& matchId )
 			{
 				m_Request.AddString("matchId", matchId);
+				return *this;
+			}
+			};
+			
+			/*!
+			\ingroup Challenges
+			Register this player for matchmaking, using the given skill and matchShortCode.
+			Players looking for a match using the same matchShortCode will be considered for a match, based on the matchConfig.
+			Each player must match the other for the match to be found.
+			*/
+			class MatchmakingRequest : public GameSparks::Core::GSTypedRequest < MatchmakingRequest, GameSparks::Api::Responses::MatchmakingResponse >
+			{
+			public:
+				MatchmakingRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".MatchmakingRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// The action to take on the already in-flight request for this match. Currently supported actions are: 'cancel'
+			/// </summary>
+			MatchmakingRequest& SetAction( const gsstl::string& action )
+			{
+				m_Request.AddString("action", action);
+				return *this;
+			}
+			/// <summary>
+			/// Optional. Players will be grouped based on the distinct value passed in here, only players in the same group can be matched together
+			/// </summary>
+			MatchmakingRequest& SetMatchGroup( const gsstl::string& matchGroup )
+			{
+				m_Request.AddString("matchGroup", matchGroup);
+				return *this;
+			}
+			/// <summary>
+			/// The shortCode of the match type this player is registering for
+			/// </summary>
+			MatchmakingRequest& SetMatchShortCode( const gsstl::string& matchShortCode )
+			{
+				m_Request.AddString("matchShortCode", matchShortCode);
+				return *this;
+			}
+			/// <summary>
+			/// The skill of the player looking for a match
+			/// </summary>
+			MatchmakingRequest& SetSkill( long skill )
+			{
+				m_Request.AddNumber("skill", skill);
+				return *this;
+			}
+			};
+			
+			/*!
+			\ingroup Authentication
+			Allows a PSN account to be used as an authentication mechanism.
+			Once authenticated the platform can determine the current players details from the PSN platform and store them within GameSparks.
+			GameSparks will determine the player's friends and whether any of them are currently registered with the game.
+			If the PSN user is already linked to a player, the current session will switch to the linked player.
+			If the current player has previously created an account using either DeviceAuthentictionRequest or RegistrationRequest AND the PSN user is not already registered with the game, the PSN user will be linked to the current player.
+			If the current player has not authenticated and the PSN user is not known, a new player will be created using the PSN details and the session will be authenticated against the new player.
+			If the PSN user is already known, the session will switch to being the previously created user.
+			*/
+			class PSNConnectRequest : public GameSparks::Core::GSTypedRequest < PSNConnectRequest, GameSparks::Api::Responses::AuthenticationResponse >
+			{
+			public:
+				PSNConnectRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".PSNConnectRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// The authorization code obtained from PSN, as described here https://ps4.scedev.net/resources/documents/SDK/latest/NpAuth-Reference/0008.html
+			/// </summary>
+			PSNConnectRequest& SetAuthorizationCode( const gsstl::string& authorizationCode )
+			{
+				m_Request.AddString("authorizationCode", authorizationCode);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates that the server should not try to link the external profile with the current player.  If false, links the external profile to the currently signed in player.  If true, creates a new player and links the external profile to them.  Defaults to false.
+			/// </summary>
+			PSNConnectRequest& SetDoNotLinkToCurrentPlayer( bool doNotLinkToCurrentPlayer )
+			{
+				m_Request.AddBoolean("doNotLinkToCurrentPlayer", doNotLinkToCurrentPlayer);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates whether the server should return an error if an account switch would have occurred, rather than switching automatically.  Defaults to false.
+			/// </summary>
+			PSNConnectRequest& SetErrorOnSwitch( bool errorOnSwitch )
+			{
+				m_Request.AddBoolean("errorOnSwitch", errorOnSwitch);
+				return *this;
+			}
+			/// <summary>
+			/// When using the authorization code obtained from PlayStation®4/PlayStation®Vita/PlayStation®3, this is not required.
+			/// When using the authorization code obtained with the PC authentication gateway, set the URI issued from the Developer Network website.
+			/// </summary>
+			PSNConnectRequest& SetRedirectUri( const gsstl::string& redirectUri )
+			{
+				m_Request.AddString("redirectUri", redirectUri);
+				return *this;
+			}
+			/// <summary>
+			/// An optional segment configuration for this request.
+			/// If this request creates a new player on the gamesparks platform, the segments of the new player will match the values provided
+			/// </summary>
+			PSNConnectRequest& SetSegments( const GameSparks::Core::GSRequestData& segments )
+			{
+				m_Request.AddObject("segments", segments);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates that the server should switch to the supplied profile if it isalready associated to a player. Defaults to false.
+			/// </summary>
+			PSNConnectRequest& SetSwitchIfPossible( bool switchIfPossible )
+			{
+				m_Request.AddBoolean("switchIfPossible", switchIfPossible);
+				return *this;
+			}
+			/// <summary>
+			/// Indicates that the associated players displayName should be kept in syn with this profile when it's updated by the external provider.
+			/// </summary>
+			PSNConnectRequest& SetSyncDisplayName( bool syncDisplayName )
+			{
+				m_Request.AddBoolean("syncDisplayName", syncDisplayName);
 				return *this;
 			}
 			};

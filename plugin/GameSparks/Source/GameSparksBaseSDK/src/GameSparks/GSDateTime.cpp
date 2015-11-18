@@ -60,21 +60,9 @@ GameSparks::Core::GSDateTime::GSDateTime(const gsstl::string& iso8601_str)
     m_time = _mkgmtime(&t);
 }
 
-GameSparks::Core::GSDateTime::GSDateTime(const GSDateTime& other)
-	: m_time(other.m_time)
-	, m_IsLocalTime(other.m_IsLocalTime)
+bool GameSparks::Core::GSDateTime::operator == (const GSDateTime& o) const
 {
-}
-
-GSDateTime& GameSparks::Core::GSDateTime::operator=(const GSDateTime& other)
-{
-	if (&other != this)
-	{
-		m_IsLocalTime = other.m_IsLocalTime;
-		m_time = other.m_time;
-
-	}
-	return *this;
+	return m_time == o.m_time && m_IsLocalTime == o.m_IsLocalTime;
 }
 
 GameSparks::Core::GSDateTime GameSparks::Core::GSDateTime::Now()
@@ -133,8 +121,9 @@ int GameSparks::Core::GSDateTime::GetMonth() const
 
 int GameSparks::Core::GSDateTime::GetYear() const
 {
-	if (m_IsLocalTime) return localtime(&m_time)->tm_year;
-	else return gmtime(&m_time)->tm_year + 1990;
+	// http://www.cplusplus.com/reference/ctime/tm/ (years since 1900)
+	if (m_IsLocalTime) return localtime(&m_time)->tm_year + 1900;
+	else return gmtime(&m_time)->tm_year + 1900;
 }
 
 int GameSparks::Core::GSDateTime::GetHour() const
@@ -178,16 +167,4 @@ GSDateTime GameSparks::Core::GSDateTime::AddHours(int hours)
 GSDateTime GameSparks::Core::GSDateTime::AddDays(int days)
 {
 	return AddHours(days * 24);
-}
-
-GSDateTime GameSparks::Core::GSDateTime::AddMonths(int months)
-{
-	
-	// this is wrong, needs to reworked when used
-	return AddDays(months * 30);
-}
-
-GSDateTime GameSparks::Core::GSDateTime::AddYears(int years)
-{
-	return AddMonths(years * 12);
 }

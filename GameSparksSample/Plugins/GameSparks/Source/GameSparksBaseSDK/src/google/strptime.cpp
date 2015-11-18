@@ -1,4 +1,7 @@
-#if defined(WIN32) || defined(__ORBIS__) || defined(MARMALADE)
+#if 0 && (defined(WIN32) || defined(__ORBIS__) || defined(MARMALADE))
+
+// we've disabled this implementation, because it has several problems:
+// example: strptime subtracts TM_YEAR_BASE (1970) from the date, when is really should be 1900
 
 #include <ctype.h>
 #include <string.h>

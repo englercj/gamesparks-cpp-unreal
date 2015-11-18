@@ -107,6 +107,21 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = GameSparks)
 	FOnGlobalRankChangedMessage OnGlobalRankChangedMessage;
 	
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMatchFoundMessage, FGSMatchFoundMessage, MatchFoundMessage);
+	
+	UPROPERTY(BlueprintAssignable, Category = GameSparks)
+	FOnMatchFoundMessage OnMatchFoundMessage;
+	
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMatchNotFoundMessage, FGSMatchNotFoundMessage, MatchNotFoundMessage);
+	
+	UPROPERTY(BlueprintAssignable, Category = GameSparks)
+	FOnMatchNotFoundMessage OnMatchNotFoundMessage;
+	
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMatchUpdatedMessage, FGSMatchUpdatedMessage, MatchUpdatedMessage);
+	
+	UPROPERTY(BlueprintAssignable, Category = GameSparks)
+	FOnMatchUpdatedMessage OnMatchUpdatedMessage;
+	
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnNewHighScoreMessage, FGSNewHighScoreMessage, NewHighScoreMessage);
 	
 	UPROPERTY(BlueprintAssignable, Category = GameSparks)

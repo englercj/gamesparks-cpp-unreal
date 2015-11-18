@@ -1475,6 +1475,293 @@ namespace GameSparks
 			
 
 			/*!
+			\ingroup Challenges
+			A message indicating that a match has been found
+			*/
+			class MatchFoundMessage : public GSMessage
+			{
+				public:
+					// used by SetListener to register message creation functions
+					static const char* GetTypeName()
+					{
+						return ".MatchFoundMessage";
+					}
+
+					MatchFoundMessage(const GSData& data)
+					: GSMessage(data)
+					{
+
+					}
+				public:
+
+				/// <summary>
+				/// The accessToken used to authenticate this player for this match
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetAccessToken () const
+					{
+						return m_Response.GetString("accessToken");
+					}
+				/// <summary>
+				/// The host to connect to for this match
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetHost () const
+					{
+						return m_Response.GetString("host");
+					}
+				/// <summary>
+				/// The group the player was assigned in the matchmaking request
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetMatchGroup () const
+					{
+						return m_Response.GetString("matchGroup");
+					}
+				/// <summary>
+				/// The id for this match instance
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetMatchId () const
+					{
+						return m_Response.GetString("matchId");
+					}
+				/// <summary>
+				/// The shortCode of the match type this message for
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetMatchShortCode () const
+					{
+						return m_Response.GetString("matchShortCode");
+					}
+				/// <summary>
+				/// Flag indicating whether this message could be sent as a push notification or not.
+				/// </summary>
+					// method type 4
+					Optional::t_BoolOptional GetNotification () const
+					{
+						return m_Response.GetBoolean("notification");
+					}
+				/// <summary>
+				/// The participants in this match
+				/// </summary>
+					// method type 1
+					gsstl::vector<Types::Participant> GetParticipants() const
+					{
+						gsstl::vector<Types::Participant> result;
+						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("participants");
+						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
+						{
+							result.push_back(Types::Participant(*it));
+						}
+						return result; 
+					}
+				/// <summary>
+				/// The port to connect to for this match
+				/// </summary>
+					// method type 4
+					Optional::t_IntOptional GetPort () const
+					{
+						return m_Response.GetInt("port");
+					}
+				/// <summary>
+				/// A textual title for the message.
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetSubTitle () const
+					{
+						return m_Response.GetString("subTitle");
+					}
+				/// <summary>
+				/// A textual summary describing the message's purpose.
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetSummary () const
+					{
+						return m_Response.GetString("summary");
+					}
+				/// <summary>
+				/// A textual title for the message.
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetTitle () const
+					{
+						return m_Response.GetString("title");
+					}
+			};
+			
+
+			/*!
+			\ingroup Challenges
+			A message indicating that no suitable match was found during the configured time
+			*/
+			class MatchNotFoundMessage : public GSMessage
+			{
+				public:
+					// used by SetListener to register message creation functions
+					static const char* GetTypeName()
+					{
+						return ".MatchNotFoundMessage";
+					}
+
+					MatchNotFoundMessage(const GSData& data)
+					: GSMessage(data)
+					{
+
+					}
+				public:
+
+				/// <summary>
+				/// The group the player was assigned in the matchmaking request
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetMatchGroup () const
+					{
+						return m_Response.GetString("matchGroup");
+					}
+				/// <summary>
+				/// The shortCode of the match type this message for
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetMatchShortCode () const
+					{
+						return m_Response.GetString("matchShortCode");
+					}
+				/// <summary>
+				/// Flag indicating whether this message could be sent as a push notification or not.
+				/// </summary>
+					// method type 4
+					Optional::t_BoolOptional GetNotification () const
+					{
+						return m_Response.GetBoolean("notification");
+					}
+				/// <summary>
+				/// The participants in this match
+				/// </summary>
+					// method type 1
+					gsstl::vector<Types::Participant> GetParticipants() const
+					{
+						gsstl::vector<Types::Participant> result;
+						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("participants");
+						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
+						{
+							result.push_back(Types::Participant(*it));
+						}
+						return result; 
+					}
+				/// <summary>
+				/// A textual title for the message.
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetSubTitle () const
+					{
+						return m_Response.GetString("subTitle");
+					}
+				/// <summary>
+				/// A textual summary describing the message's purpose.
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetSummary () const
+					{
+						return m_Response.GetString("summary");
+					}
+				/// <summary>
+				/// A textual title for the message.
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetTitle () const
+					{
+						return m_Response.GetString("title");
+					}
+			};
+			
+
+			/*!
+			\ingroup Challenges
+			A message indicating that there has been an update to a pending match request, but it is not yet complete
+			*/
+			class MatchUpdatedMessage : public GSMessage
+			{
+				public:
+					// used by SetListener to register message creation functions
+					static const char* GetTypeName()
+					{
+						return ".MatchUpdatedMessage";
+					}
+
+					MatchUpdatedMessage(const GSData& data)
+					: GSMessage(data)
+					{
+
+					}
+				public:
+
+				/// <summary>
+				/// The group the player was assigned in the matchmaking request
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetMatchGroup () const
+					{
+						return m_Response.GetString("matchGroup");
+					}
+				/// <summary>
+				/// The shortCode of the match type this message for
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetMatchShortCode () const
+					{
+						return m_Response.GetString("matchShortCode");
+					}
+				/// <summary>
+				/// Flag indicating whether this message could be sent as a push notification or not.
+				/// </summary>
+					// method type 4
+					Optional::t_BoolOptional GetNotification () const
+					{
+						return m_Response.GetBoolean("notification");
+					}
+				/// <summary>
+				/// The participants in this match
+				/// </summary>
+					// method type 1
+					gsstl::vector<Types::Participant> GetParticipants() const
+					{
+						gsstl::vector<Types::Participant> result;
+						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("participants");
+						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
+						{
+							result.push_back(Types::Participant(*it));
+						}
+						return result; 
+					}
+				/// <summary>
+				/// A textual title for the message.
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetSubTitle () const
+					{
+						return m_Response.GetString("subTitle");
+					}
+				/// <summary>
+				/// A textual summary describing the message's purpose.
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetSummary () const
+					{
+						return m_Response.GetString("summary");
+					}
+				/// <summary>
+				/// A textual title for the message.
+				/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetTitle () const
+					{
+						return m_Response.GetString("title");
+					}
+			};
+			
+
+			/*!
 			\ingroup Leaderboards
 			A message indicating that the player has achieved a new high score in the game.
 			*/

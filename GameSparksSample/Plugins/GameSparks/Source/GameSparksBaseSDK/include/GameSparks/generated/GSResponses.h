@@ -1891,6 +1891,25 @@ namespace GameSparks
 					}
 			};
 			/*!
+			\ingroup Challenges
+			A response to a matchmaking request
+			*/
+			class MatchmakingResponse : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				MatchmakingResponse(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				MatchmakingResponse(const MatchmakingResponse& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			};
+			/*!
 			\ingroup Misc
 			A response to a push registration request 
 			*/

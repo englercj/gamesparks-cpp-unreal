@@ -77,6 +77,7 @@ static void mbedtls_zeroize(void *v, size_t n) {
 #define FSb FSb_aes
 #include "mbedtls/aes.c"
 #include "mbedtls/aesni.c"
+#include "mbedtls/padlock.c"
 #undef FSb
 #include "mbedtls/bignum.c"
 #undef asm
@@ -142,8 +143,11 @@ static void mbedtls_zeroize(void *v, size_t n) {
 
 //dependencies
 #if defined(WIN32)
-#define _CRTIMP __declspec(dllimport)
-_CRTIMP bool __cdecl __uncaught_exception();
+#	ifdef _MSC_VER
+#		include <eh.h>
+#	endif
+#else 
+# 	define _CRTIMP __declspec(dllimport) _CRTIMP bool __cdecl __uncaught_exception();
 #endif
 
 #include "easywsclient/easywsclient.cpp"
