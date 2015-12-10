@@ -231,7 +231,7 @@ public:
 	Returns leaderboard data that is adjacent to the currently signed in player's position within the given leaderboard.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS AroundMeLeaderboardRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Leaderboards")
-	static UGSAroundMeLeaderboardRequest* SendAroundMeLeaderboardRequest(FString ChallengeInstanceId = "", bool DontErrorOnNotSocial = false, int32 EntryCount = 0, UGameSparksRequestArray* FriendIds = nullptr, int32 IncludeFirst = 0, int32 IncludeLast = 0, bool InverseSocial = false, FString LeaderboardShortCode = "", bool Social = false, UGameSparksRequestArray* TeamIds = nullptr, UGameSparksRequestArray* TeamTypes = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	static UGSAroundMeLeaderboardRequest* SendAroundMeLeaderboardRequest(FString ChallengeInstanceId = "", UGameSparksScriptData* CustomIdFilter = nullptr, bool DontErrorOnNotSocial = false, int32 EntryCount = 0, UGameSparksRequestArray* FriendIds = nullptr, int32 IncludeFirst = 0, int32 IncludeLast = 0, bool InverseSocial = false, FString LeaderboardShortCode = "", bool Social = false, UGameSparksRequestArray* TeamIds = nullptr, UGameSparksRequestArray* TeamTypes = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
 	
@@ -239,6 +239,7 @@ public:
 
 private:
 	FString challengeInstanceId;
+	UGameSparksScriptData* customIdFilter;
 	bool dontErrorOnNotSocial;
 	int32 entryCount;
 	UGameSparksRequestArray* friendIds;
@@ -1005,7 +1006,8 @@ public:
 	FOnGetLeaderboardEntriesRequest_Response OnResponse;
 	
 	/**
-	Get the leaderboard entry data for the current player or a given player.
+	Get the leaderboard entry data for the current player or a given player. 
+	For each leaderboard it returns the hichest score the player has
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS GetLeaderboardEntriesRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Leaderboards")
 	static UGSGetLeaderboardEntriesRequest* SendGetLeaderboardEntriesRequest(UGameSparksRequestArray* Challenges = nullptr, bool InverseSocial = false, UGameSparksRequestArray* Leaderboards = nullptr, FString Player = "", bool Social = false, UGameSparksRequestArray* TeamTypes = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
@@ -1616,6 +1618,48 @@ private:
 
 	bool social;
 	UGameSparksRequestArray* teamIds;
+	UGameSparksRequestArray* teamTypes;
+	
+	UGameSparksScriptData* scriptData;
+	
+	bool durable;
+	int32 requestTimeoutSeconds; 
+	
+};
+
+
+// Generate a delegate for the OnGetResult event
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLeaderboardsEntriesRequest_Response, FGSLeaderboardsEntriesResponse, LeaderboardsEntriesResponse, bool, hasErrors);
+
+UCLASS()
+class UGSLeaderboardsEntriesRequest : public UOnlineBlueprintCallProxyBase
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	
+	/* Event which triggers when the content has been retrieved */
+	UPROPERTY(BlueprintAssignable, Category = "GameSparks")
+	FOnLeaderboardsEntriesRequest_Response OnResponse;
+	
+	/**
+	Get the leaderboard entry data for the current player or a given player.
+	For each leaderboard it returns the array of leaderboard entries that the player has.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS LeaderboardsEntriesRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Leaderboards")
+	static UGSLeaderboardsEntriesRequest* SendLeaderboardsEntriesRequest(UGameSparksRequestArray* Challenges = nullptr, bool InverseSocial = false, UGameSparksRequestArray* Leaderboards = nullptr, FString Player = "", bool Social = false, UGameSparksRequestArray* TeamTypes = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	
+	void Activate() override;
+	
+	~UGSLeaderboardsEntriesRequest();
+
+private:
+	UGameSparksRequestArray* challenges;
+	bool inverseSocial;
+	UGameSparksRequestArray* leaderboards;
+	FString player;
+
+	bool social;
 	UGameSparksRequestArray* teamTypes;
 	
 	UGameSparksScriptData* scriptData;

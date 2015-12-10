@@ -108,7 +108,7 @@ static const char* parse_number(cJSON* item, const char *num)
 {
 	char* end;
 	item->valuedouble = strtod(num, &end);
-	item->valueint = round(item->valuedouble);
+	item->valueint = static_cast<int>(round(item->valuedouble));
 	item->type = cJSON_Number;
 	return end;
 }
@@ -209,6 +209,10 @@ static const char *parse_string(cJSON *item,const char *str)
 	item->type=cJSON_String;
 	return ptr;
 }
+
+#if defined(_MSC_VER)
+#	pragma warning(disable: 4706)
+#endif
 
 /* Render the cstring provided to an escaped version that can be printed. */
 static char *print_string_ptr(const char *str)

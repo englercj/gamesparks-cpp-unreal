@@ -449,7 +449,7 @@ namespace { // private module-only namespace
 					assert(socket);
 					
 					// establish the ssl connection and do websocket handshaking
-					if (!socket->connect(m_host.c_str(), m_port) || !doConnect2(errorCallback, userData))
+					if (!socket->connect(m_host.c_str(), static_cast<short>(m_port)) || !doConnect2(errorCallback, userData))
                     {
                         forceClose();
                     }
@@ -747,7 +747,7 @@ namespace { // private module-only namespace
 
 			// here we're calling TCPSocket::connect, because we only want to to dns lookup and the initial connect in this thread.
 			// no TLS/SSL handshake is performed just yet. This is because we cannot allocate memory on platforms like marmalade in a different thread.
-            if (!((TCPSocket*)(self->socket))->TCPSocket::connect(self->m_host.c_str(), self->m_port))
+            if (!((TCPSocket*)(self->socket))->TCPSocket::connect(self->m_host.c_str(), static_cast<short>(self->m_port)))
             {
                 self->ipLookup = keFailed;
             }

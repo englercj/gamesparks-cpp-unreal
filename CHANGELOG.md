@@ -1,5 +1,18 @@
 # ChangeLog
 
+## 1.0.0 (2015-12-09)
+
+### base SDK (affects all platforms)
+- improved support for tests and samples for iOS and Android
+- updated auto-generated code
+
+### WinRT
+- added missing Package.StoreAssociation.xml
+
+### UE4
+- allow creation of UGameSparksRequestArray in blueprints
+
+
 ## rc13 (2015-11-18)
 
 ### UE4
@@ -13,6 +26,7 @@
 
 [Cocos2d-x](https://bitbucket.org/gamesparks/gamesparks-cpp-cocos2dx.git)
 - updated sample to Cocos2d-x 3.8.1
+
 
 ## rc12 (2015-10-19)
 
@@ -36,6 +50,7 @@
 - fixed certification issues
 - removed german comments
 
+
 ## rc11 (2015-10-01)
 
 ### base SDK (affects all platforms)
@@ -46,6 +61,7 @@
 
 ### UE4
 - fixed a crash that occured when the editor was closed without starting the game once
+
 
 ## rc10 (2015-09-20)
 

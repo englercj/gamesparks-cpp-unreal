@@ -61,74 +61,6 @@ struct FGSUploadData
 };
 
 USTRUCT(BlueprintType)
-struct FGSSocialStatus
-{
-	GENERATED_USTRUCT_BODY()
-	
-	FGSSocialStatus(){}
-	
-	FGSSocialStatus(const GameSparks::Core::GSData& wrappedData){
-	
-	JSONData = NewObject<UGameSparksScriptData>();
-	
-	JSONData->SetGSData(wrappedData);
-	
-	
-	if(wrappedData.ContainsKey("active")){
-		HasActive = true;
-			Active = wrappedData.GetBoolean("active").GetValue();
-		}
-		
-	
-	if(wrappedData.ContainsKey("expires")){
-		HasExpires = true;
-			Expires = wrappedData.GetString("expires").GetValue().c_str();
-		}
-		
-	
-	if(wrappedData.ContainsKey("systemId")){
-		HasSystemId = true;
-			SystemId = wrappedData.GetString("systemId").GetValue().c_str();
-		}
-		
-	
-	    JSONString = wrappedData.GetJSON().c_str();
-	}
-
-	
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
-	bool HasActive = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
-	bool Active;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
-	bool HasExpires = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
-	FString Expires;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
-	bool HasSystemId = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
-	FString SystemId;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
-    FString JSONString;
-    
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
-    UGameSparksScriptData* JSONData = nullptr;
-    
-	void Destroy()
-	{
-		JSONData = nullptr;
-	}
-	
-};
-
-USTRUCT(BlueprintType)
 struct FGSInvitableFriend
 {
 	GENERATED_USTRUCT_BODY()
@@ -197,6 +129,74 @@ struct FGSInvitableFriend
 };
 
 USTRUCT(BlueprintType)
+struct FGSSocialStatus
+{
+	GENERATED_USTRUCT_BODY()
+	
+	FGSSocialStatus(){}
+	
+	FGSSocialStatus(const GameSparks::Core::GSData& wrappedData){
+	
+	JSONData = NewObject<UGameSparksScriptData>();
+	
+	JSONData->SetGSData(wrappedData);
+	
+	
+	if(wrappedData.ContainsKey("active")){
+		HasActive = true;
+			Active = wrappedData.GetBoolean("active").GetValue();
+		}
+		
+	
+	if(wrappedData.ContainsKey("expires")){
+		HasExpires = true;
+			Expires = wrappedData.GetString("expires").GetValue().c_str();
+		}
+		
+	
+	if(wrappedData.ContainsKey("systemId")){
+		HasSystemId = true;
+			SystemId = wrappedData.GetString("systemId").GetValue().c_str();
+		}
+		
+	
+	    JSONString = wrappedData.GetJSON().c_str();
+	}
+
+	
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
+	bool HasActive = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
+	bool Active;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
+	bool HasExpires = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
+	FString Expires;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
+	bool HasSystemId = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
+	FString SystemId;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
+    FString JSONString;
+    
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Misc")
+    UGameSparksScriptData* JSONData = nullptr;
+    
+	void Destroy()
+	{
+		JSONData = nullptr;
+	}
+	
+};
+
+USTRUCT(BlueprintType)
 struct FGSPlayer
 {
 	GENERATED_USTRUCT_BODY()
@@ -212,7 +212,7 @@ struct FGSPlayer
 	
 	if(wrappedData.ContainsKey("achievements")){
 		HasAchievements = true;
-			for(int i=0; i < wrappedData.GetStringList("achievements").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetStringList("achievements").size(); i++){
 				FString Achievements_tmp = wrappedData.GetStringList("achievements")[i].c_str();
 				Achievements.Add(Achievements_tmp);
             }
@@ -251,7 +251,7 @@ struct FGSPlayer
 	
 	if(wrappedData.ContainsKey("virtualGoods")){
 		HasVirtualGoods = true;
-			for(int i=0; i < wrappedData.GetStringList("virtualGoods").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetStringList("virtualGoods").size(); i++){
 				FString VirtualGoods_tmp = wrappedData.GetStringList("virtualGoods")[i].c_str();
 				VirtualGoods.Add(VirtualGoods_tmp);
             }
@@ -338,7 +338,7 @@ struct FGSParticipant
 	
 	if(wrappedData.ContainsKey("achievements")){
 		HasAchievements = true;
-			for(int i=0; i < wrappedData.GetStringList("achievements").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetStringList("achievements").size(); i++){
 				FString Achievements_tmp = wrappedData.GetStringList("achievements")[i].c_str();
 				Achievements.Add(Achievements_tmp);
             }
@@ -383,7 +383,7 @@ struct FGSParticipant
 	
 	if(wrappedData.ContainsKey("virtualGoods")){
 		HasVirtualGoods = true;
-			for(int i=0; i < wrappedData.GetStringList("virtualGoods").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetStringList("virtualGoods").size(); i++){
 				FString VirtualGoods_tmp = wrappedData.GetStringList("virtualGoods")[i].c_str();
 				VirtualGoods.Add(VirtualGoods_tmp);
             }
@@ -625,7 +625,7 @@ struct FGSTeam
 	
 	if(wrappedData.ContainsKey("members")){
 		HasMembers = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
 				FGSPlayer Members_tmp = FGSPlayer(wrappedData.GetGSDataObjectList("members")[i]);
 				Members.Add(Members_tmp);
             }
@@ -975,7 +975,7 @@ struct FGSLeaderboardRankDetails
 	
 	if(wrappedData.ContainsKey("friendsPassed")){
 		HasFriendsPassed = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("friendsPassed").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("friendsPassed").size(); i++){
 				FGSLeaderboardData FriendsPassed_tmp = FGSLeaderboardData(wrappedData.GetGSDataObjectList("friendsPassed")[i]);
 				FriendsPassed.Add(FriendsPassed_tmp);
             }
@@ -1044,7 +1044,7 @@ struct FGSLeaderboardRankDetails
 	
 	if(wrappedData.ContainsKey("topNPassed")){
 		HasTopNPassed = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("topNPassed").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("topNPassed").size(); i++){
 				FGSLeaderboardData TopNPassed_tmp = FGSLeaderboardData(wrappedData.GetGSDataObjectList("topNPassed")[i]);
 				TopNPassed.Add(TopNPassed_tmp);
             }
@@ -1144,62 +1144,6 @@ struct FGSLeaderboardRankDetails
 };
 
 USTRUCT(BlueprintType)
-struct FGSBoughtitem
-{
-	GENERATED_USTRUCT_BODY()
-	
-	FGSBoughtitem(){}
-	
-	FGSBoughtitem(const GameSparks::Core::GSData& wrappedData){
-	
-	JSONData = NewObject<UGameSparksScriptData>();
-	
-	JSONData->SetGSData(wrappedData);
-	
-	
-	if(wrappedData.ContainsKey("quantity")){
-		HasQuantity = true;
-			Quantity = wrappedData.GetNumber("quantity").GetValue();
-		}
-		
-	
-	if(wrappedData.ContainsKey("shortCode")){
-		HasShortCode = true;
-			ShortCode = wrappedData.GetString("shortCode").GetValue().c_str();
-		}
-		
-	
-	    JSONString = wrappedData.GetJSON().c_str();
-	}
-
-	
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-	bool HasQuantity = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-	int32 Quantity;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-	bool HasShortCode = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-	FString ShortCode;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-    FString JSONString;
-    
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-    UGameSparksScriptData* JSONData = nullptr;
-    
-	void Destroy()
-	{
-		JSONData = nullptr;
-	}
-	
-};
-
-USTRUCT(BlueprintType)
 struct FGSChallenge
 {
 	GENERATED_USTRUCT_BODY()
@@ -1215,7 +1159,7 @@ struct FGSChallenge
 	
 	if(wrappedData.ContainsKey("accepted")){
 		HasAccepted = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("accepted").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("accepted").size(); i++){
 				FGSPlayerDetail Accepted_tmp = FGSPlayerDetail(wrappedData.GetGSDataObjectList("accepted")[i]);
 				Accepted.Add(Accepted_tmp);
             }
@@ -1242,7 +1186,7 @@ struct FGSChallenge
 	
 	if(wrappedData.ContainsKey("challenged")){
 		HasChallenged = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("challenged").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("challenged").size(); i++){
 				FGSPlayerDetail Challenged_tmp = FGSPlayerDetail(wrappedData.GetGSDataObjectList("challenged")[i]);
 				Challenged.Add(Challenged_tmp);
             }
@@ -1293,7 +1237,7 @@ struct FGSChallenge
 	
 	if(wrappedData.ContainsKey("declined")){
 		HasDeclined = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("declined").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("declined").size(); i++){
 				FGSPlayerDetail Declined_tmp = FGSPlayerDetail(wrappedData.GetGSDataObjectList("declined")[i]);
 				Declined.Add(Declined_tmp);
             }
@@ -1350,7 +1294,7 @@ struct FGSChallenge
 	
 	if(wrappedData.ContainsKey("turnCount")){
 		HasTurnCount = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("turnCount").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("turnCount").size(); i++){
 				FGSPlayerTurnCount TurnCount_tmp = FGSPlayerTurnCount(wrappedData.GetGSDataObjectList("turnCount")[i]);
 				TurnCount.Add(TurnCount_tmp);
             }
@@ -1502,6 +1446,62 @@ struct FGSChallenge
     FString JSONString;
     
     UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+    UGameSparksScriptData* JSONData = nullptr;
+    
+	void Destroy()
+	{
+		JSONData = nullptr;
+	}
+	
+};
+
+USTRUCT(BlueprintType)
+struct FGSBoughtitem
+{
+	GENERATED_USTRUCT_BODY()
+	
+	FGSBoughtitem(){}
+	
+	FGSBoughtitem(const GameSparks::Core::GSData& wrappedData){
+	
+	JSONData = NewObject<UGameSparksScriptData>();
+	
+	JSONData->SetGSData(wrappedData);
+	
+	
+	if(wrappedData.ContainsKey("quantity")){
+		HasQuantity = true;
+			Quantity = wrappedData.GetNumber("quantity").GetValue();
+		}
+		
+	
+	if(wrappedData.ContainsKey("shortCode")){
+		HasShortCode = true;
+			ShortCode = wrappedData.GetString("shortCode").GetValue().c_str();
+		}
+		
+	
+	    JSONString = wrappedData.GetJSON().c_str();
+	}
+
+	
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+	bool HasQuantity = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+	int32 Quantity;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+	bool HasShortCode = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+	FString ShortCode;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+    FString JSONString;
+    
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -2037,7 +2037,7 @@ struct FGSAccountDetailsResponse
 	
 	if(wrappedData.ContainsKey("achievements")){
 		HasAchievements = true;
-			for(int i=0; i < wrappedData.GetStringList("achievements").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetStringList("achievements").size(); i++){
 				FString Achievements_tmp = wrappedData.GetStringList("achievements")[i].c_str();
 				Achievements.Add(Achievements_tmp);
             }
@@ -2385,7 +2385,7 @@ struct FGSAroundMeLeaderboardResponse
 	
 	if(wrappedData.ContainsKey("data")){
 		HasData = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("data").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("data").size(); i++){
 				FGSLeaderboardData Data_tmp = FGSLeaderboardData(wrappedData.GetGSDataObjectList("data")[i]);
 				Data.Add(Data_tmp);
             }
@@ -2394,7 +2394,7 @@ struct FGSAroundMeLeaderboardResponse
 	
 	if(wrappedData.ContainsKey("first")){
 		HasFirst = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("first").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("first").size(); i++){
 				FGSLeaderboardData First_tmp = FGSLeaderboardData(wrappedData.GetGSDataObjectList("first")[i]);
 				First.Add(First_tmp);
             }
@@ -2403,7 +2403,7 @@ struct FGSAroundMeLeaderboardResponse
 	
 	if(wrappedData.ContainsKey("last")){
 		HasLast = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("last").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("last").size(); i++){
 				FGSLeaderboardData Last_tmp = FGSLeaderboardData(wrappedData.GetGSDataObjectList("last")[i]);
 				Last.Add(Last_tmp);
             }
@@ -2649,7 +2649,7 @@ struct FGSBuyVirtualGoodResponse
 	
 	if(wrappedData.ContainsKey("boughtItems")){
 		HasBoughtItems = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("boughtItems").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("boughtItems").size(); i++){
 				FGSBoughtitem BoughtItems_tmp = FGSBoughtitem(wrappedData.GetGSDataObjectList("boughtItems")[i]);
 				BoughtItems.Add(BoughtItems_tmp);
             }
@@ -3100,7 +3100,7 @@ struct FGSCreateTeamResponse
 	
 	if(wrappedData.ContainsKey("members")){
 		HasMembers = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
 				FGSPlayer Members_tmp = FGSPlayer(wrappedData.GetGSDataObjectList("members")[i]);
 				Members.Add(Members_tmp);
             }
@@ -3353,7 +3353,7 @@ struct FGSDropTeamResponse
 	
 	if(wrappedData.ContainsKey("members")){
 		HasMembers = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
 				FGSPlayer Members_tmp = FGSPlayer(wrappedData.GetGSDataObjectList("members")[i]);
 				Members.Add(Members_tmp);
             }
@@ -3531,7 +3531,7 @@ struct FGSFindChallengeResponse
 	
 	if(wrappedData.ContainsKey("challengeInstances")){
 		HasChallengeInstances = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("challengeInstances").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("challengeInstances").size(); i++){
 				FGSChallenge ChallengeInstances_tmp = FGSChallenge(wrappedData.GetGSDataObjectList("challengeInstances")[i]);
 				ChallengeInstances.Add(ChallengeInstances_tmp);
             }
@@ -3628,7 +3628,7 @@ struct FGSFindMatchResponse
 	
 	if(wrappedData.ContainsKey("opponents")){
 		HasOpponents = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("opponents").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("opponents").size(); i++){
 				FGSPlayer Opponents_tmp = FGSPlayer(wrappedData.GetGSDataObjectList("opponents")[i]);
 				Opponents.Add(Opponents_tmp);
             }
@@ -4174,7 +4174,7 @@ struct FGSGetMyTeamsResponse
 	
 	if(wrappedData.ContainsKey("teams")){
 		HasTeams = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("teams").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("teams").size(); i++){
 				FGSTeam Teams_tmp = FGSTeam(wrappedData.GetGSDataObjectList("teams")[i]);
 				Teams.Add(Teams_tmp);
             }
@@ -4469,7 +4469,7 @@ struct FGSGetTeamResponse
 	
 	if(wrappedData.ContainsKey("members")){
 		HasMembers = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
 				FGSPlayer Members_tmp = FGSPlayer(wrappedData.GetGSDataObjectList("members")[i]);
 				Members.Add(Members_tmp);
             }
@@ -4508,7 +4508,7 @@ struct FGSGetTeamResponse
 	
 	if(wrappedData.ContainsKey("teams")){
 		HasTeams = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("teams").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("teams").size(); i++){
 				FGSTeam Teams_tmp = FGSTeam(wrappedData.GetGSDataObjectList("teams")[i]);
 				Teams.Add(Teams_tmp);
             }
@@ -4825,7 +4825,7 @@ struct FGSJoinTeamResponse
 	
 	if(wrappedData.ContainsKey("members")){
 		HasMembers = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
 				FGSPlayer Members_tmp = FGSPlayer(wrappedData.GetGSDataObjectList("members")[i]);
 				Members.Add(Members_tmp);
             }
@@ -4946,7 +4946,7 @@ struct FGSLeaderboardDataResponse
 	
 	if(wrappedData.ContainsKey("data")){
 		HasData = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("data").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("data").size(); i++){
 				FGSLeaderboardData Data_tmp = FGSLeaderboardData(wrappedData.GetGSDataObjectList("data")[i]);
 				Data.Add(Data_tmp);
             }
@@ -4955,7 +4955,7 @@ struct FGSLeaderboardDataResponse
 	
 	if(wrappedData.ContainsKey("first")){
 		HasFirst = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("first").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("first").size(); i++){
 				FGSLeaderboardData First_tmp = FGSLeaderboardData(wrappedData.GetGSDataObjectList("first")[i]);
 				First.Add(First_tmp);
             }
@@ -4964,7 +4964,7 @@ struct FGSLeaderboardDataResponse
 	
 	if(wrappedData.ContainsKey("last")){
 		HasLast = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("last").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("last").size(); i++){
 				FGSLeaderboardData Last_tmp = FGSLeaderboardData(wrappedData.GetGSDataObjectList("last")[i]);
 				Last.Add(Last_tmp);
             }
@@ -5060,6 +5060,82 @@ struct FGSLeaderboardDataResponse
 };
 
 USTRUCT(BlueprintType)
+struct FGSLeaderboardsEntriesResponse
+{
+	GENERATED_USTRUCT_BODY()
+	
+	FGSLeaderboardsEntriesResponse(){}
+	
+	FGSLeaderboardsEntriesResponse(const GameSparks::Core::GSData& wrappedData){
+	
+	JSONData = NewObject<UGameSparksScriptData>();
+	
+	JSONData->SetGSData(wrappedData);
+	
+	
+	if(wrappedData.ContainsKey("requestId")){
+		HasRequestId = true;
+			RequestId = wrappedData.GetString("requestId").GetValue().c_str();
+		}
+		
+	
+	if(wrappedData.ContainsKey("results")){
+		HasResults = true;
+			Results = NewObject<UGameSparksScriptData>();Results->SetGSData(wrappedData.GetGSDataObject("results").GetValue());
+		}
+		
+	
+	if(wrappedData.ContainsKey("scriptData")){
+		HasScriptData = true;
+			ScriptData = NewObject<UGameSparksScriptData>();ScriptData->SetGSData(wrappedData.GetGSDataObject("scriptData").GetValue());
+		}
+		
+		if(wrappedData.ContainsKey("error")){
+			Errors = NewObject<UGameSparksScriptData>();Errors->SetGSData(wrappedData.GetGSDataObject("error").GetValue());
+    	}
+	
+	    JSONString = wrappedData.GetJSON().c_str();
+	}
+
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Leaderboards")
+	UGameSparksScriptData* Errors = nullptr;
+	
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Leaderboards")
+	bool HasRequestId = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Leaderboards")
+	FString RequestId;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Leaderboards")
+	bool HasResults = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Leaderboards")
+	UGameSparksScriptData* Results = nullptr;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Leaderboards")
+	bool HasScriptData = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Leaderboards")
+	UGameSparksScriptData* ScriptData = nullptr;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Leaderboards")
+    FString JSONString;
+    
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Leaderboards")
+    UGameSparksScriptData* JSONData = nullptr;
+    
+	void Destroy()
+	{
+		Errors = nullptr;
+		JSONData = nullptr;
+		Results = nullptr;
+	}
+	
+};
+
+USTRUCT(BlueprintType)
 struct FGSLeaveTeamResponse
 {
 	GENERATED_USTRUCT_BODY()
@@ -5075,7 +5151,7 @@ struct FGSLeaveTeamResponse
 	
 	if(wrappedData.ContainsKey("members")){
 		HasMembers = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
 				FGSPlayer Members_tmp = FGSPlayer(wrappedData.GetGSDataObjectList("members")[i]);
 				Members.Add(Members_tmp);
             }
@@ -5190,7 +5266,7 @@ struct FGSListAchievementsResponse
 	
 	if(wrappedData.ContainsKey("achievements")){
 		HasAchievements = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("achievements").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("achievements").size(); i++){
 				FGSAchievement Achievements_tmp = FGSAchievement(wrappedData.GetGSDataObjectList("achievements")[i]);
 				Achievements.Add(Achievements_tmp);
             }
@@ -5269,7 +5345,7 @@ struct FGSListChallengeResponse
 	
 	if(wrappedData.ContainsKey("challengeInstances")){
 		HasChallengeInstances = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("challengeInstances").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("challengeInstances").size(); i++){
 				FGSChallenge ChallengeInstances_tmp = FGSChallenge(wrappedData.GetGSDataObjectList("challengeInstances")[i]);
 				ChallengeInstances.Add(ChallengeInstances_tmp);
             }
@@ -5348,7 +5424,7 @@ struct FGSListChallengeTypeResponse
 	
 	if(wrappedData.ContainsKey("challengeTemplates")){
 		HasChallengeTemplates = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("challengeTemplates").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("challengeTemplates").size(); i++){
 				FGSChallengeType ChallengeTemplates_tmp = FGSChallengeType(wrappedData.GetGSDataObjectList("challengeTemplates")[i]);
 				ChallengeTemplates.Add(ChallengeTemplates_tmp);
             }
@@ -5427,7 +5503,7 @@ struct FGSListGameFriendsResponse
 	
 	if(wrappedData.ContainsKey("friends")){
 		HasFriends = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("friends").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("friends").size(); i++){
 				FGSPlayer Friends_tmp = FGSPlayer(wrappedData.GetGSDataObjectList("friends")[i]);
 				Friends.Add(Friends_tmp);
             }
@@ -5506,7 +5582,7 @@ struct FGSListInviteFriendsResponse
 	
 	if(wrappedData.ContainsKey("friends")){
 		HasFriends = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("friends").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("friends").size(); i++){
 				FGSInvitableFriend Friends_tmp = FGSInvitableFriend(wrappedData.GetGSDataObjectList("friends")[i]);
 				Friends.Add(Friends_tmp);
             }
@@ -5585,7 +5661,7 @@ struct FGSListLeaderboardsResponse
 	
 	if(wrappedData.ContainsKey("leaderboards")){
 		HasLeaderboards = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("leaderboards").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("leaderboards").size(); i++){
 				FGSLeaderboard Leaderboards_tmp = FGSLeaderboard(wrappedData.GetGSDataObjectList("leaderboards")[i]);
 				Leaderboards.Add(Leaderboards_tmp);
             }
@@ -5664,7 +5740,7 @@ struct FGSListMessageResponse
 	
 	if(wrappedData.ContainsKey("messageList")){
 		HasMessageList = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("messageList").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("messageList").size(); i++){
 				UGameSparksScriptData* MessageList_tmp = NewObject<UGameSparksScriptData>();MessageList_tmp->SetGSData(wrappedData.GetGSDataObjectList("messageList")[i]);
 				MessageList.Add(MessageList_tmp);
             }
@@ -5743,7 +5819,7 @@ struct FGSListMessageSummaryResponse
 	
 	if(wrappedData.ContainsKey("messageList")){
 		HasMessageList = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("messageList").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("messageList").size(); i++){
 				UGameSparksScriptData* MessageList_tmp = NewObject<UGameSparksScriptData>();MessageList_tmp->SetGSData(wrappedData.GetGSDataObjectList("messageList")[i]);
 				MessageList.Add(MessageList_tmp);
             }
@@ -5897,7 +5973,7 @@ struct FGSListVirtualGoodsResponse
 	
 	if(wrappedData.ContainsKey("virtualGoods")){
 		HasVirtualGoods = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("virtualGoods").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("virtualGoods").size(); i++){
 				FGSVirtualGood VirtualGoods_tmp = FGSVirtualGood(wrappedData.GetGSDataObjectList("virtualGoods")[i]);
 				VirtualGoods.Add(VirtualGoods_tmp);
             }
@@ -6108,7 +6184,7 @@ struct FGSMatchDetailsResponse
 	
 	if(wrappedData.ContainsKey("opponents")){
 		HasOpponents = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("opponents").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("opponents").size(); i++){
 				FGSPlayer Opponents_tmp = FGSPlayer(wrappedData.GetGSDataObjectList("opponents")[i]);
 				Opponents.Add(Opponents_tmp);
             }
@@ -6703,7 +6779,7 @@ struct FGSSocialStatusResponse
 	
 	if(wrappedData.ContainsKey("statuses")){
 		HasStatuses = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("statuses").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("statuses").size(); i++){
 				FGSSocialStatus Statuses_tmp = FGSSocialStatus(wrappedData.GetGSDataObjectList("statuses")[i]);
 				Statuses.Add(Statuses_tmp);
             }
@@ -9456,7 +9532,7 @@ struct FGSMatchFoundMessage
 	
 	if(wrappedData.ContainsKey("participants")){
 		HasParticipants = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("participants").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("participants").size(); i++){
 				FGSParticipant Participants_tmp = FGSParticipant(wrappedData.GetGSDataObjectList("participants")[i]);
 				Participants.Add(Participants_tmp);
             }
@@ -9630,7 +9706,7 @@ struct FGSMatchNotFoundMessage
 	
 	if(wrappedData.ContainsKey("participants")){
 		HasParticipants = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("participants").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("participants").size(); i++){
 				FGSParticipant Participants_tmp = FGSParticipant(wrappedData.GetGSDataObjectList("participants")[i]);
 				Participants.Add(Participants_tmp);
             }
@@ -9774,7 +9850,7 @@ struct FGSMatchUpdatedMessage
 	
 	if(wrappedData.ContainsKey("participants")){
 		HasParticipants = true;
-			for(int i=0; i < wrappedData.GetGSDataObjectList("participants").size(); i++){
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("participants").size(); i++){
 				FGSParticipant Participants_tmp = FGSParticipant(wrappedData.GetGSDataObjectList("participants")[i]);
 				Participants.Add(Participants_tmp);
             }

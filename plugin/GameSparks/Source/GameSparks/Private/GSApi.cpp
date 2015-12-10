@@ -412,10 +412,11 @@ void AroundMeLeaderboardRequestResponseCallback(GameSparks::Core::GS& gsInstance
     }
 }
 
-UGSAroundMeLeaderboardRequest* UGSAroundMeLeaderboardRequest::SendAroundMeLeaderboardRequest(FString ChallengeInstanceId, bool DontErrorOnNotSocial, int32 EntryCount, UGameSparksRequestArray* FriendIds, int32 IncludeFirst, int32 IncludeLast, bool InverseSocial, FString LeaderboardShortCode, bool Social, UGameSparksRequestArray* TeamIds, UGameSparksRequestArray* TeamTypes,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+UGSAroundMeLeaderboardRequest* UGSAroundMeLeaderboardRequest::SendAroundMeLeaderboardRequest(FString ChallengeInstanceId, UGameSparksScriptData* CustomIdFilter, bool DontErrorOnNotSocial, int32 EntryCount, UGameSparksRequestArray* FriendIds, int32 IncludeFirst, int32 IncludeLast, bool InverseSocial, FString LeaderboardShortCode, bool Social, UGameSparksRequestArray* TeamIds, UGameSparksRequestArray* TeamTypes,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
 {
 	UGSAroundMeLeaderboardRequest* proxy = NewObject<UGSAroundMeLeaderboardRequest>();
 	proxy->challengeInstanceId = ChallengeInstanceId;
+	proxy->customIdFilter = CustomIdFilter;
 	proxy->dontErrorOnNotSocial = DontErrorOnNotSocial;
 	proxy->entryCount = EntryCount;
 	proxy->friendIds = FriendIds;
@@ -437,6 +438,9 @@ void UGSAroundMeLeaderboardRequest::Activate()
 	GameSparks::Api::Requests::AroundMeLeaderboardRequest gsRequest(UGameSparksModule::GetModulePtr()->GetGSInstance());
 	if(challengeInstanceId != ""){
 		gsRequest.SetChallengeInstanceId(TCHAR_TO_UTF8(*challengeInstanceId));
+	}
+	if(customIdFilter != nullptr){
+		gsRequest.SetCustomIdFilter(customIdFilter->ToRequestData());
 	}
 	if(dontErrorOnNotSocial != false){
 		gsRequest.SetDontErrorOnNotSocial(dontErrorOnNotSocial);
@@ -3374,6 +3378,117 @@ UGSLeaderboardDataRequest::UGSLeaderboardDataRequest(const class FObjectInitiali
 }
 
 UGSLeaderboardDataRequest::~UGSLeaderboardDataRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
+ }
+}
+
+
+void LeaderboardsEntriesRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::LeaderboardsEntriesResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
+    
+    FGSLeaderboardsEntriesResponse unreal_response = FGSLeaderboardsEntriesResponse(response.GetBaseData());
+    
+    UGSLeaderboardsEntriesRequest* g_UGSLeaderboardsEntriesRequest = static_cast<UGSLeaderboardsEntriesRequest*>(response.GetUserData());
+                                             
+    if (response.GetHasErrors())
+    {
+        g_UGSLeaderboardsEntriesRequest->OnResponse.Broadcast(unreal_response, true);
+    }
+    else
+    {
+        g_UGSLeaderboardsEntriesRequest->OnResponse.Broadcast(unreal_response, false);
+    }
+}
+
+UGSLeaderboardsEntriesRequest* UGSLeaderboardsEntriesRequest::SendLeaderboardsEntriesRequest(UGameSparksRequestArray* Challenges, bool InverseSocial, UGameSparksRequestArray* Leaderboards, FString Player, bool Social, UGameSparksRequestArray* TeamTypes,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+{
+	UGSLeaderboardsEntriesRequest* proxy = NewObject<UGSLeaderboardsEntriesRequest>();
+	proxy->challenges = Challenges;
+	proxy->inverseSocial = InverseSocial;
+	proxy->leaderboards = Leaderboards;
+	proxy->player = Player;
+	proxy->social = Social;
+	proxy->teamTypes = TeamTypes;
+	proxy->scriptData = ScriptData;
+	proxy->durable = Durable;
+	proxy->requestTimeoutSeconds = RequestTimeoutSeconds;
+	return proxy;
+}
+	
+void UGSLeaderboardsEntriesRequest::Activate()
+{
+	GameSparks::Api::Requests::LeaderboardsEntriesRequest gsRequest(UGameSparksModule::GetModulePtr()->GetGSInstance());
+	if(challenges != nullptr){
+		gsstl::vector<gsstl::string> arrChallenges;
+	
+	    for(int32 b_arrChallenges = 0; b_arrChallenges < challenges->StringArray.Num(); b_arrChallenges++)
+	    {
+	        arrChallenges.push_back(TCHAR_TO_UTF8(*challenges->StringArray[b_arrChallenges]));
+	    }
+	    
+		gsRequest.SetChallenges(arrChallenges);
+	}
+	if(inverseSocial != false){
+		gsRequest.SetInverseSocial(inverseSocial);
+	}
+	if(leaderboards != nullptr){
+		gsstl::vector<gsstl::string> arrLeaderboards;
+	
+	    for(int32 b_arrLeaderboards = 0; b_arrLeaderboards < leaderboards->StringArray.Num(); b_arrLeaderboards++)
+	    {
+	        arrLeaderboards.push_back(TCHAR_TO_UTF8(*leaderboards->StringArray[b_arrLeaderboards]));
+	    }
+	    
+		gsRequest.SetLeaderboards(arrLeaderboards);
+	}
+	if(player != ""){
+		gsRequest.SetPlayer(TCHAR_TO_UTF8(*player));
+	}
+	if(social != false){
+		gsRequest.SetSocial(social);
+	}
+	if(teamTypes != nullptr){
+		gsstl::vector<gsstl::string> arrTeamTypes;
+	
+	    for(int32 b_arrTeamTypes = 0; b_arrTeamTypes < teamTypes->StringArray.Num(); b_arrTeamTypes++)
+	    {
+	        arrTeamTypes.push_back(TCHAR_TO_UTF8(*teamTypes->StringArray[b_arrTeamTypes]));
+	    }
+	    
+		gsRequest.SetTeamTypes(arrTeamTypes);
+	}
+	if(scriptData != nullptr){
+        gsRequest.SetScriptData(scriptData->ToRequestData());
+    }
+    if(durable){
+    	gsRequest.SetDurable(durable);
+    }
+    
+    gsRequest.SetUserData(this);
+
+    if(requestTimeoutSeconds > 0){
+    	gsRequest.Send(LeaderboardsEntriesRequestResponseCallback, requestTimeoutSeconds);	
+    } else {
+    	gsRequest.Send(LeaderboardsEntriesRequestResponseCallback);
+    }
+	
+	
+	
+}
+
+UGSLeaderboardsEntriesRequest::UGSLeaderboardsEntriesRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
+}
+
+UGSLeaderboardsEntriesRequest::~UGSLeaderboardsEntriesRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {

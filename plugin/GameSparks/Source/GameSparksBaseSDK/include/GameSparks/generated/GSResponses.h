@@ -1399,6 +1399,33 @@ namespace GameSparks
 					}
 			};
 			/*!
+			\ingroup Leaderboards
+			A response containing leaderboard entry data for a given player
+			*/
+			class LeaderboardsEntriesResponse : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				LeaderboardsEntriesResponse(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				LeaderboardsEntriesResponse(const LeaderboardsEntriesResponse& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The leaderboard entry data
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSData::t_Optional GetResults () const
+					{
+						return m_Response.GetGSDataObject("results");
+					}
+			};
+			/*!
 			\ingroup Teams
 			A response to a player leaving a team
 			*/

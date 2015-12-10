@@ -231,10 +231,11 @@ gsstl::string IGSPlatform::GetPlatform() const
 // convert UTF-8 string to wstring
 static std::wstring utf8_to_wstring(const std::string& str)
 {
-	int output_size = MultiByteToWideChar(CP_UTF8, NULL, str.c_str(), str.size(), NULL, 0);
+	int output_size = MultiByteToWideChar(CP_UTF8, NULL, str.c_str(), static_cast<int>(str.size()), NULL, 0);
 	assert(output_size > 0);
 	gsstl::vector<wchar_t> buffer(output_size);
-	int result = MultiByteToWideChar(CP_UTF8, NULL, str.c_str(), str.size(), buffer.data(), buffer.size());
+	int result = MultiByteToWideChar(CP_UTF8, NULL, str.c_str(), static_cast<int>(str.size()), buffer.data(), static_cast<int>(buffer.size()));
+	(void)result; // unused in release builds
 	assert( result == output_size );
 	std::wstring ret(buffer.begin(), buffer.end());
 	return ret;
@@ -245,10 +246,11 @@ static std::wstring utf8_to_wstring(const std::string& str)
 // convert wstring to UTF-8 string
 static std::string wstring_to_utf8(const std::wstring& str)
 {
-	int output_size = WideCharToMultiByte(CP_UTF8, NULL, str.c_str(), str.size(), NULL, 0, NULL, NULL);
+	int output_size = WideCharToMultiByte(CP_UTF8, NULL, str.c_str(), static_cast<int>(str.size()), NULL, 0, NULL, NULL);
 	assert(output_size > 0);
 	gsstl::vector<char> buffer(output_size);
-	int result = WideCharToMultiByte(CP_UTF8, NULL, str.c_str(), str.size(), buffer.data(), buffer.size(), NULL, NULL);
+	int result = WideCharToMultiByte(CP_UTF8, NULL, str.c_str(), static_cast<int>(str.size()), buffer.data(), static_cast<int>(buffer.size()), NULL, NULL);
+	(void)result; // unused in release builds
 	assert(result == output_size);
 	std::string ret(buffer.begin(), buffer.end());
 	return ret;
@@ -409,10 +411,14 @@ gsstl::string IGSPlatform::ToWritableLocation(gsstl::string desired_name) const
 		if (!f)
 		{
 			DebugMsg("Failed to get writable path");
-			return desired_name;
+			return "./" + desired_name;
 		}
+
 		fread(buf, 1, sizeof(buf), f);
 		fclose(f);
+
+		if(buf[0] == '.') // if executed via adb shell
+			return "./" + desired_name;
 
 		// bytes not contains the list of null separated command line arguments, the string constructor below will copy until the first null byte
 		base_path = "/data/data/" + gsstl::string(buf) + "/";

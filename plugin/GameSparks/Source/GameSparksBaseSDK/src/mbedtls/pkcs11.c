@@ -23,6 +23,15 @@
  *  This file is part of mbed TLS (https://tls.mbed.org)
  */
 
+/*
+    GameSparks LLC:
+        The Source files have been changed so that they can be compiled by a C++
+        Compiler. This was required, because the Unreal Engine and Windows 10
+        Phone / Universal Apps do not support direct compilation of C Source
+        code. Also changes where made to enable the compilation from a single
+        translation unit (amalgamated build).
+*/
+
 #include "mbedtls/pkcs11.h"
 
 #if defined(MBEDTLS_PKCS11_C)

@@ -1,5 +1,10 @@
 #include "GameSparksPrivatePCH.h"
 
+#if defined(_MSC_VER)
+#	pragma warning(disable: 4530) // concrt.h(313): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+#	pragma warning(disable: 4702) // xtree(1826): warning C4702: unreachable code
+#endif
+
 #define UI GET_OF_MY_LAWN
 
 // silence warnings on windows

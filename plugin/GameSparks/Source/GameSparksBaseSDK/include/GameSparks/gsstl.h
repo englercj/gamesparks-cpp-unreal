@@ -102,7 +102,7 @@ namespace gsstl
     static const nullptr_t nullptr_instance = nullptr_t();// = {};
 }
 
-#if !defined(WINAPI_FAMILY)
+#if !defined(WINAPI_FAMILY) && __cplusplus <= 199711L
 #	define nullptr gsstl::nullptr_instance
 #endif
 #endif

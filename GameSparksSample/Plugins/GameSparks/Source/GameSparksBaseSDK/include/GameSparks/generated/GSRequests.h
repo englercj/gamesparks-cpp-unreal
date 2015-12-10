@@ -260,6 +260,16 @@ namespace GameSparks
 				return *this;
 			}
 			/// <summary>
+			/// An optional filter on the customIds.
+			/// If this request does not contain a custonIdFilter or if it is a partial filter, 
+			/// the leaderboard entries around the highest score for the given constraints will be returned.
+			/// </summary>
+			AroundMeLeaderboardRequest& SetCustomIdFilter( const GameSparks::Core::GSRequestData& customIdFilter )
+			{
+				m_Request.AddObject("customIdFilter", customIdFilter);
+				return *this;
+			}
+			/// <summary>
 			/// The default behaviour on a social request is to error if the player has no friends (NOTSOCIAL).  Set this flag to suppress that error and return the player's leaderboard entry instead.
 			/// </summary>
 			AroundMeLeaderboardRequest& SetDontErrorOnNotSocial( bool dontErrorOnNotSocial )
@@ -1318,7 +1328,8 @@ namespace GameSparks
 			
 			/*!
 			\ingroup Leaderboards
-			Get the leaderboard entry data for the current player or a given player.
+			Get the leaderboard entry data for the current player or a given player. 
+			For each leaderboard it returns the hichest score the player has
 			*/
 			class GetLeaderboardEntriesRequest : public GameSparks::Core::GSTypedRequest < GetLeaderboardEntriesRequest, GameSparks::Api::Responses::GetLeaderboardEntriesResponse >
 			{
@@ -2061,6 +2072,72 @@ namespace GameSparks
 			/// The type of team you are interested in
 			/// </summary>
 			LeaderboardDataRequest& SetTeamTypes( gsstl::vector<gsstl::string> teamTypes )
+			{
+				m_Request.AddStringList("teamTypes", teamTypes);
+				return *this;
+			}
+			};
+			
+			/*!
+			\ingroup Leaderboards
+			Get the leaderboard entry data for the current player or a given player.
+			For each leaderboard it returns the array of leaderboard entries that the player has.
+			*/
+			class LeaderboardsEntriesRequest : public GameSparks::Core::GSTypedRequest < LeaderboardsEntriesRequest, GameSparks::Api::Responses::LeaderboardsEntriesResponse >
+			{
+			public:
+				LeaderboardsEntriesRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".LeaderboardsEntriesRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// The challenge leaderboards to return entries for
+			/// </summary>
+			LeaderboardsEntriesRequest& SetChallenges( gsstl::vector<gsstl::string> challenges )
+			{
+				m_Request.AddStringList("challenges", challenges);
+				return *this;
+			}
+			/// <summary>
+			/// Returns the leaderboard excluding the player's social friends
+			/// </summary>
+			LeaderboardsEntriesRequest& SetInverseSocial( bool inverseSocial )
+			{
+				m_Request.AddBoolean("inverseSocial", inverseSocial);
+				return *this;
+			}
+			/// <summary>
+			/// The list of leaderboards shortcodes
+			/// </summary>
+			LeaderboardsEntriesRequest& SetLeaderboards( gsstl::vector<gsstl::string> leaderboards )
+			{
+				m_Request.AddStringList("leaderboards", leaderboards);
+				return *this;
+			}
+			/// <summary>
+			/// The player id. Leave out to use the current player id
+			/// </summary>
+			LeaderboardsEntriesRequest& SetPlayer( const gsstl::string& player )
+			{
+				m_Request.AddString("player", player);
+				return *this;
+			}
+			/// <summary>
+			/// Set to true to include the player's game friends
+			/// </summary>
+			LeaderboardsEntriesRequest& SetSocial( bool social )
+			{
+				m_Request.AddBoolean("social", social);
+				return *this;
+			}
+			/// <summary>
+			/// The types of team to apply this request to
+			/// </summary>
+			LeaderboardsEntriesRequest& SetTeamTypes( gsstl::vector<gsstl::string> teamTypes )
 			{
 				m_Request.AddStringList("teamTypes", teamTypes);
 				return *this;

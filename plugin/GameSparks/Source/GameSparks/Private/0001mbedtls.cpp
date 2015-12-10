@@ -3,6 +3,10 @@
 #if defined(_MSC_VER)
 #	pragma warning(error: 4005)
 #	pragma warning(disable: 4127)
+#	pragma warning(disable: 4244)
+#	pragma warning(disable: 4245)
+#	pragma warning(disable: 4310)
+#	pragma warning(disable: 4389)
 #endif
 
 #define MBEDTLS_UNREAL
