@@ -16,7 +16,7 @@ namespace GameSparks
 		namespace Requests
 		{
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Accepts a challenge that has been issued to the current player.
 			*/
 			class AcceptChallengeRequest : public GameSparks::Core::GSTypedRequest < AcceptChallengeRequest, GameSparks::Api::Responses::AcceptChallengeResponse >
@@ -484,7 +484,7 @@ namespace GameSparks
 			};
 			
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Sends a message to all players involved in the challenge. The current player must be involved in the challenge for the message to be sent.
 			As the message is sent to all players, the current player will also see details of the message in the response. Read the section on response message aggregation for a description of this.
 			*/
@@ -551,7 +551,7 @@ namespace GameSparks
 			};
 			
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Issues a challenge to a group of players from the currently signed in player.
 			The endTime field must be present unless the challenge template has an achievement set in the 'First to Achievement' field.
 			The usersToChallenge field must be present for this request if the acessType is PRIVATE (which is the default).
@@ -765,7 +765,7 @@ namespace GameSparks
 			};
 			
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Declines a challenge that has been issued to the current player.
 			*/
 			class DeclineChallengeRequest : public GameSparks::Core::GSTypedRequest < DeclineChallengeRequest, GameSparks::Api::Responses::DeclineChallengeResponse >
@@ -1049,7 +1049,7 @@ namespace GameSparks
 			};
 			
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Allows a player to find challenges that they are eligible to join.
 			*/
 			class FindChallengeRequest : public GameSparks::Core::GSTypedRequest < FindChallengeRequest, GameSparks::Api::Responses::FindChallengeResponse >
@@ -1106,7 +1106,7 @@ namespace GameSparks
 			};
 			
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Find a match for this player, using the given skill and matchShortCode.
 			Players looking for a match using the same matchShortCode will be considered for a match, based on the matchConfig.
 			Each player must match the other for the match to be found.
@@ -1269,7 +1269,7 @@ namespace GameSparks
 			};
 			
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Gets the details of a challenge. The current player must be involved in the challenge for the request to succeed.
 			*/
 			class GetChallengeRequest : public GameSparks::Core::GSTypedRequest < GetChallengeRequest, GameSparks::Api::Responses::GetChallengeResponse >
@@ -1803,7 +1803,7 @@ namespace GameSparks
 			};
 			
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Allows a player to join an open challenge.
 			*/
 			class JoinChallengeRequest : public GameSparks::Core::GSTypedRequest < JoinChallengeRequest, GameSparks::Api::Responses::JoinChallengeResponse >
@@ -2203,7 +2203,7 @@ namespace GameSparks
 			};
 			
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Returns a list of challenges in the state defined in the 'state' field.
 			The response can be further filtered by passing a shortCode field which will limit the returned lists to challenges of that short code.
 			Valid states are:
@@ -2268,7 +2268,7 @@ namespace GameSparks
 			};
 			
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Returns the list of configured challenge types.
 			*/
 			class ListChallengeTypeRequest : public GameSparks::Core::GSTypedRequest < ListChallengeTypeRequest, GameSparks::Api::Responses::ListChallengeTypeResponse >
@@ -2469,10 +2469,18 @@ namespace GameSparks
 			
 
 
+			/// <summary>
+			/// A filter to only include goods with the given tags. Each good must have all the provided tags.
+			/// </summary>
+			ListVirtualGoodsRequest& SetTags( gsstl::vector<gsstl::string> tags )
+			{
+				m_Request.AddStringList("tags", tags);
+				return *this;
+			}
 			};
 			
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Allows a user defined event to be triggered. The event will be posted to the challenge specified.
 			This call differs from most as it does not have a fixed format. The @class, challengeInstanceId and eventKey attributes are common, but the rest of the attributes are as defined in the Event object configured in the dev portal.
 			The example below shows a request to en event with a short code of HS with 2 attributes, 'HS' & 'GL'.
@@ -2628,7 +2636,7 @@ namespace GameSparks
 			};
 			
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Find the details of an existing match this player belongs to, using the matchId
 			*/
 			class MatchDetailsRequest : public GameSparks::Core::GSTypedRequest < MatchDetailsRequest, GameSparks::Api::Responses::MatchDetailsResponse >
@@ -2650,10 +2658,18 @@ namespace GameSparks
 				m_Request.AddString("matchId", matchId);
 				return *this;
 			}
+			/// <summary>
+			/// Adds realtime server details if the match has been created using Cloud Code and it has not been realtime enabled
+			/// </summary>
+			MatchDetailsRequest& SetRealtimeEnabled( bool realtimeEnabled )
+			{
+				m_Request.AddBoolean("realtimeEnabled", realtimeEnabled);
+				return *this;
+			}
 			};
 			
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Register this player for matchmaking, using the given skill and matchShortCode.
 			Players looking for a match using the same matchShortCode will be considered for a match, based on the matchConfig.
 			Each player must match the other for the match to be found.
@@ -3602,7 +3618,7 @@ namespace GameSparks
 			};
 			
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			Withdraws a challenge previously issued by the current player.
 			This can only be done while the challenge is in the ISSUED state. Once it's been accepted the challenge can not be withdrawn.
 			*/
@@ -3716,9 +3732,9 @@ namespace GameSparks
 /*!
 \addtogroup Analytics
 \addtogroup Authentication
-\addtogroup Challenges
 \addtogroup Leaderboards
 \addtogroup Misc
+\addtogroup Multiplayer
 \addtogroup Player
 \addtogroup Store
 \addtogroup Teams

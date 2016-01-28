@@ -12,6 +12,7 @@
 	"Category" : "GameSparks.GameSparksSDK",
 	"EnabledByDefault" : true,
 	"CanContainContent": true,
+	"MarketplaceURL" : "com.epicgames.launcher://ue/marketplace/offers/0bb7b72905c64c7d86c4c430a42bc9c1",
 	"Modules" :
 	[		
 		{

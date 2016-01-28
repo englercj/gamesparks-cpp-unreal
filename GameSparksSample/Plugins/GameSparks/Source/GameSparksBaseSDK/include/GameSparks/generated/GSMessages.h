@@ -145,7 +145,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that the challenge has been accepted.
 			*/
 			class ChallengeAcceptedMessage : public GSMessage
@@ -224,7 +224,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that a player has posted a score in to the challenge's leaderboard.
 			*/
 			class ChallengeChangedMessage : public GSMessage
@@ -303,7 +303,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message containing general chat between players involved in the challenge.
 			*/
 			class ChallengeChatMessage : public GSMessage
@@ -382,7 +382,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that a player has declined the challenge.
 			*/
 			class ChallengeDeclinedMessage : public GSMessage
@@ -461,7 +461,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that the challenge result is a draw.
 			This message is sent to all the players who have drawn in the current challenge
 			*/
@@ -533,7 +533,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that the challenge expiry date has passed.
 			*/
 			class ChallengeExpiredMessage : public GSMessage
@@ -596,7 +596,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that a challenge has been issued.
 			*/
 			class ChallengeIssuedMessage : public GSMessage
@@ -675,7 +675,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that the challenge has been joined.
 			*/
 			class ChallengeJoinedMessage : public GSMessage
@@ -754,7 +754,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that the challenge has reached its end time but was not yet started.
 			*/
 			class ChallengeLapsedMessage : public GSMessage
@@ -817,7 +817,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that the challenge has been lost.
 			This message is sent to all the players in the challenge who have lost
 			*/
@@ -897,7 +897,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that the challenge has started
 			*/
 			class ChallengeStartedMessage : public GSMessage
@@ -960,7 +960,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that the current player has taken a turn with this challenge.
 			*/
 			class ChallengeTurnTakenMessage : public GSMessage
@@ -1031,7 +1031,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that there is a challenge waiting for the player.
 			*/
 			class ChallengeWaitingMessage : public GSMessage
@@ -1094,7 +1094,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that the challenging player has withdrawn this challenge.
 			*/
 			class ChallengeWithdrawnMessage : public GSMessage
@@ -1173,7 +1173,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that the challenge has been won.
 			This message is only sent to the individual player who has won the challenge
 			*/
@@ -1475,7 +1475,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that a match has been found
 			*/
 			class MatchFoundMessage : public GSMessage
@@ -1592,7 +1592,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that no suitable match was found during the configured time
 			*/
 			class MatchNotFoundMessage : public GSMessage
@@ -1677,7 +1677,7 @@ namespace GameSparks
 			
 
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A message indicating that there has been an update to a pending match request, but it is not yet complete
 			*/
 			class MatchUpdatedMessage : public GSMessage
@@ -2416,9 +2416,9 @@ namespace GameSparks
 
 
 /*!
-\addtogroup Challenges
 \addtogroup Leaderboards
 \addtogroup Misc
+\addtogroup Multiplayer
 \addtogroup Player
 \addtogroup Teams
 */

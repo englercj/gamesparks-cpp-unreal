@@ -1985,32 +1985,32 @@ struct FGSAcceptChallengeResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallengeInstanceId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString ChallengeInstanceId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -2910,32 +2910,32 @@ struct FGSChatOnChallengeResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallengeInstanceId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString ChallengeInstanceId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -3048,32 +3048,32 @@ struct FGSCreateChallengeResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallengeInstanceId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString ChallengeInstanceId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -3238,32 +3238,32 @@ struct FGSDeclineChallengeResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallengeInstanceId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString ChallengeInstanceId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -3557,33 +3557,33 @@ struct FGSFindChallengeResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallengeInstances = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	TArray<FGSChallenge> ChallengeInstances;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -3672,69 +3672,69 @@ struct FGSFindMatchResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasAccessToken = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString AccessToken;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasHost = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Host;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMatchId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MatchId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasOpponents = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	TArray<FGSPlayer> Opponents;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasPeerId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	int32 PeerId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasPlayerId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString PlayerId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasPort = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	int32 Port;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -3847,32 +3847,32 @@ struct FGSGetChallengeResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -4109,32 +4109,32 @@ struct FGSGetMessageResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessage = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Message = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -4779,26 +4779,26 @@ struct FGSJoinChallengeResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -5371,33 +5371,33 @@ struct FGSListChallengeResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallengeInstances = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	TArray<FGSChallenge> ChallengeInstances;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -5450,33 +5450,33 @@ struct FGSListChallengeTypeResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallengeTemplates = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	TArray<FGSChallengeType> ChallengeTemplates;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -6057,26 +6057,26 @@ struct FGSLogChallengeEventResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -6228,69 +6228,69 @@ struct FGSMatchDetailsResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasAccessToken = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString AccessToken;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasHost = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Host;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMatchId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MatchId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasOpponents = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	TArray<FGSPlayer> Opponents;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasPeerId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	int32 PeerId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasPlayerId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString PlayerId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasPort = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	int32 Port;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -6334,26 +6334,26 @@ struct FGSMatchmakingResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -6869,32 +6869,32 @@ struct FGSWithdrawChallengeResponse
 	}
 
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* Errors = nullptr;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallengeInstanceId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString ChallengeInstanceId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasRequestId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString RequestId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -7191,64 +7191,64 @@ struct FGSChallengeAcceptedMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessage = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Message;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasWho = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Who;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -7331,64 +7331,64 @@ struct FGSChallengeChangedMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasLeaderboardData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSLeaderboardData LeaderboardData;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasWho = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Who;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -7471,64 +7471,64 @@ struct FGSChallengeChatMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessage = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Message;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasWho = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Who;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -7611,64 +7611,64 @@ struct FGSChallengeDeclinedMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessage = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Message;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasWho = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Who;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -7745,58 +7745,58 @@ struct FGSChallengeDrawnMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasLeaderboardData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSLeaderboardData LeaderboardData;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -7867,52 +7867,52 @@ struct FGSChallengeExpiredMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -7995,64 +7995,64 @@ struct FGSChallengeIssuedMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessage = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Message;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasWho = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Who;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -8135,64 +8135,64 @@ struct FGSChallengeJoinedMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessage = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Message;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasWho = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Who;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -8263,52 +8263,52 @@ struct FGSChallengeLapsedMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -8391,64 +8391,64 @@ struct FGSChallengeLostMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasLeaderboardData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSLeaderboardData LeaderboardData;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasWinnerName = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString WinnerName;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -8519,52 +8519,52 @@ struct FGSChallengeStartedMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -8641,58 +8641,58 @@ struct FGSChallengeTurnTakenMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasWho = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Who;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -8763,52 +8763,52 @@ struct FGSChallengeWaitingMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -8891,64 +8891,64 @@ struct FGSChallengeWithdrawnMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessage = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Message;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasWho = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Who;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -9067,100 +9067,100 @@ struct FGSChallengeWonMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasChallenge = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSChallenge Challenge;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasCurrency1Won = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	int32 Currency1Won;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasCurrency2Won = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	int32 Currency2Won;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasCurrency3Won = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	int32 Currency3Won;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasCurrency4Won = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	int32 Currency4Won;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasCurrency5Won = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	int32 Currency5Won;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasCurrency6Won = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	int32 Currency6Won;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasLeaderboardData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FGSLeaderboardData LeaderboardData;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasWinnerName = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString WinnerName;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -9574,89 +9574,89 @@ struct FGSMatchFoundMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasAccessToken = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString AccessToken;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasHost = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Host;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMatchGroup = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MatchGroup;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMatchId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MatchId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMatchShortCode = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MatchShortCode;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasParticipants = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	TArray<FGSParticipant> Participants;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasPort = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	int32 Port;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -9742,65 +9742,65 @@ struct FGSMatchNotFoundMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMatchGroup = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MatchGroup;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMatchShortCode = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MatchShortCode;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasParticipants = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	TArray<FGSParticipant> Participants;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()
@@ -9886,65 +9886,65 @@ struct FGSMatchUpdatedMessage
 
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMatchGroup = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MatchGroup;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMatchShortCode = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MatchShortCode;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasMessageId = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString MessageId;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasNotification = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool Notification;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasParticipants = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	TArray<FGSParticipant> Participants;
 	
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasScriptData = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	UGameSparksScriptData* ScriptData = nullptr;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSubTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString SubTitle;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasSummary = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Summary;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	bool HasTitle = false;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
 	FString Title;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     FString JSONString;
     
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Challenges")
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Multiplayer")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()

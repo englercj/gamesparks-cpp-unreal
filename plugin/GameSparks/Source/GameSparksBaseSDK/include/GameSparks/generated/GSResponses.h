@@ -14,7 +14,7 @@ namespace GameSparks
 		namespace Responses
 		{
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response containing the challenge instance id that was accepted.
 			*/
 			class AcceptChallengeResponse : public  GameSparks::Core::GSTypedResponse
@@ -482,7 +482,7 @@ namespace GameSparks
 
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response to a chat on challenge request
 			*/
 			class ChatOnChallengeResponse : public  GameSparks::Core::GSTypedResponse
@@ -528,7 +528,7 @@ namespace GameSparks
 
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response to a create challenge response
 			*/
 			class CreateChallengeResponse : public  GameSparks::Core::GSTypedResponse
@@ -612,7 +612,7 @@ namespace GameSparks
 					}
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response containing the challenge instance id of the challenge that was declined
 			*/
 			class DeclineChallengeResponse : public  GameSparks::Core::GSTypedResponse
@@ -734,7 +734,7 @@ namespace GameSparks
 
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response to a find challenge request
 			*/
 			class FindChallengeResponse : public  GameSparks::Core::GSTypedResponse
@@ -767,7 +767,7 @@ namespace GameSparks
 					}
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response to a find match request
 			*/
 			class FindMatchResponse : public  GameSparks::Core::GSTypedResponse
@@ -867,7 +867,7 @@ namespace GameSparks
 
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response containing the details of a challenge
 			*/
 			class GetChallengeResponse : public  GameSparks::Core::GSTypedResponse
@@ -972,7 +972,7 @@ namespace GameSparks
 					}
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response containing the message data for a given message
 			*/
 			class GetMessageResponse : public  GameSparks::Core::GSTypedResponse
@@ -1246,7 +1246,7 @@ namespace GameSparks
 					}
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response to a player joining a challenge
 			*/
 			class JoinChallengeResponse : public  GameSparks::Core::GSTypedResponse
@@ -1516,7 +1516,7 @@ namespace GameSparks
 					}
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response containing challenges that are in the state that was specified in the request
 			*/
 			class ListChallengeResponse : public  GameSparks::Core::GSTypedResponse
@@ -1549,7 +1549,7 @@ namespace GameSparks
 					}
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response containing the list of configured challenge types in the game
 			*/
 			class ListChallengeTypeResponse : public  GameSparks::Core::GSTypedResponse
@@ -1799,7 +1799,7 @@ namespace GameSparks
 					}
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response to a log challenge event request 
 			*/
 			class LogChallengeEventResponse : public  GameSparks::Core::GSTypedResponse
@@ -1837,7 +1837,7 @@ namespace GameSparks
 
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response to a match details request
 			*/
 			class MatchDetailsResponse : public  GameSparks::Core::GSTypedResponse
@@ -1918,7 +1918,7 @@ namespace GameSparks
 					}
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response to a matchmaking request
 			*/
 			class MatchmakingResponse : public  GameSparks::Core::GSTypedResponse
@@ -2113,7 +2113,7 @@ namespace GameSparks
 					}
 			};
 			/*!
-			\ingroup Challenges
+			\ingroup Multiplayer
 			A response containing the challenge instance id that was withdrawn by a player
 			*/
 			class WithdrawChallengeResponse : public  GameSparks::Core::GSTypedResponse
@@ -2147,9 +2147,9 @@ namespace GameSparks
 /*!
 \addtogroup Analytics
 \addtogroup Authentication
-\addtogroup Challenges
 \addtogroup Leaderboards
 \addtogroup Misc
+\addtogroup Multiplayer
 \addtogroup Player
 \addtogroup Store
 \addtogroup Teams

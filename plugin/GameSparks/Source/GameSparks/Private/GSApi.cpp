@@ -4193,9 +4193,10 @@ void ListVirtualGoodsRequestResponseCallback(GameSparks::Core::GS& gsInstance, c
     }
 }
 
-UGSListVirtualGoodsRequest* UGSListVirtualGoodsRequest::SendListVirtualGoodsRequest( UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+UGSListVirtualGoodsRequest* UGSListVirtualGoodsRequest::SendListVirtualGoodsRequest(UGameSparksRequestArray* Tags,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
 {
 	UGSListVirtualGoodsRequest* proxy = NewObject<UGSListVirtualGoodsRequest>();
+	proxy->tags = Tags;
 	proxy->scriptData = ScriptData;
 	proxy->durable = Durable;
 	proxy->requestTimeoutSeconds = RequestTimeoutSeconds;
@@ -4205,6 +4206,16 @@ UGSListVirtualGoodsRequest* UGSListVirtualGoodsRequest::SendListVirtualGoodsRequ
 void UGSListVirtualGoodsRequest::Activate()
 {
 	GameSparks::Api::Requests::ListVirtualGoodsRequest gsRequest(UGameSparksModule::GetModulePtr()->GetGSInstance());
+	if(tags != nullptr){
+		gsstl::vector<gsstl::string> arrTags;
+	
+	    for(int32 b_arrTags = 0; b_arrTags < tags->StringArray.Num(); b_arrTags++)
+	    {
+	        arrTags.push_back(TCHAR_TO_UTF8(*tags->StringArray[b_arrTags]));
+	    }
+	    
+		gsRequest.SetTags(arrTags);
+	}
 	if(scriptData != nullptr){
         gsRequest.SetScriptData(scriptData->ToRequestData());
     }
@@ -4403,10 +4414,11 @@ void MatchDetailsRequestResponseCallback(GameSparks::Core::GS& gsInstance, const
     }
 }
 
-UGSMatchDetailsRequest* UGSMatchDetailsRequest::SendMatchDetailsRequest(FString MatchId,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+UGSMatchDetailsRequest* UGSMatchDetailsRequest::SendMatchDetailsRequest(FString MatchId, bool RealtimeEnabled,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
 {
 	UGSMatchDetailsRequest* proxy = NewObject<UGSMatchDetailsRequest>();
 	proxy->matchId = MatchId;
+	proxy->realtimeEnabled = RealtimeEnabled;
 	proxy->scriptData = ScriptData;
 	proxy->durable = Durable;
 	proxy->requestTimeoutSeconds = RequestTimeoutSeconds;
@@ -4418,6 +4430,9 @@ void UGSMatchDetailsRequest::Activate()
 	GameSparks::Api::Requests::MatchDetailsRequest gsRequest(UGameSparksModule::GetModulePtr()->GetGSInstance());
 	if(matchId != ""){
 		gsRequest.SetMatchId(TCHAR_TO_UTF8(*matchId));
+	}
+	if(realtimeEnabled != false){
+		gsRequest.SetRealtimeEnabled(realtimeEnabled);
 	}
 	if(scriptData != nullptr){
         gsRequest.SetScriptData(scriptData->ToRequestData());

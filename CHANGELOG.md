@@ -1,5 +1,13 @@
 # ChangeLog
 
+## 1.0.1 (2016-01-28)
+
+### base SDK (affects all platforms)
+- updated auto-generated code
+
+### UE4
+- small update to plugin file
+
 ## 1.0.0 (2015-12-09)
 
 ### base SDK (affects all platforms)

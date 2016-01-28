@@ -26,7 +26,7 @@ public:
 	/**
 	Accepts a challenge that has been issued to the current player.
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS AcceptChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS AcceptChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
 	static UGSAcceptChallengeRequest* SendAcceptChallengeRequest(FString ChallengeInstanceId = "", FString Message = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
@@ -394,7 +394,7 @@ public:
 	Sends a message to all players involved in the challenge. The current player must be involved in the challenge for the message to be sent.
 	As the message is sent to all players, the current player will also see details of the message in the response. Read the section on response message aggregation for a description of this.
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS ChatOnChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS ChatOnChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
 	static UGSChatOnChallengeRequest* SendChatOnChallengeRequest(FString ChallengeInstanceId = "", FString Message = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
@@ -470,7 +470,7 @@ public:
 	The endTime field must be present unless the challenge template has an achievement set in the 'First to Achievement' field.
 	The usersToChallenge field must be present for this request if the acessType is PRIVATE (which is the default).
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS CreateChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS CreateChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
 	static UGSCreateChallengeRequest* SendCreateChallengeRequest(FString AccessType = "", bool AutoStartJoinedChallengeOnMaxPlayers = false, FString ChallengeMessage = "", FString ChallengeShortCode = "", int32 Currency1Wager = 0, int32 Currency2Wager = 0, int32 Currency3Wager = 0, int32 Currency4Wager = 0, int32 Currency5Wager = 0, int32 Currency6Wager = 0, UGameSparksScriptData* EligibilityCriteria = nullptr, FString EndTime = "", FString ExpiryTime = "", int32 MaxAttempts = 0, int32 MaxPlayers = 0, int32 MinPlayers = 0, bool Silent = false, FString StartTime = "", UGameSparksRequestArray* UsersToChallenge = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
@@ -562,7 +562,7 @@ public:
 	/**
 	Declines a challenge that has been issued to the current player.
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS DeclineChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS DeclineChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
 	static UGSDeclineChallengeRequest* SendDeclineChallengeRequest(FString ChallengeInstanceId = "", FString Message = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
@@ -802,7 +802,7 @@ public:
 	/**
 	Allows a player to find challenges that they are eligible to join.
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS FindChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS FindChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
 	static UGSFindChallengeRequest* SendFindChallengeRequest(FString AccessType = "", int32 Count = 0, UGameSparksScriptData* Eligibility = nullptr, int32 Offset = 0, UGameSparksRequestArray* ShortCode = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
@@ -844,7 +844,7 @@ public:
 	Players looking for a match using the same matchShortCode will be considered for a match, based on the matchConfig.
 	Each player must match the other for the match to be found.
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS FindMatchRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS FindMatchRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
 	static UGSFindMatchRequest* SendFindMatchRequest(FString Action = "", FString MatchGroup = "", FString MatchShortCode = "", int32 Skill = 0,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
@@ -935,7 +935,7 @@ public:
 	/**
 	Gets the details of a challenge. The current player must be involved in the challenge for the request to succeed.
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS GetChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS GetChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
 	static UGSGetChallengeRequest* SendGetChallengeRequest(FString ChallengeInstanceId = "", FString Message = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
@@ -1473,7 +1473,7 @@ public:
 	/**
 	Allows a player to join an open challenge.
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS JoinChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS JoinChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
 	static UGSJoinChallengeRequest* SendJoinChallengeRequest(FString ChallengeInstanceId = "", UGameSparksScriptData* Eligibility = nullptr, FString Message = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
@@ -1768,7 +1768,7 @@ public:
 	COMPLETE : The challenge has completed.
 	DECLINED : The challenge has been issued by the current player and has been declined.
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS ListChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS ListChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
 	static UGSListChallengeRequest* SendListChallengeRequest(int32 EntryCount = 0, int32 Offset = 0, FString ShortCode = "", FString State = "", UGameSparksRequestArray* States = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
@@ -1808,7 +1808,7 @@ public:
 	/**
 	Returns the list of configured challenge types.
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS ListChallengeTypeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS ListChallengeTypeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
 	static UGSListChallengeTypeRequest* SendListChallengeTypeRequest( UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
@@ -2034,7 +2034,7 @@ public:
 	Returns the list of configured virtual goods.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS ListVirtualGoodsRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Store")
-	static UGSListVirtualGoodsRequest* SendListVirtualGoodsRequest( UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	static UGSListVirtualGoodsRequest* SendListVirtualGoodsRequest(UGameSparksRequestArray* Tags = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
 	
@@ -2042,6 +2042,7 @@ public:
 
 private:
 
+	UGameSparksRequestArray* tags;
 	
 	UGameSparksScriptData* scriptData;
 	
@@ -2070,7 +2071,7 @@ public:
 	This call differs from most as it does not have a fixed format. The @class, challengeInstanceId and eventKey attributes are common, but the rest of the attributes are as defined in the Event object configured in the dev portal.
 	The example below shows a request to en event with a short code of HS with 2 attributes, 'HS' & 'GL'.
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS LogChallengeEventRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS LogChallengeEventRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
 	static UGSLogChallengeEventRequest* SendLogChallengeEventRequest(FString ChallengeInstanceId = "", FString EventKey = "",  UGameSparksLogEventData* LogEventData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
@@ -2145,8 +2146,8 @@ public:
 	/**
 	Find the details of an existing match this player belongs to, using the matchId
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS MatchDetailsRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
-	static UGSMatchDetailsRequest* SendMatchDetailsRequest(FString MatchId = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS MatchDetailsRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
+	static UGSMatchDetailsRequest* SendMatchDetailsRequest(FString MatchId = "", bool RealtimeEnabled = false,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
 	
@@ -2154,6 +2155,7 @@ public:
 
 private:
 	FString matchId;
+	bool realtimeEnabled;
 
 	
 	UGameSparksScriptData* scriptData;
@@ -2183,7 +2185,7 @@ public:
 	Players looking for a match using the same matchShortCode will be considered for a match, based on the matchConfig.
 	Each player must match the other for the match to be found.
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS MatchmakingRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS MatchmakingRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
 	static UGSMatchmakingRequest* SendMatchmakingRequest(FString Action = "", FString MatchGroup = "", FString MatchShortCode = "", int32 Skill = 0,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
@@ -2866,7 +2868,7 @@ public:
 	Withdraws a challenge previously issued by the current player.
 	This can only be done while the challenge is in the ISSUED state. Once it's been accepted the challenge can not be withdrawn.
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS WithdrawChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Challenges")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS WithdrawChallengeRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Multiplayer")
 	static UGSWithdrawChallengeRequest* SendWithdrawChallengeRequest(FString ChallengeInstanceId = "", FString Message = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
 	
 	void Activate() override;
