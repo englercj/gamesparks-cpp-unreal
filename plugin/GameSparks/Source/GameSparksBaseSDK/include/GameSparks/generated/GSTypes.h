@@ -15,125 +15,181 @@ namespace GameSparks
 
 			/*!
 			\ingroup Types
-			This object represents the result of uploading a file to the GameSparks platform.
+			A nested object that represents the virtual good.
 			*/
-			class UploadData : public  GameSparks::Core::GSTypedResponse
+			class VirtualGood : public  GameSparks::Core::GSTypedResponse
 			{
 			public:
-				UploadData(const GameSparks::Core::GSData& data)
+				VirtualGood(const GameSparks::Core::GSData& data)
 					: GSTypedResponse(data)
 				{
 
 				}
 
-				UploadData(const UploadData& other)
+				VirtualGood(const VirtualGood& other)
 					: GSTypedResponse(other)
 				{
 				}
 
 			/// <summary>
-			/// The filename of the file that was uploaded.
+			/// The Windows Phone 8 productId of the item.
 			/// </summary>
 					// method type 4
-					Optional::t_StringOptional GetFileName () const
+					Optional::t_StringOptional GetWP8StoreProductId () const
 					{
-						return m_Response.GetString("fileName");
+						return m_Response.GetString("WP8StoreProductId");
 					}
 			/// <summary>
-			/// The unique player id of the player that uploaded the file.
+			/// The Amazon Store productId of the item.
 			/// </summary>
 					// method type 4
-					Optional::t_StringOptional GetPlayerId () const
+					Optional::t_StringOptional GetAmazonStoreProductId () const
 					{
-						return m_Response.GetString("playerId");
-					}
-			};
-
-			/*!
-			\ingroup Types
-			A nested object that represents the invitable friend.
-			*/
-			class InvitableFriend : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				InvitableFriend(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				InvitableFriend(const InvitableFriend& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// The display name of the External Friend
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetDisplayName () const
-					{
-						return m_Response.GetString("displayName");
+						return m_Response.GetString("amazonStoreProductId");
 					}
 			/// <summary>
-			/// The ID of the External Friend
+			/// The Currency1 cost of the Virtual Good
 			/// </summary>
 					// method type 4
-					Optional::t_StringOptional GetId () const
+					Optional::t_LongOptional GetCurrency1Cost () const
 					{
-						return m_Response.GetString("id");
+						return m_Response.GetLong("currency1Cost");
 					}
 			/// <summary>
-			/// The profile picture URL of the External Friend
+			/// The Currency2 cost of the Virtual Good
 			/// </summary>
 					// method type 4
-					Optional::t_StringOptional GetProfilePic () const
+					Optional::t_LongOptional GetCurrency2Cost () const
 					{
-						return m_Response.GetString("profilePic");
-					}
-			};
-
-			/*!
-			\ingroup Types
-			A the details of a social connection
-			*/
-			class SocialStatus : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				SocialStatus(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				SocialStatus(const SocialStatus& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// When the token is still active.
-			/// </summary>
-					// method type 4
-					Optional::t_BoolOptional GetActive () const
-					{
-						return m_Response.GetBoolean("active");
+						return m_Response.GetLong("currency2Cost");
 					}
 			/// <summary>
-			/// When the token expires (if available).
+			/// The Currency3 cost of the Virtual Good
 			/// </summary>
 					// method type 4
-					GameSparks::Core::GSDateTime::t_Optional GetExpires () const
+					Optional::t_LongOptional GetCurrency3Cost () const
 					{
-						return m_Response.GetDate("expires");
+						return m_Response.GetLong("currency3Cost");
 					}
 			/// <summary>
-			/// The identifier of the external platform.
+			/// The Currency4 cost of the Virtual Good
 			/// </summary>
 					// method type 4
-					Optional::t_StringOptional GetSystemId () const
+					Optional::t_LongOptional GetCurrency4Cost () const
 					{
-						return m_Response.GetString("systemId");
+						return m_Response.GetLong("currency4Cost");
+					}
+			/// <summary>
+			/// The Currency5 cost of the Virtual Good
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetCurrency5Cost () const
+					{
+						return m_Response.GetLong("currency5Cost");
+					}
+			/// <summary>
+			/// The Currency6 cost of the Virtual Good
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetCurrency6Cost () const
+					{
+						return m_Response.GetLong("currency6Cost");
+					}
+			/// <summary>
+			/// The description of the Virtual Good
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetDescription () const
+					{
+						return m_Response.GetString("description");
+					}
+			/// <summary>
+			/// The google play productId of the item.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetGooglePlayProductId () const
+					{
+						return m_Response.GetString("googlePlayProductId");
+					}
+			/// <summary>
+			/// The iOS AppStore productId of the item.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetIosAppStoreProductId () const
+					{
+						return m_Response.GetString("iosAppStoreProductId");
+					}
+			/// <summary>
+			/// The maximum number of the Virtual Good that can be owned at one time
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetMaxQuantity () const
+					{
+						return m_Response.GetLong("maxQuantity");
+					}
+			/// <summary>
+			/// The name of the Virtual Good
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetName () const
+					{
+						return m_Response.GetString("name");
+					}
+			/// <summary>
+			/// The custom property set configured on the item.
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSData::t_Optional GetPropertySet () const
+					{
+						return m_Response.GetGSDataObject("propertySet");
+					}
+			/// <summary>
+			/// The PSN Store productId of the item.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetPsnStoreProductId () const
+					{
+						return m_Response.GetString("psnStoreProductId");
+					}
+			/// <summary>
+			/// The short code of the Virtual Good
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetShortCode () const
+					{
+						return m_Response.GetString("shortCode");
+					}
+			/// <summary>
+			/// The Steam Store productId of the item.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetSteamStoreProductId () const
+					{
+						return m_Response.GetString("steamStoreProductId");
+					}
+			/// <summary>
+			/// The tags of the Virtual Good
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetTags () const
+					{
+						return m_Response.GetString("tags");
+					}
+			/// <summary>
+			/// The type of the virtual good, "VGOOD" or "CURRENCY"
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetType () const
+					{
+						return m_Response.GetString("type");
+					}
+			/// <summary>
+			/// The Windows 8 productId of the item.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetW8StoreProductId () const
+					{
+						return m_Response.GetString("w8StoreProductId");
 					}
 			};
 
@@ -201,6 +257,410 @@ namespace GameSparks
 						{
 							return m_Response.GetStringList("getVirtualGoods");
 						}
+			};
+
+			/*!
+			\ingroup Types
+			A nested object that represents the leaderboard configuration data.
+			*/
+			class Leaderboard : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				Leaderboard(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				Leaderboard(const Leaderboard& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The leaderboard's description.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetDescription () const
+					{
+						return m_Response.GetString("description");
+					}
+			/// <summary>
+			/// The leaderboard's name.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetName () const
+					{
+						return m_Response.GetString("name");
+					}
+			/// <summary>
+			/// The custom property set configured on this Leaderboard
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSData::t_Optional GetPropertySet () const
+					{
+						return m_Response.GetGSDataObject("propertySet");
+					}
+			/// <summary>
+			/// The leaderboard's short code.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetShortCode () const
+					{
+						return m_Response.GetString("shortCode");
+					}
+			};
+
+			/*!
+			\ingroup Types
+			An object representing a player's id and name
+			*/
+			class PlayerDetail : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				PlayerDetail(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				PlayerDetail(const PlayerDetail& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// A player's external identifiers
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSData::t_Optional GetExternalIds () const
+					{
+						return m_Response.GetGSDataObject("externalIds");
+					}
+			/// <summary>
+			/// A player's id
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetId () const
+					{
+						return m_Response.GetString("id");
+					}
+			/// <summary>
+			/// A player's name
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetName () const
+					{
+						return m_Response.GetString("name");
+					}
+			};
+
+			/*!
+			\ingroup Types
+			This object represents the result of uploading a file to the GameSparks platform.
+			*/
+			class UploadData : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				UploadData(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				UploadData(const UploadData& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The filename of the file that was uploaded.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetFileName () const
+					{
+						return m_Response.GetString("fileName");
+					}
+			/// <summary>
+			/// The unique player id of the player that uploaded the file.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetPlayerId () const
+					{
+						return m_Response.GetString("playerId");
+					}
+			};
+
+			/*!
+			\ingroup Types
+			
+			*/
+			class ChallengeType : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				ChallengeType(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				ChallengeType(const ChallengeType& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The shortCode for this challenge.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetChallengeShortCode () const
+					{
+						return m_Response.GetString("challengeShortCode");
+					}
+			/// <summary>
+			/// The description of this challenge.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetDescription () const
+					{
+						return m_Response.GetString("description");
+					}
+			/// <summary>
+			/// The name of the leaderboard for this challenge.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetGetleaderboardName () const
+					{
+						return m_Response.GetString("getleaderboardName");
+					}
+			/// <summary>
+			/// The name of this challenge.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetName () const
+					{
+						return m_Response.GetString("name");
+					}
+			/// <summary>
+			/// The tags for this challenge.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetTags () const
+					{
+						return m_Response.GetString("tags");
+					}
+			};
+
+			/*!
+			\ingroup Types
+			A nested object that represents a bought item.
+			*/
+			class Boughtitem : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				Boughtitem(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				Boughtitem(const Boughtitem& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The quantity of the bought item
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetQuantity () const
+					{
+						return m_Response.GetLong("quantity");
+					}
+			/// <summary>
+			/// The short code of the bought item
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetShortCode () const
+					{
+						return m_Response.GetString("shortCode");
+					}
+			};
+
+			/*!
+			\ingroup Types
+			A nested object that represents the bulk job.
+			*/
+			class BulkJob : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				BulkJob(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				BulkJob(const BulkJob& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The actual count of players affected by the bulk job (calculated when the job started to run)
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetActualCount () const
+					{
+						return m_Response.GetLong("actualCount");
+					}
+			/// <summary>
+			/// The time at which the bulk job completed execution
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSDateTime::t_Optional GetCompleted () const
+					{
+						return m_Response.GetDate("completed");
+					}
+			/// <summary>
+			/// The time at which the bulk job was created
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSDateTime::t_Optional GetCreated () const
+					{
+						return m_Response.GetDate("created");
+					}
+			/// <summary>
+			/// Data to be passed into the Module or Script
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSData::t_Optional GetData () const
+					{
+						return m_Response.GetGSDataObject("data");
+					}
+			/// <summary>
+			/// The number of players processed by the bulk job so far
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetDoneCount () const
+					{
+						return m_Response.GetLong("doneCount");
+					}
+			/// <summary>
+			/// The number of errors encountered whilst running the Module or Script for players
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetErrorCount () const
+					{
+						return m_Response.GetLong("errorCount");
+					}
+			/// <summary>
+			/// The estimated count of players affected by the bulk job (estimated when the job was submitted)
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetEstimatedCount () const
+					{
+						return m_Response.GetLong("estimatedCount");
+					}
+			/// <summary>
+			/// The ID for the bulk job
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetId () const
+					{
+						return m_Response.GetString("id");
+					}
+			/// <summary>
+			/// The Cloud Code Module to run for each player
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetModuleShortCode () const
+					{
+						return m_Response.GetString("moduleShortCode");
+					}
+			/// <summary>
+			/// The query to identify players to perform the bulk job on
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSData::t_Optional GetPlayerQuery () const
+					{
+						return m_Response.GetGSDataObject("playerQuery");
+					}
+			/// <summary>
+			/// The time at which the job was scheduled to run
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSDateTime::t_Optional GetScheduledTime () const
+					{
+						return m_Response.GetDate("scheduledTime");
+					}
+			/// <summary>
+			/// The Cloud Code script to run for each player
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetScript () const
+					{
+						return m_Response.GetString("script");
+					}
+			/// <summary>
+			/// The time at which the bulk job started to execute
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSDateTime::t_Optional GetStarted () const
+					{
+						return m_Response.GetDate("started");
+					}
+			/// <summary>
+			/// The current state of the bulk job
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetState () const
+					{
+						return m_Response.GetString("state");
+					}
+			};
+
+			/*!
+			\ingroup Types
+			A nested object that represents the invitable friend.
+			*/
+			class InvitableFriend : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				InvitableFriend(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				InvitableFriend(const InvitableFriend& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The display name of the External Friend
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetDisplayName () const
+					{
+						return m_Response.GetString("displayName");
+					}
+			/// <summary>
+			/// The ID of the External Friend
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetId () const
+					{
+						return m_Response.GetString("id");
+					}
+			/// <summary>
+			/// The profile picture URL of the External Friend
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetProfilePic () const
+					{
+						return m_Response.GetString("profilePic");
+					}
 			};
 
 			/*!
@@ -279,160 +739,6 @@ namespace GameSparks
 
 			/*!
 			\ingroup Types
-			An object representing a player's id and name
-			*/
-			class PlayerDetail : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				PlayerDetail(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				PlayerDetail(const PlayerDetail& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// A player's external identifiers
-			/// </summary>
-					// method type 4
-					GameSparks::Core::GSData::t_Optional GetExternalIds () const
-					{
-						return m_Response.GetGSDataObject("externalIds");
-					}
-			/// <summary>
-			/// A player's id
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetId () const
-					{
-						return m_Response.GetString("id");
-					}
-			/// <summary>
-			/// A player's name
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetName () const
-					{
-						return m_Response.GetString("name");
-					}
-			};
-
-			/*!
-			\ingroup Types
-			Location details.
-			*/
-			class Location : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				Location(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				Location(const Location& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// The city
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetCity () const
-					{
-						return m_Response.GetString("city");
-					}
-			/// <summary>
-			/// The country
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetCountry () const
-					{
-						return m_Response.GetString("country");
-					}
-			/// <summary>
-			/// The latitude
-			/// </summary>
-					// method type 4
-					Optional::t_FloatOptional GetLatitide () const
-					{
-						return m_Response.GetFloat("latitide");
-					}
-			/// <summary>
-			/// The longditute
-			/// </summary>
-					// method type 4
-					Optional::t_FloatOptional GetLongditute () const
-					{
-						return m_Response.GetFloat("longditute");
-					}
-			};
-
-			/*!
-			\ingroup Types
-			A nested object that represents the team.
-			*/
-			class Team : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				Team(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				Team(const Team& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// The team members
-			/// </summary>
-					// method type 1
-					gsstl::vector<Player> GetMembers() const
-					{
-						gsstl::vector<Player> result;
-						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("getMembers");
-						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
-						{
-							result.push_back(Player(*it));
-						}
-						return result; 
-					}
-			/// <summary>
-			/// A summary of the owner
-			/// </summary>
-					// method type 2
-					Player GetOwner() const
-					{
-						return Player(m_Response.GetGSDataObject("owner").GetValue());
-					}
-			/// <summary>
-			/// The Id of the team
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamId () const
-					{
-						return m_Response.GetString("teamId");
-					}
-			/// <summary>
-			/// The team type
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamType () const
-					{
-						return m_Response.GetString("teamType");
-					}
-			};
-
-			/*!
-			\ingroup Types
 			Represents the number of turns a player has taken in a turn based challenge.
 			*/
 			class PlayerTurnCount : public  GameSparks::Core::GSTypedResponse
@@ -464,271 +770,6 @@ namespace GameSparks
 					Optional::t_StringOptional GetPlayerId () const
 					{
 						return m_Response.GetString("playerId");
-					}
-			};
-
-			/*!
-			\ingroup Types
-			A nested object that represents the leaderboard configuration data.
-			*/
-			class Leaderboard : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				Leaderboard(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				Leaderboard(const Leaderboard& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// The leaderboard's description.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetDescription () const
-					{
-						return m_Response.GetString("description");
-					}
-			/// <summary>
-			/// The leaderboard's name.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetName () const
-					{
-						return m_Response.GetString("name");
-					}
-			/// <summary>
-			/// The custom property set configured on this Leaderboard
-			/// </summary>
-					// method type 4
-					GameSparks::Core::GSData::t_Optional GetPropertySet () const
-					{
-						return m_Response.GetGSDataObject("propertySet");
-					}
-			/// <summary>
-			/// The leaderboard's short code.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetShortCode () const
-					{
-						return m_Response.GetString("shortCode");
-					}
-			};
-
-			/*!
-			\ingroup Types
-			Leaderboard entry data
-			As well as the parameters below there may be others depending on your game's configuration.
-			*/
-			class LeaderboardData : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				LeaderboardData(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				LeaderboardData(const LeaderboardData& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// The city where the player was located when they logged this leaderboard entry.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetCity () const
-					{
-						return m_Response.GetString("city");
-					}
-			/// <summary>
-			/// The country code where the player was located when they logged this leaderboard entry.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetCountry () const
-					{
-						return m_Response.GetString("country");
-					}
-			/// <summary>
-			/// The players rank.
-			/// </summary>
-					// method type 4
-					GameSparks::Core::GSData::t_Optional GetExternalIds () const
-					{
-						return m_Response.GetGSDataObject("externalIds");
-					}
-			/// <summary>
-			/// The unique leaderboard id.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetId () const
-					{
-						return m_Response.GetString("id");
-					}
-			/// <summary>
-			/// The players rank.
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetRank () const
-					{
-						return m_Response.GetLong("rank");
-					}
-			/// <summary>
-			/// The unique player id for this leaderboard entry.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetUserId () const
-					{
-						return m_Response.GetString("userId");
-					}
-			/// <summary>
-			/// The players display name.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetUserName () const
-					{
-						return m_Response.GetString("userName");
-					}
-			/// <summary>
-			/// The date when this leaderboard entry was created.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetWhen () const
-					{
-						return m_Response.GetString("when");
-					}
-			};
-
-			/*!
-			\ingroup Types
-			Ranking information.
-			*/
-			class LeaderboardRankDetails : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				LeaderboardRankDetails(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				LeaderboardRankDetails(const LeaderboardRankDetails& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// The leaderboard entries of the players friends that were beaten as part of this score submission.
-			/// </summary>
-					// method type 1
-					gsstl::vector<LeaderboardData> GetFriendsPassed() const
-					{
-						gsstl::vector<LeaderboardData> result;
-						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("getFriendsPassed");
-						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
-						{
-							result.push_back(LeaderboardData(*it));
-						}
-						return result; 
-					}
-			/// <summary>
-			/// The number of entries in this leaderboard.
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetGlobalCount () const
-					{
-						return m_Response.GetLong("globalCount");
-					}
-			/// <summary>
-			/// The Global Rank of the player in this leaderboard before the score was submitted.
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetGlobalFrom () const
-					{
-						return m_Response.GetLong("globalFrom");
-					}
-			/// <summary>
-			/// The old global rank of the player as a percentage of the total number of scores in this leaderboard .
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetGlobalFromPercent () const
-					{
-						return m_Response.GetLong("globalFromPercent");
-					}
-			/// <summary>
-			/// The Global Rank of the player in this leaderboard after the score was submitted.
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetGlobalTo () const
-					{
-						return m_Response.GetLong("globalTo");
-					}
-			/// <summary>
-			/// The new global rank of the player as a percentage of the total number of scores in this leaderboard .
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetGlobalToPercent () const
-					{
-						return m_Response.GetLong("globalToPercent");
-					}
-			/// <summary>
-			/// The number of friend entries the player has in this leaderboard.
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetSocialCount () const
-					{
-						return m_Response.GetLong("socialCount");
-					}
-			/// <summary>
-			/// The Social Rank of the player in this leaderboard before the score was submitted.
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetSocialFrom () const
-					{
-						return m_Response.GetLong("socialFrom");
-					}
-			/// <summary>
-			/// The old social rank of the player as a percentage of the total number of friend scores in this leaderboard.
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetSocialFromPercent () const
-					{
-						return m_Response.GetLong("socialFromPercent");
-					}
-			/// <summary>
-			/// The Social Rank of the player in this leaderboard after the score was submitted.
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetSocialTo () const
-					{
-						return m_Response.GetLong("socialTo");
-					}
-			/// <summary>
-			/// The old global rank of the player as a percentage of the total number of friend scores in this leaderboard.
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetSocialToPercent () const
-					{
-						return m_Response.GetLong("socialToPercent");
-					}
-			/// <summary>
-			/// The leaderboard entries of the global players that were beaten as part of this score submission. Requires Top N to be configured on the leaderboard
-			/// </summary>
-					// method type 1
-					gsstl::vector<LeaderboardData> GetTopNPassed() const
-					{
-						gsstl::vector<LeaderboardData> result;
-						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("getTopNPassed");
-						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
-						{
-							result.push_back(LeaderboardData(*it));
-						}
-						return result; 
 					}
 			};
 
@@ -947,261 +988,67 @@ namespace GameSparks
 
 			/*!
 			\ingroup Types
-			A nested object that represents a bought item.
+			A nested object that represents the team.
 			*/
-			class Boughtitem : public  GameSparks::Core::GSTypedResponse
+			class Team : public  GameSparks::Core::GSTypedResponse
 			{
 			public:
-				Boughtitem(const GameSparks::Core::GSData& data)
+				Team(const GameSparks::Core::GSData& data)
 					: GSTypedResponse(data)
 				{
 
 				}
 
-				Boughtitem(const Boughtitem& other)
+				Team(const Team& other)
 					: GSTypedResponse(other)
 				{
 				}
 
 			/// <summary>
-			/// The quantity of the bought item
+			/// The team members
 			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetQuantity () const
+					// method type 1
+					gsstl::vector<Player> GetMembers() const
 					{
-						return m_Response.GetLong("quantity");
+						gsstl::vector<Player> result;
+						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("getMembers");
+						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
+						{
+							result.push_back(Player(*it));
+						}
+						return result; 
 					}
 			/// <summary>
-			/// The short code of the bought item
+			/// A summary of the owner
 			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetShortCode () const
+					// method type 2
+					Player GetOwner() const
 					{
-						return m_Response.GetString("shortCode");
-					}
-			};
-
-			/*!
-			\ingroup Types
-			A nested object that represents the virtual good.
-			*/
-			class VirtualGood : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				VirtualGood(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				VirtualGood(const VirtualGood& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// The Windows Phone 8 productId of the item.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetWP8StoreProductId () const
-					{
-						return m_Response.GetString("WP8StoreProductId");
+						return Player(m_Response.GetGSDataObject("owner").GetValue());
 					}
 			/// <summary>
-			/// The Amazon Store productId of the item.
+			/// The Id of the team
 			/// </summary>
 					// method type 4
-					Optional::t_StringOptional GetAmazonStoreProductId () const
+					Optional::t_StringOptional GetTeamId () const
 					{
-						return m_Response.GetString("amazonStoreProductId");
+						return m_Response.GetString("teamId");
 					}
 			/// <summary>
-			/// The Currency1 cost of the Virtual Good
+			/// The team name
 			/// </summary>
 					// method type 4
-					Optional::t_LongOptional GetCurrency1Cost () const
+					Optional::t_StringOptional GetTeamName () const
 					{
-						return m_Response.GetLong("currency1Cost");
+						return m_Response.GetString("teamName");
 					}
 			/// <summary>
-			/// The Currency2 cost of the Virtual Good
+			/// The team type
 			/// </summary>
 					// method type 4
-					Optional::t_LongOptional GetCurrency2Cost () const
+					Optional::t_StringOptional GetTeamType () const
 					{
-						return m_Response.GetLong("currency2Cost");
-					}
-			/// <summary>
-			/// The Currency3 cost of the Virtual Good
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetCurrency3Cost () const
-					{
-						return m_Response.GetLong("currency3Cost");
-					}
-			/// <summary>
-			/// The Currency4 cost of the Virtual Good
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetCurrency4Cost () const
-					{
-						return m_Response.GetLong("currency4Cost");
-					}
-			/// <summary>
-			/// The Currency5 cost of the Virtual Good
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetCurrency5Cost () const
-					{
-						return m_Response.GetLong("currency5Cost");
-					}
-			/// <summary>
-			/// The Currency6 cost of the Virtual Good
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetCurrency6Cost () const
-					{
-						return m_Response.GetLong("currency6Cost");
-					}
-			/// <summary>
-			/// The description of the Virtual Good
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetDescription () const
-					{
-						return m_Response.GetString("description");
-					}
-			/// <summary>
-			/// The google play productId of the item.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetGooglePlayProductId () const
-					{
-						return m_Response.GetString("googlePlayProductId");
-					}
-			/// <summary>
-			/// The iOS AppStore productId of the item.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetIosAppStoreProductId () const
-					{
-						return m_Response.GetString("iosAppStoreProductId");
-					}
-			/// <summary>
-			/// The maximum number of the Virtual Good that can be owned at one time
-			/// </summary>
-					// method type 4
-					Optional::t_LongOptional GetMaxQuantity () const
-					{
-						return m_Response.GetLong("maxQuantity");
-					}
-			/// <summary>
-			/// The name of the Virtual Good
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetName () const
-					{
-						return m_Response.GetString("name");
-					}
-			/// <summary>
-			/// The custom property set configured on the item.
-			/// </summary>
-					// method type 4
-					GameSparks::Core::GSData::t_Optional GetPropertySet () const
-					{
-						return m_Response.GetGSDataObject("propertySet");
-					}
-			/// <summary>
-			/// The short code of the Virtual Good
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetShortCode () const
-					{
-						return m_Response.GetString("shortCode");
-					}
-			/// <summary>
-			/// The tags of the Virtual Good
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTags () const
-					{
-						return m_Response.GetString("tags");
-					}
-			/// <summary>
-			/// The type of the virtual good, "VGOOD" or "CURRENCY"
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetType () const
-					{
-						return m_Response.GetString("type");
-					}
-			/// <summary>
-			/// The Windows 8 productId of the item.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetW8StoreProductId () const
-					{
-						return m_Response.GetString("w8StoreProductId");
-					}
-			};
-
-			/*!
-			\ingroup Types
-			
-			*/
-			class ChallengeType : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				ChallengeType(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				ChallengeType(const ChallengeType& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// The shortCode for this challenge.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetChallengeShortCode () const
-					{
-						return m_Response.GetString("challengeShortCode");
-					}
-			/// <summary>
-			/// The description of this challenge.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetDescription () const
-					{
-						return m_Response.GetString("description");
-					}
-			/// <summary>
-			/// The name of the leaderboard for this challenge.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetGetleaderboardName () const
-					{
-						return m_Response.GetString("getleaderboardName");
-					}
-			/// <summary>
-			/// The name of this challenge.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetName () const
-					{
-						return m_Response.GetString("name");
-					}
-			/// <summary>
-			/// The tags for this challenge.
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTags () const
-					{
-						return m_Response.GetString("tags");
+						return m_Response.GetString("teamType");
 					}
 			};
 
@@ -1262,6 +1109,315 @@ namespace GameSparks
 					Optional::t_StringOptional GetShortCode () const
 					{
 						return m_Response.GetString("shortCode");
+					}
+			};
+
+			/*!
+			\ingroup Types
+			Location details.
+			*/
+			class Location : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				Location(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				Location(const Location& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The city
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetCity () const
+					{
+						return m_Response.GetString("city");
+					}
+			/// <summary>
+			/// The country
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetCountry () const
+					{
+						return m_Response.GetString("country");
+					}
+			/// <summary>
+			/// The latitude
+			/// </summary>
+					// method type 4
+					Optional::t_FloatOptional GetLatitide () const
+					{
+						return m_Response.GetFloat("latitide");
+					}
+			/// <summary>
+			/// The longditute
+			/// </summary>
+					// method type 4
+					Optional::t_FloatOptional GetLongditute () const
+					{
+						return m_Response.GetFloat("longditute");
+					}
+			};
+
+			/*!
+			\ingroup Types
+			A the details of a social connection
+			*/
+			class SocialStatus : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				SocialStatus(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				SocialStatus(const SocialStatus& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// When the token is still active.
+			/// </summary>
+					// method type 4
+					Optional::t_BoolOptional GetActive () const
+					{
+						return m_Response.GetBoolean("active");
+					}
+			/// <summary>
+			/// When the token expires (if available).
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSDateTime::t_Optional GetExpires () const
+					{
+						return m_Response.GetDate("expires");
+					}
+			/// <summary>
+			/// The identifier of the external platform.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetSystemId () const
+					{
+						return m_Response.GetString("systemId");
+					}
+			};
+
+			/*!
+			\ingroup Types
+			Leaderboard entry data
+			As well as the parameters below there may be others depending on your game's configuration.
+			*/
+			class LeaderboardData : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				LeaderboardData(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				LeaderboardData(const LeaderboardData& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The city where the player was located when they logged this leaderboard entry.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetCity () const
+					{
+						return m_Response.GetString("city");
+					}
+			/// <summary>
+			/// The country code where the player was located when they logged this leaderboard entry.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetCountry () const
+					{
+						return m_Response.GetString("country");
+					}
+			/// <summary>
+			/// The players rank.
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSData::t_Optional GetExternalIds () const
+					{
+						return m_Response.GetGSDataObject("externalIds");
+					}
+			/// <summary>
+			/// The unique leaderboard id.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetId () const
+					{
+						return m_Response.GetString("id");
+					}
+			/// <summary>
+			/// The players rank.
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetRank () const
+					{
+						return m_Response.GetLong("rank");
+					}
+			/// <summary>
+			/// The unique player id for this leaderboard entry.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetUserId () const
+					{
+						return m_Response.GetString("userId");
+					}
+			/// <summary>
+			/// The players display name.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetUserName () const
+					{
+						return m_Response.GetString("userName");
+					}
+			/// <summary>
+			/// The date when this leaderboard entry was created.
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetWhen () const
+					{
+						return m_Response.GetString("when");
+					}
+			};
+
+			/*!
+			\ingroup Types
+			Ranking information.
+			*/
+			class LeaderboardRankDetails : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				LeaderboardRankDetails(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				LeaderboardRankDetails(const LeaderboardRankDetails& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The leaderboard entries of the players friends that were beaten as part of this score submission.
+			/// </summary>
+					// method type 1
+					gsstl::vector<LeaderboardData> GetFriendsPassed() const
+					{
+						gsstl::vector<LeaderboardData> result;
+						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("getFriendsPassed");
+						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
+						{
+							result.push_back(LeaderboardData(*it));
+						}
+						return result; 
+					}
+			/// <summary>
+			/// The number of entries in this leaderboard.
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetGlobalCount () const
+					{
+						return m_Response.GetLong("globalCount");
+					}
+			/// <summary>
+			/// The Global Rank of the player in this leaderboard before the score was submitted.
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetGlobalFrom () const
+					{
+						return m_Response.GetLong("globalFrom");
+					}
+			/// <summary>
+			/// The old global rank of the player as a percentage of the total number of scores in this leaderboard .
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetGlobalFromPercent () const
+					{
+						return m_Response.GetLong("globalFromPercent");
+					}
+			/// <summary>
+			/// The Global Rank of the player in this leaderboard after the score was submitted.
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetGlobalTo () const
+					{
+						return m_Response.GetLong("globalTo");
+					}
+			/// <summary>
+			/// The new global rank of the player as a percentage of the total number of scores in this leaderboard .
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetGlobalToPercent () const
+					{
+						return m_Response.GetLong("globalToPercent");
+					}
+			/// <summary>
+			/// The number of friend entries the player has in this leaderboard.
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetSocialCount () const
+					{
+						return m_Response.GetLong("socialCount");
+					}
+			/// <summary>
+			/// The Social Rank of the player in this leaderboard before the score was submitted.
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetSocialFrom () const
+					{
+						return m_Response.GetLong("socialFrom");
+					}
+			/// <summary>
+			/// The old social rank of the player as a percentage of the total number of friend scores in this leaderboard.
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetSocialFromPercent () const
+					{
+						return m_Response.GetLong("socialFromPercent");
+					}
+			/// <summary>
+			/// The Social Rank of the player in this leaderboard after the score was submitted.
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetSocialTo () const
+					{
+						return m_Response.GetLong("socialTo");
+					}
+			/// <summary>
+			/// The old global rank of the player as a percentage of the total number of friend scores in this leaderboard.
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetSocialToPercent () const
+					{
+						return m_Response.GetLong("socialToPercent");
+					}
+			/// <summary>
+			/// The leaderboard entries of the global players that were beaten as part of this score submission. Requires Top N to be configured on the leaderboard
+			/// </summary>
+					// method type 1
+					gsstl::vector<LeaderboardData> GetTopNPassed() const
+					{
+						gsstl::vector<LeaderboardData> result;
+						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("getTopNPassed");
+						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
+						{
+							result.push_back(LeaderboardData(*it));
+						}
+						return result; 
 					}
 			};
 		}

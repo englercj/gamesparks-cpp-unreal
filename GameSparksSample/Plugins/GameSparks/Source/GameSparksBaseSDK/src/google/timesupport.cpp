@@ -23,6 +23,11 @@ char * strptime(const char *buf, const char *fmt, struct tm *tm);
 #if defined(__ORBIS__)
 char * strptime(const char *buf, const char *fmt, struct tm *tm);
 
+#include <ctime>
+#include <cctype>
+
+using std::tolower;
+
 int strnicmp(const char* s1, const char* s2, size_t n)
 {
 	if (n == 0) return 0;

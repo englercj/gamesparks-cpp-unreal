@@ -601,6 +601,87 @@ UGSAuthenticationRequest::~UGSAuthenticationRequest()
 }
 
 
+void BatchAdminRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::ScheduleBulkJobAdminResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
+    
+    FGSScheduleBulkJobAdminResponse unreal_response = FGSScheduleBulkJobAdminResponse(response.GetBaseData());
+    
+    UGSBatchAdminRequest* g_UGSBatchAdminRequest = static_cast<UGSBatchAdminRequest*>(response.GetUserData());
+                                             
+    if (response.GetHasErrors())
+    {
+        g_UGSBatchAdminRequest->OnResponse.Broadcast(unreal_response, true);
+    }
+    else
+    {
+        g_UGSBatchAdminRequest->OnResponse.Broadcast(unreal_response, false);
+    }
+}
+
+UGSBatchAdminRequest* UGSBatchAdminRequest::SendBatchAdminRequest(UGameSparksRequestArray* PlayerIds, UGameSparksScriptData* Request,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+{
+	UGSBatchAdminRequest* proxy = NewObject<UGSBatchAdminRequest>();
+	proxy->playerIds = PlayerIds;
+	proxy->request = Request;
+	proxy->scriptData = ScriptData;
+	proxy->durable = Durable;
+	proxy->requestTimeoutSeconds = RequestTimeoutSeconds;
+	return proxy;
+}
+	
+void UGSBatchAdminRequest::Activate()
+{
+	GameSparks::Api::Requests::BatchAdminRequest gsRequest(UGameSparksModule::GetModulePtr()->GetGSInstance());
+	if(playerIds != nullptr){
+		gsstl::vector<gsstl::string> arrPlayerIds;
+	
+	    for(int32 b_arrPlayerIds = 0; b_arrPlayerIds < playerIds->StringArray.Num(); b_arrPlayerIds++)
+	    {
+	        arrPlayerIds.push_back(TCHAR_TO_UTF8(*playerIds->StringArray[b_arrPlayerIds]));
+	    }
+	    
+		gsRequest.SetPlayerIds(arrPlayerIds);
+	}
+	if(request != nullptr){
+		gsRequest.SetRequest(request->ToRequestData());
+	}
+	if(scriptData != nullptr){
+        gsRequest.SetScriptData(scriptData->ToRequestData());
+    }
+    if(durable){
+    	gsRequest.SetDurable(durable);
+    }
+    
+    gsRequest.SetUserData(this);
+
+    if(requestTimeoutSeconds > 0){
+    	gsRequest.Send(BatchAdminRequestResponseCallback, requestTimeoutSeconds);	
+    } else {
+    	gsRequest.Send(BatchAdminRequestResponseCallback);
+    }
+	
+	
+	
+}
+
+UGSBatchAdminRequest::UGSBatchAdminRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
+}
+
+UGSBatchAdminRequest::~UGSBatchAdminRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
+ }
+}
+
+
 void BuyVirtualGoodsRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::BuyVirtualGoodResponse& response){
     
     if(response.GetUserData() == nullptr) {
@@ -668,6 +749,83 @@ UGSBuyVirtualGoodsRequest::UGSBuyVirtualGoodsRequest(const class FObjectInitiali
 }
 
 UGSBuyVirtualGoodsRequest::~UGSBuyVirtualGoodsRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
+ }
+}
+
+
+void CancelBulkJobAdminRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::CancelBulkJobAdminResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
+    
+    FGSCancelBulkJobAdminResponse unreal_response = FGSCancelBulkJobAdminResponse(response.GetBaseData());
+    
+    UGSCancelBulkJobAdminRequest* g_UGSCancelBulkJobAdminRequest = static_cast<UGSCancelBulkJobAdminRequest*>(response.GetUserData());
+                                             
+    if (response.GetHasErrors())
+    {
+        g_UGSCancelBulkJobAdminRequest->OnResponse.Broadcast(unreal_response, true);
+    }
+    else
+    {
+        g_UGSCancelBulkJobAdminRequest->OnResponse.Broadcast(unreal_response, false);
+    }
+}
+
+UGSCancelBulkJobAdminRequest* UGSCancelBulkJobAdminRequest::SendCancelBulkJobAdminRequest(UGameSparksRequestArray* BulkJobIds,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+{
+	UGSCancelBulkJobAdminRequest* proxy = NewObject<UGSCancelBulkJobAdminRequest>();
+	proxy->bulkJobIds = BulkJobIds;
+	proxy->scriptData = ScriptData;
+	proxy->durable = Durable;
+	proxy->requestTimeoutSeconds = RequestTimeoutSeconds;
+	return proxy;
+}
+	
+void UGSCancelBulkJobAdminRequest::Activate()
+{
+	GameSparks::Api::Requests::CancelBulkJobAdminRequest gsRequest(UGameSparksModule::GetModulePtr()->GetGSInstance());
+	if(bulkJobIds != nullptr){
+		gsstl::vector<gsstl::string> arrBulkJobIds;
+	
+	    for(int32 b_arrBulkJobIds = 0; b_arrBulkJobIds < bulkJobIds->StringArray.Num(); b_arrBulkJobIds++)
+	    {
+	        arrBulkJobIds.push_back(TCHAR_TO_UTF8(*bulkJobIds->StringArray[b_arrBulkJobIds]));
+	    }
+	    
+		gsRequest.SetBulkJobIds(arrBulkJobIds);
+	}
+	if(scriptData != nullptr){
+        gsRequest.SetScriptData(scriptData->ToRequestData());
+    }
+    if(durable){
+    	gsRequest.SetDurable(durable);
+    }
+    
+    gsRequest.SetUserData(this);
+
+    if(requestTimeoutSeconds > 0){
+    	gsRequest.Send(CancelBulkJobAdminRequestResponseCallback, requestTimeoutSeconds);	
+    } else {
+    	gsRequest.Send(CancelBulkJobAdminRequestResponseCallback);
+    }
+	
+	
+	
+}
+
+UGSCancelBulkJobAdminRequest::UGSCancelBulkJobAdminRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
+}
+
+UGSCancelBulkJobAdminRequest::~UGSCancelBulkJobAdminRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
@@ -3644,6 +3802,83 @@ UGSListAchievementsRequest::~UGSListAchievementsRequest()
 }
 
 
+void ListBulkJobsAdminRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::ListBulkJobsAdminResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
+    
+    FGSListBulkJobsAdminResponse unreal_response = FGSListBulkJobsAdminResponse(response.GetBaseData());
+    
+    UGSListBulkJobsAdminRequest* g_UGSListBulkJobsAdminRequest = static_cast<UGSListBulkJobsAdminRequest*>(response.GetUserData());
+                                             
+    if (response.GetHasErrors())
+    {
+        g_UGSListBulkJobsAdminRequest->OnResponse.Broadcast(unreal_response, true);
+    }
+    else
+    {
+        g_UGSListBulkJobsAdminRequest->OnResponse.Broadcast(unreal_response, false);
+    }
+}
+
+UGSListBulkJobsAdminRequest* UGSListBulkJobsAdminRequest::SendListBulkJobsAdminRequest(UGameSparksRequestArray* BulkJobIds,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+{
+	UGSListBulkJobsAdminRequest* proxy = NewObject<UGSListBulkJobsAdminRequest>();
+	proxy->bulkJobIds = BulkJobIds;
+	proxy->scriptData = ScriptData;
+	proxy->durable = Durable;
+	proxy->requestTimeoutSeconds = RequestTimeoutSeconds;
+	return proxy;
+}
+	
+void UGSListBulkJobsAdminRequest::Activate()
+{
+	GameSparks::Api::Requests::ListBulkJobsAdminRequest gsRequest(UGameSparksModule::GetModulePtr()->GetGSInstance());
+	if(bulkJobIds != nullptr){
+		gsstl::vector<gsstl::string> arrBulkJobIds;
+	
+	    for(int32 b_arrBulkJobIds = 0; b_arrBulkJobIds < bulkJobIds->StringArray.Num(); b_arrBulkJobIds++)
+	    {
+	        arrBulkJobIds.push_back(TCHAR_TO_UTF8(*bulkJobIds->StringArray[b_arrBulkJobIds]));
+	    }
+	    
+		gsRequest.SetBulkJobIds(arrBulkJobIds);
+	}
+	if(scriptData != nullptr){
+        gsRequest.SetScriptData(scriptData->ToRequestData());
+    }
+    if(durable){
+    	gsRequest.SetDurable(durable);
+    }
+    
+    gsRequest.SetUserData(this);
+
+    if(requestTimeoutSeconds > 0){
+    	gsRequest.Send(ListBulkJobsAdminRequestResponseCallback, requestTimeoutSeconds);	
+    } else {
+    	gsRequest.Send(ListBulkJobsAdminRequestResponseCallback);
+    }
+	
+	
+	
+}
+
+UGSListBulkJobsAdminRequest::UGSListBulkJobsAdminRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
+}
+
+UGSListBulkJobsAdminRequest::~UGSListBulkJobsAdminRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
+ }
+}
+
+
 void ListChallengeRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::ListChallengeResponse& response){
     
     if(response.GetUserData() == nullptr) {
@@ -4173,6 +4408,92 @@ UGSListTeamChatRequest::~UGSListTeamChatRequest()
 }
 
 
+void ListTransactionsRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::ListTransactionsResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
+    
+    FGSListTransactionsResponse unreal_response = FGSListTransactionsResponse(response.GetBaseData());
+    
+    UGSListTransactionsRequest* g_UGSListTransactionsRequest = static_cast<UGSListTransactionsRequest*>(response.GetUserData());
+                                             
+    if (response.GetHasErrors())
+    {
+        g_UGSListTransactionsRequest->OnResponse.Broadcast(unreal_response, true);
+    }
+    else
+    {
+        g_UGSListTransactionsRequest->OnResponse.Broadcast(unreal_response, false);
+    }
+}
+
+UGSListTransactionsRequest* UGSListTransactionsRequest::SendListTransactionsRequest(FString DateFrom, FString DateTo, int32 EntryCount, FString Include, int32 Offset,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+{
+	UGSListTransactionsRequest* proxy = NewObject<UGSListTransactionsRequest>();
+	proxy->dateFrom = DateFrom;
+	proxy->dateTo = DateTo;
+	proxy->entryCount = EntryCount;
+	proxy->include = Include;
+	proxy->offset = Offset;
+	proxy->scriptData = ScriptData;
+	proxy->durable = Durable;
+	proxy->requestTimeoutSeconds = RequestTimeoutSeconds;
+	return proxy;
+}
+	
+void UGSListTransactionsRequest::Activate()
+{
+	GameSparks::Api::Requests::ListTransactionsRequest gsRequest(UGameSparksModule::GetModulePtr()->GetGSInstance());
+	if(dateFrom != ""){
+		gsRequest.SetDateFrom(GameSparks::Core::GSDateTime(TCHAR_TO_UTF8(*dateFrom)));
+	}
+	if(dateTo != ""){
+		gsRequest.SetDateTo(GameSparks::Core::GSDateTime(TCHAR_TO_UTF8(*dateTo)));
+	}
+	if(entryCount != 0){
+		gsRequest.SetEntryCount(entryCount);
+	}
+	if(include != ""){
+		gsRequest.SetInclude(TCHAR_TO_UTF8(*include));
+	}
+	if(offset != 0){
+		gsRequest.SetOffset(offset);
+	}
+	if(scriptData != nullptr){
+        gsRequest.SetScriptData(scriptData->ToRequestData());
+    }
+    if(durable){
+    	gsRequest.SetDurable(durable);
+    }
+    
+    gsRequest.SetUserData(this);
+
+    if(requestTimeoutSeconds > 0){
+    	gsRequest.Send(ListTransactionsRequestResponseCallback, requestTimeoutSeconds);	
+    } else {
+    	gsRequest.Send(ListTransactionsRequestResponseCallback);
+    }
+	
+	
+	
+}
+
+UGSListTransactionsRequest::UGSListTransactionsRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
+}
+
+UGSListTransactionsRequest::~UGSListTransactionsRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
+ }
+}
+
+
 void ListVirtualGoodsRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::ListVirtualGoodsResponse& response){
     
     if(response.GetUserData() == nullptr) {
@@ -4644,6 +4965,84 @@ UGSPSNConnectRequest::~UGSPSNConnectRequest()
 }
 
 
+void PsnBuyGoodsRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::BuyVirtualGoodResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
+    
+    FGSBuyVirtualGoodResponse unreal_response = FGSBuyVirtualGoodResponse(response.GetBaseData());
+    
+    UGSPsnBuyGoodsRequest* g_UGSPsnBuyGoodsRequest = static_cast<UGSPsnBuyGoodsRequest*>(response.GetUserData());
+                                             
+    if (response.GetHasErrors())
+    {
+        g_UGSPsnBuyGoodsRequest->OnResponse.Broadcast(unreal_response, true);
+    }
+    else
+    {
+        g_UGSPsnBuyGoodsRequest->OnResponse.Broadcast(unreal_response, false);
+    }
+}
+
+UGSPsnBuyGoodsRequest* UGSPsnBuyGoodsRequest::SendPsnBuyGoodsRequest(FString EntitlementLabel, FString PsnAccessToken, bool UniqueTransactionByPlayer,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+{
+	UGSPsnBuyGoodsRequest* proxy = NewObject<UGSPsnBuyGoodsRequest>();
+	proxy->entitlementLabel = EntitlementLabel;
+	proxy->psnAccessToken = PsnAccessToken;
+	proxy->uniqueTransactionByPlayer = UniqueTransactionByPlayer;
+	proxy->scriptData = ScriptData;
+	proxy->durable = Durable;
+	proxy->requestTimeoutSeconds = RequestTimeoutSeconds;
+	return proxy;
+}
+	
+void UGSPsnBuyGoodsRequest::Activate()
+{
+	GameSparks::Api::Requests::PsnBuyGoodsRequest gsRequest(UGameSparksModule::GetModulePtr()->GetGSInstance());
+	if(entitlementLabel != ""){
+		gsRequest.SetEntitlementLabel(TCHAR_TO_UTF8(*entitlementLabel));
+	}
+	if(psnAccessToken != ""){
+		gsRequest.SetPsnAccessToken(TCHAR_TO_UTF8(*psnAccessToken));
+	}
+	if(uniqueTransactionByPlayer != false){
+		gsRequest.SetUniqueTransactionByPlayer(uniqueTransactionByPlayer);
+	}
+	if(scriptData != nullptr){
+        gsRequest.SetScriptData(scriptData->ToRequestData());
+    }
+    if(durable){
+    	gsRequest.SetDurable(durable);
+    }
+    
+    gsRequest.SetUserData(this);
+
+    if(requestTimeoutSeconds > 0){
+    	gsRequest.Send(PsnBuyGoodsRequestResponseCallback, requestTimeoutSeconds);	
+    } else {
+    	gsRequest.Send(PsnBuyGoodsRequestResponseCallback);
+    }
+	
+	
+	
+}
+
+UGSPsnBuyGoodsRequest::UGSPsnBuyGoodsRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
+}
+
+UGSPsnBuyGoodsRequest::~UGSPsnBuyGoodsRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
+ }
+}
+
+
 void PushRegistrationRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::PushRegistrationResponse& response){
     
     if(response.GetUserData() == nullptr) {
@@ -4879,6 +5278,177 @@ UGSRegistrationRequest::UGSRegistrationRequest(const class FObjectInitializer& P
 }
 
 UGSRegistrationRequest::~UGSRegistrationRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
+ }
+}
+
+
+void RevokePurchaseGoodsRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::RevokePurchaseGoodsResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
+    
+    FGSRevokePurchaseGoodsResponse unreal_response = FGSRevokePurchaseGoodsResponse(response.GetBaseData());
+    
+    UGSRevokePurchaseGoodsRequest* g_UGSRevokePurchaseGoodsRequest = static_cast<UGSRevokePurchaseGoodsRequest*>(response.GetUserData());
+                                             
+    if (response.GetHasErrors())
+    {
+        g_UGSRevokePurchaseGoodsRequest->OnResponse.Broadcast(unreal_response, true);
+    }
+    else
+    {
+        g_UGSRevokePurchaseGoodsRequest->OnResponse.Broadcast(unreal_response, false);
+    }
+}
+
+UGSRevokePurchaseGoodsRequest* UGSRevokePurchaseGoodsRequest::SendRevokePurchaseGoodsRequest(FString PlayerId, FString StoreType, UGameSparksRequestArray* TransactionIds,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+{
+	UGSRevokePurchaseGoodsRequest* proxy = NewObject<UGSRevokePurchaseGoodsRequest>();
+	proxy->playerId = PlayerId;
+	proxy->storeType = StoreType;
+	proxy->transactionIds = TransactionIds;
+	proxy->scriptData = ScriptData;
+	proxy->durable = Durable;
+	proxy->requestTimeoutSeconds = RequestTimeoutSeconds;
+	return proxy;
+}
+	
+void UGSRevokePurchaseGoodsRequest::Activate()
+{
+	GameSparks::Api::Requests::RevokePurchaseGoodsRequest gsRequest(UGameSparksModule::GetModulePtr()->GetGSInstance());
+	if(playerId != ""){
+		gsRequest.SetPlayerId(TCHAR_TO_UTF8(*playerId));
+	}
+	if(storeType != ""){
+		gsRequest.SetStoreType(TCHAR_TO_UTF8(*storeType));
+	}
+	if(transactionIds != nullptr){
+		gsstl::vector<gsstl::string> arrTransactionIds;
+	
+	    for(int32 b_arrTransactionIds = 0; b_arrTransactionIds < transactionIds->StringArray.Num(); b_arrTransactionIds++)
+	    {
+	        arrTransactionIds.push_back(TCHAR_TO_UTF8(*transactionIds->StringArray[b_arrTransactionIds]));
+	    }
+	    
+		gsRequest.SetTransactionIds(arrTransactionIds);
+	}
+	if(scriptData != nullptr){
+        gsRequest.SetScriptData(scriptData->ToRequestData());
+    }
+    if(durable){
+    	gsRequest.SetDurable(durable);
+    }
+    
+    gsRequest.SetUserData(this);
+
+    if(requestTimeoutSeconds > 0){
+    	gsRequest.Send(RevokePurchaseGoodsRequestResponseCallback, requestTimeoutSeconds);	
+    } else {
+    	gsRequest.Send(RevokePurchaseGoodsRequestResponseCallback);
+    }
+	
+	
+	
+}
+
+UGSRevokePurchaseGoodsRequest::UGSRevokePurchaseGoodsRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
+}
+
+UGSRevokePurchaseGoodsRequest::~UGSRevokePurchaseGoodsRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
+ }
+}
+
+
+void ScheduleBulkJobAdminRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::ScheduleBulkJobAdminResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
+    
+    FGSScheduleBulkJobAdminResponse unreal_response = FGSScheduleBulkJobAdminResponse(response.GetBaseData());
+    
+    UGSScheduleBulkJobAdminRequest* g_UGSScheduleBulkJobAdminRequest = static_cast<UGSScheduleBulkJobAdminRequest*>(response.GetUserData());
+                                             
+    if (response.GetHasErrors())
+    {
+        g_UGSScheduleBulkJobAdminRequest->OnResponse.Broadcast(unreal_response, true);
+    }
+    else
+    {
+        g_UGSScheduleBulkJobAdminRequest->OnResponse.Broadcast(unreal_response, false);
+    }
+}
+
+UGSScheduleBulkJobAdminRequest* UGSScheduleBulkJobAdminRequest::SendScheduleBulkJobAdminRequest(UGameSparksScriptData* Data, FString ModuleShortCode, UGameSparksScriptData* PlayerQuery, FString ScheduledTime, FString Script,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+{
+	UGSScheduleBulkJobAdminRequest* proxy = NewObject<UGSScheduleBulkJobAdminRequest>();
+	proxy->data = Data;
+	proxy->moduleShortCode = ModuleShortCode;
+	proxy->playerQuery = PlayerQuery;
+	proxy->scheduledTime = ScheduledTime;
+	proxy->script = Script;
+	proxy->scriptData = ScriptData;
+	proxy->durable = Durable;
+	proxy->requestTimeoutSeconds = RequestTimeoutSeconds;
+	return proxy;
+}
+	
+void UGSScheduleBulkJobAdminRequest::Activate()
+{
+	GameSparks::Api::Requests::ScheduleBulkJobAdminRequest gsRequest(UGameSparksModule::GetModulePtr()->GetGSInstance());
+	if(data != nullptr){
+		gsRequest.SetData(data->ToRequestData());
+	}
+	if(moduleShortCode != ""){
+		gsRequest.SetModuleShortCode(TCHAR_TO_UTF8(*moduleShortCode));
+	}
+	if(playerQuery != nullptr){
+		gsRequest.SetPlayerQuery(playerQuery->ToRequestData());
+	}
+	if(scheduledTime != ""){
+		gsRequest.SetScheduledTime(GameSparks::Core::GSDateTime(TCHAR_TO_UTF8(*scheduledTime)));
+	}
+	if(script != ""){
+		gsRequest.SetScript(TCHAR_TO_UTF8(*script));
+	}
+	if(scriptData != nullptr){
+        gsRequest.SetScriptData(scriptData->ToRequestData());
+    }
+    if(durable){
+    	gsRequest.SetDurable(durable);
+    }
+    
+    gsRequest.SetUserData(this);
+
+    if(requestTimeoutSeconds > 0){
+    	gsRequest.Send(ScheduleBulkJobAdminRequestResponseCallback, requestTimeoutSeconds);	
+    } else {
+    	gsRequest.Send(ScheduleBulkJobAdminRequestResponseCallback);
+    }
+	
+	
+	
+}
+
+UGSScheduleBulkJobAdminRequest::UGSScheduleBulkJobAdminRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
+}
+
+UGSScheduleBulkJobAdminRequest::~UGSScheduleBulkJobAdminRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {
@@ -5313,6 +5883,80 @@ UGSSocialStatusRequest::UGSSocialStatusRequest(const class FObjectInitializer& P
 }
 
 UGSSocialStatusRequest::~UGSSocialStatusRequest()
+{
+ if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
+ {
+  if (module->IsInitialized())
+  {
+  	module->GetGSInstance().ChangeUserDataForRequests(this, nullptr);
+  }
+ }
+}
+
+
+void SteamBuyGoodsRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::BuyVirtualGoodResponse& response){
+    
+    if(response.GetUserData() == nullptr) {
+    	return;
+    }
+    
+    FGSBuyVirtualGoodResponse unreal_response = FGSBuyVirtualGoodResponse(response.GetBaseData());
+    
+    UGSSteamBuyGoodsRequest* g_UGSSteamBuyGoodsRequest = static_cast<UGSSteamBuyGoodsRequest*>(response.GetUserData());
+                                             
+    if (response.GetHasErrors())
+    {
+        g_UGSSteamBuyGoodsRequest->OnResponse.Broadcast(unreal_response, true);
+    }
+    else
+    {
+        g_UGSSteamBuyGoodsRequest->OnResponse.Broadcast(unreal_response, false);
+    }
+}
+
+UGSSteamBuyGoodsRequest* UGSSteamBuyGoodsRequest::SendSteamBuyGoodsRequest(FString OrderId, bool UniqueTransactionByPlayer,  UGameSparksScriptData* ScriptData, bool Durable, int32 RequestTimeoutSeconds)
+{
+	UGSSteamBuyGoodsRequest* proxy = NewObject<UGSSteamBuyGoodsRequest>();
+	proxy->orderId = OrderId;
+	proxy->uniqueTransactionByPlayer = UniqueTransactionByPlayer;
+	proxy->scriptData = ScriptData;
+	proxy->durable = Durable;
+	proxy->requestTimeoutSeconds = RequestTimeoutSeconds;
+	return proxy;
+}
+	
+void UGSSteamBuyGoodsRequest::Activate()
+{
+	GameSparks::Api::Requests::SteamBuyGoodsRequest gsRequest(UGameSparksModule::GetModulePtr()->GetGSInstance());
+	if(orderId != ""){
+		gsRequest.SetOrderId(TCHAR_TO_UTF8(*orderId));
+	}
+	if(uniqueTransactionByPlayer != false){
+		gsRequest.SetUniqueTransactionByPlayer(uniqueTransactionByPlayer);
+	}
+	if(scriptData != nullptr){
+        gsRequest.SetScriptData(scriptData->ToRequestData());
+    }
+    if(durable){
+    	gsRequest.SetDurable(durable);
+    }
+    
+    gsRequest.SetUserData(this);
+
+    if(requestTimeoutSeconds > 0){
+    	gsRequest.Send(SteamBuyGoodsRequestResponseCallback, requestTimeoutSeconds);	
+    } else {
+    	gsRequest.Send(SteamBuyGoodsRequestResponseCallback);
+    }
+	
+	
+	
+}
+
+UGSSteamBuyGoodsRequest::UGSSteamBuyGoodsRequest(const class FObjectInitializer& PCIP) : Super(PCIP) {
+}
+
+UGSSteamBuyGoodsRequest::~UGSSteamBuyGoodsRequest()
 {
  if (UGameSparksModule* module = UGameSparksModule::GetModulePtr())
  {

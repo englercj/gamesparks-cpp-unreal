@@ -20,6 +20,11 @@
   THE SOFTWARE.
 */
 
+/*
+ * Note: the functions have been moved into the GameSparks namespace to avoid
+ * linker errors if the client code also uses cJSON.
+ * */
+
 #if defined(WINAPI_FAMILY)
 #	define __STDC_WANT_SECURE_LIB__ 0
 #	define sprintf_s(buf, size, fmt, ...) sprintf(buf, fmt, __VA_ARGS__)
@@ -41,6 +46,9 @@
 #include <clocale>
 #include <assert.h>
 #include <cjson/cJSON.h>
+
+namespace GameSparks
+{
 
 static const char *ep;
 
@@ -630,3 +638,5 @@ void cJSON_Minify(char *json)
 	}
 	*into=0;	// and null-terminate.
 }
+
+} /* namespace GameSparks */

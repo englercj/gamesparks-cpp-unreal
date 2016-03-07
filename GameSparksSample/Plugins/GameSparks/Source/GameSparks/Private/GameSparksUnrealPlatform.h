@@ -74,7 +74,7 @@ namespace GameSparks
 			}
 
             virtual gsstl::string ToWritableLocation(gsstl::string desired_name) const{
-                #if PLATFORM_IOS || PLATFORM_ANDROID
+                #if PLATFORM_IOS || PLATFORM_ANDROID || PLATFORM_PS4 || defined(__ORBIS__)
 					// Conditional since ConvertRelativePathToFull does not work on mobile devices.
 					// see https://answers.unrealengine.com/questions/120796/adding-custom-files-to-the-android-content.html
 					return GameSparks::Core::IGSPlatform::ToWritableLocation(desired_name);
@@ -83,7 +83,7 @@ namespace GameSparks
                     writeableLocation += "gamesparks_";
                     writeableLocation += desired_name.c_str();
                     return TCHAR_TO_UTF8(*writeableLocation);
-	            #endif
+				#endif
             }
 		};
 	}

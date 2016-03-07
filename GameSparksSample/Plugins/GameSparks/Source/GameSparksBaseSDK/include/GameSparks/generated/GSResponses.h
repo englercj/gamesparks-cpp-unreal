@@ -366,6 +366,33 @@ namespace GameSparks
 					}
 			};
 			/*!
+			\ingroup Admin
+			A response containing the individual responses for requests performed via a BatchAdminRequest
+			*/
+			class BatchAdminResponse : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				BatchAdminResponse(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				BatchAdminResponse(const BatchAdminResponse& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// A map of responses by player ID
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSData::t_Optional GetResponses () const
+					{
+						return m_Response.GetGSDataObject("responses");
+					}
+			};
+			/*!
 			\ingroup Store
 			A response containing details of the bought items
 			*/
@@ -460,6 +487,46 @@ namespace GameSparks
 					Optional::t_IntOptional GetCurrencyType () const
 					{
 						return m_Response.GetInt("currencyType");
+					}
+			/// <summary>
+			/// The list of transactionIds, for this purchase, if they exist. This field is populated only for store buys
+			/// </summary>
+						gsstl::vector<gsstl::string> GetTransactionIds() const
+						{
+							return m_Response.GetStringList("transactionIds");
+						}
+			};
+			/*!
+			\ingroup Player
+			A response listing cancelled bulk jobs
+			*/
+			class CancelBulkJobAdminResponse : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				CancelBulkJobAdminResponse(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				CancelBulkJobAdminResponse(const CancelBulkJobAdminResponse& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// A list of JSON objects containing bulk jobs
+			/// </summary>
+					// method type 1
+					gsstl::vector<Types::BulkJob> GetBulkJobs() const
+					{
+						gsstl::vector<Types::BulkJob> result;
+						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("bulkJobs");
+						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
+						{
+							result.push_back(Types::BulkJob(*it));
+						}
+						return result; 
 					}
 			};
 			/*!
@@ -573,42 +640,12 @@ namespace GameSparks
 				}
 
 			/// <summary>
-			/// The team members
-			/// </summary>
-					// method type 1
-					gsstl::vector<Types::Player> GetMembers() const
-					{
-						gsstl::vector<Types::Player> result;
-						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("members");
-						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
-						{
-							result.push_back(Types::Player(*it));
-						}
-						return result; 
-					}
-			/// <summary>
-			/// A summary of the owner
+			/// A JSON object representing the team
 			/// </summary>
 					// method type 2
-					Types::Player GetOwner() const
+					Types::Team GetTeam() const
 					{
-						return Types::Player(m_Response.GetGSDataObject("owner").GetValue());
-					}
-			/// <summary>
-			/// The Id of the team
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamId () const
-					{
-						return m_Response.GetString("teamId");
-					}
-			/// <summary>
-			/// The team type
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamType () const
-					{
-						return m_Response.GetString("teamType");
+						return Types::Team(m_Response.GetGSDataObject("team").GetValue());
 					}
 			};
 			/*!
@@ -676,42 +713,12 @@ namespace GameSparks
 				}
 
 			/// <summary>
-			/// The team members
-			/// </summary>
-					// method type 1
-					gsstl::vector<Types::Player> GetMembers() const
-					{
-						gsstl::vector<Types::Player> result;
-						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("members");
-						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
-						{
-							result.push_back(Types::Player(*it));
-						}
-						return result; 
-					}
-			/// <summary>
-			/// A summary of the owner
+			/// A JSON object representing the team
 			/// </summary>
 					// method type 2
-					Types::Player GetOwner() const
+					Types::Team GetTeam() const
 					{
-						return Types::Player(m_Response.GetGSDataObject("owner").GetValue());
-					}
-			/// <summary>
-			/// The Id of the team
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamId () const
-					{
-						return m_Response.GetString("teamId");
-					}
-			/// <summary>
-			/// The team type
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamType () const
-					{
-						return m_Response.GetString("teamType");
+						return Types::Team(m_Response.GetGSDataObject("team").GetValue());
 					}
 			};
 			/*!
@@ -1131,42 +1138,12 @@ namespace GameSparks
 				}
 
 			/// <summary>
-			/// The team members
-			/// </summary>
-					// method type 1
-					gsstl::vector<Types::Player> GetMembers() const
-					{
-						gsstl::vector<Types::Player> result;
-						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("members");
-						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
-						{
-							result.push_back(Types::Player(*it));
-						}
-						return result; 
-					}
-			/// <summary>
-			/// A summary of the owner
+			/// A JSON object representing the team
 			/// </summary>
 					// method type 2
-					Types::Player GetOwner() const
+					Types::Team GetTeam() const
 					{
-						return Types::Player(m_Response.GetGSDataObject("owner").GetValue());
-					}
-			/// <summary>
-			/// The Id of the team
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamId () const
-					{
-						return m_Response.GetString("teamId");
-					}
-			/// <summary>
-			/// The team type
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamType () const
-					{
-						return m_Response.GetString("teamType");
+						return Types::Team(m_Response.GetGSDataObject("team").GetValue());
 					}
 			/// <summary>
 			/// A JSON array of teams.
@@ -1283,42 +1260,12 @@ namespace GameSparks
 				}
 
 			/// <summary>
-			/// The team members
-			/// </summary>
-					// method type 1
-					gsstl::vector<Types::Player> GetMembers() const
-					{
-						gsstl::vector<Types::Player> result;
-						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("members");
-						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
-						{
-							result.push_back(Types::Player(*it));
-						}
-						return result; 
-					}
-			/// <summary>
-			/// A summary of the owner
+			/// A JSON object representing the team
 			/// </summary>
 					// method type 2
-					Types::Player GetOwner() const
+					Types::Team GetTeam() const
 					{
-						return Types::Player(m_Response.GetGSDataObject("owner").GetValue());
-					}
-			/// <summary>
-			/// The Id of the team
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamId () const
-					{
-						return m_Response.GetString("teamId");
-					}
-			/// <summary>
-			/// The team type
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamType () const
-					{
-						return m_Response.GetString("teamType");
+						return Types::Team(m_Response.GetGSDataObject("team").GetValue());
 					}
 			};
 			/*!
@@ -1444,42 +1391,12 @@ namespace GameSparks
 				}
 
 			/// <summary>
-			/// The team members
-			/// </summary>
-					// method type 1
-					gsstl::vector<Types::Player> GetMembers() const
-					{
-						gsstl::vector<Types::Player> result;
-						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("members");
-						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
-						{
-							result.push_back(Types::Player(*it));
-						}
-						return result; 
-					}
-			/// <summary>
-			/// A summary of the owner
+			/// A JSON object representing the team
 			/// </summary>
 					// method type 2
-					Types::Player GetOwner() const
+					Types::Team GetTeam() const
 					{
-						return Types::Player(m_Response.GetGSDataObject("owner").GetValue());
-					}
-			/// <summary>
-			/// The Id of the team
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamId () const
-					{
-						return m_Response.GetString("teamId");
-					}
-			/// <summary>
-			/// The team type
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamType () const
-					{
-						return m_Response.GetString("teamType");
+						return Types::Team(m_Response.GetGSDataObject("team").GetValue());
 					}
 			};
 			/*!
@@ -1511,6 +1428,39 @@ namespace GameSparks
 						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
 						{
 							result.push_back(Types::Achievement(*it));
+						}
+						return result; 
+					}
+			};
+			/*!
+			\ingroup Player
+			A response listing existing bulk jobs
+			*/
+			class ListBulkJobsAdminResponse : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				ListBulkJobsAdminResponse(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				ListBulkJobsAdminResponse(const ListBulkJobsAdminResponse& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// A list of JSON objects containing bulk jobs
+			/// </summary>
+					// method type 1
+					gsstl::vector<Types::BulkJob> GetBulkJobs() const
+					{
+						gsstl::vector<Types::BulkJob> result;
+						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("bulkJobs");
+						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
+						{
+							result.push_back(Types::BulkJob(*it));
 						}
 						return result; 
 					}
@@ -1764,6 +1714,39 @@ namespace GameSparks
 				{
 				}
 
+			};
+			/*!
+			\ingroup Player
+			A response listing transactions for the player
+			*/
+			class ListTransactionsResponse : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				ListTransactionsResponse(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				ListTransactionsResponse(const ListTransactionsResponse& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// A list of JSON objects containing player transactions
+			/// </summary>
+						// method type 3.1 
+						gsstl::vector<GameSparks::Core::GSData::t_Optional> GetTransactionList() const
+						{
+							gsstl::vector<GameSparks::Core::GSData::t_Optional> result;
+							gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("transactionList");
+							for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
+							{
+								result.push_back(GameSparks::Core::GSData::t_Optional(*it, true));
+							}
+							return result;
+						}
 			};
 			/*!
 			\ingroup Store
@@ -2023,6 +2006,68 @@ namespace GameSparks
 					}
 			};
 			/*!
+			\ingroup Store
+			A response containing details of the revoked items
+			*/
+			class RevokePurchaseGoodsResponse : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				RevokePurchaseGoodsResponse(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				RevokePurchaseGoodsResponse(const RevokePurchaseGoodsResponse& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The map of revoked goods
+			/// </summary>
+					// method type 4
+					GameSparks::Core::GSData::t_Optional GetRevokedGoods () const
+					{
+						return m_Response.GetGSDataObject("revokedGoods");
+					}
+			};
+			/*!
+			\ingroup Player
+			A response acknowledging the scheduling of a bulk job
+			*/
+			class ScheduleBulkJobAdminResponse : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				ScheduleBulkJobAdminResponse(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				ScheduleBulkJobAdminResponse(const ScheduleBulkJobAdminResponse& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The count of players who would be affected by this job if it ran at the time it was submitted
+			/// </summary>
+					// method type 4
+					Optional::t_LongOptional GetEstimatedCount () const
+					{
+						return m_Response.GetLong("estimatedCount");
+					}
+			/// <summary>
+			/// The unique job ID, used to identify this job in future requests
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetJobId () const
+					{
+						return m_Response.GetString("jobId");
+					}
+			};
+			/*!
 			\ingroup Player
 			A response to a send friend message request.
 			*/
@@ -2145,6 +2190,7 @@ namespace GameSparks
 
 
 /*!
+\addtogroup Admin
 \addtogroup Analytics
 \addtogroup Authentication
 \addtogroup Leaderboards

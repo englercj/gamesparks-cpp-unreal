@@ -299,6 +299,43 @@ private:
 
 
 // Generate a delegate for the OnGetResult event
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnBatchAdminRequest_Response, FGSScheduleBulkJobAdminResponse, ScheduleBulkJobAdminResponse, bool, hasErrors);
+
+UCLASS()
+class UGSBatchAdminRequest : public UOnlineBlueprintCallProxyBase
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	
+	/* Event which triggers when the content has been retrieved */
+	UPROPERTY(BlueprintAssignable, Category = "GameSparks")
+	FOnBatchAdminRequest_Response OnResponse;
+	
+	/**
+	Performs a request for multiple players.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS BatchAdminRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Admin")
+	static UGSBatchAdminRequest* SendBatchAdminRequest(UGameSparksRequestArray* PlayerIds = nullptr, UGameSparksScriptData* Request = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	
+	void Activate() override;
+	
+	~UGSBatchAdminRequest();
+
+private:
+	UGameSparksRequestArray* playerIds;
+	UGameSparksScriptData* request;
+
+	
+	UGameSparksScriptData* scriptData;
+	
+	bool durable;
+	int32 requestTimeoutSeconds; 
+	
+};
+
+
+// Generate a delegate for the OnGetResult event
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnBuyVirtualGoodsRequest_Response, FGSBuyVirtualGoodResponse, BuyVirtualGoodResponse, bool, hasErrors);
 
 UCLASS()
@@ -327,6 +364,42 @@ private:
 	int32 quantity;
 
 	FString shortCode;
+	
+	UGameSparksScriptData* scriptData;
+	
+	bool durable;
+	int32 requestTimeoutSeconds; 
+	
+};
+
+
+// Generate a delegate for the OnGetResult event
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCancelBulkJobAdminRequest_Response, FGSCancelBulkJobAdminResponse, CancelBulkJobAdminResponse, bool, hasErrors);
+
+UCLASS()
+class UGSCancelBulkJobAdminRequest : public UOnlineBlueprintCallProxyBase
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	
+	/* Event which triggers when the content has been retrieved */
+	UPROPERTY(BlueprintAssignable, Category = "GameSparks")
+	FOnCancelBulkJobAdminRequest_Response OnResponse;
+	
+	/**
+	Cancel one or more bulk jobs.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS CancelBulkJobAdminRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Admin")
+	static UGSCancelBulkJobAdminRequest* SendCancelBulkJobAdminRequest(UGameSparksRequestArray* BulkJobIds = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	
+	void Activate() override;
+	
+	~UGSCancelBulkJobAdminRequest();
+
+private:
+	UGameSparksRequestArray* bulkJobIds;
+
 	
 	UGameSparksScriptData* scriptData;
 	
@@ -1744,6 +1817,42 @@ private:
 
 
 // Generate a delegate for the OnGetResult event
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnListBulkJobsAdminRequest_Response, FGSListBulkJobsAdminResponse, ListBulkJobsAdminResponse, bool, hasErrors);
+
+UCLASS()
+class UGSListBulkJobsAdminRequest : public UOnlineBlueprintCallProxyBase
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	
+	/* Event which triggers when the content has been retrieved */
+	UPROPERTY(BlueprintAssignable, Category = "GameSparks")
+	FOnListBulkJobsAdminRequest_Response OnResponse;
+	
+	/**
+	Lists existing bulk jobs.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS ListBulkJobsAdminRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Admin")
+	static UGSListBulkJobsAdminRequest* SendListBulkJobsAdminRequest(UGameSparksRequestArray* BulkJobIds = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	
+	void Activate() override;
+	
+	~UGSListBulkJobsAdminRequest();
+
+private:
+	UGameSparksRequestArray* bulkJobIds;
+
+	
+	UGameSparksScriptData* scriptData;
+	
+	bool durable;
+	int32 requestTimeoutSeconds; 
+	
+};
+
+
+// Generate a delegate for the OnGetResult event
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnListChallengeRequest_Response, FGSListChallengeResponse, ListChallengeResponse, bool, hasErrors);
 
 UCLASS()
@@ -2017,6 +2126,46 @@ private:
 
 
 // Generate a delegate for the OnGetResult event
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnListTransactionsRequest_Response, FGSListTransactionsResponse, ListTransactionsResponse, bool, hasErrors);
+
+UCLASS()
+class UGSListTransactionsRequest : public UOnlineBlueprintCallProxyBase
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	
+	/* Event which triggers when the content has been retrieved */
+	UPROPERTY(BlueprintAssignable, Category = "GameSparks")
+	FOnListTransactionsRequest_Response OnResponse;
+	
+	/**
+	Returns a list of the current player's transaction history.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS ListTransactionsRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Player")
+	static UGSListTransactionsRequest* SendListTransactionsRequest(FString DateFrom = "", FString DateTo = "", int32 EntryCount = 0, FString Include = "", int32 Offset = 0,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	
+	void Activate() override;
+	
+	~UGSListTransactionsRequest();
+
+private:
+	FString dateFrom;
+	FString dateTo;
+	int32 entryCount;
+	FString include;
+	int32 offset;
+
+	
+	UGameSparksScriptData* scriptData;
+	
+	bool durable;
+	int32 requestTimeoutSeconds; 
+	
+};
+
+
+// Generate a delegate for the OnGetResult event
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnListVirtualGoodsRequest_Response, FGSListVirtualGoodsResponse, ListVirtualGoodsResponse, bool, hasErrors);
 
 UCLASS()
@@ -2256,6 +2405,47 @@ private:
 
 
 // Generate a delegate for the OnGetResult event
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPsnBuyGoodsRequest_Response, FGSBuyVirtualGoodResponse, BuyVirtualGoodResponse, bool, hasErrors);
+
+UCLASS()
+class UGSPsnBuyGoodsRequest : public UOnlineBlueprintCallProxyBase
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	
+	/* Event which triggers when the content has been retrieved */
+	UPROPERTY(BlueprintAssignable, Category = "GameSparks")
+	FOnPsnBuyGoodsRequest_Response OnResponse;
+	
+	/**
+	Processes an update of entitlement in PlayStation network.
+	The GameSparks platform will update the 'use_count' for an entitlement (by default 'use_count' is 1).
+	The request will be rejected if entitlement 'use_limit' is 0
+	GampSparks platform by default will use internally saved PSN user access token
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS PsnBuyGoodsRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Store")
+	static UGSPsnBuyGoodsRequest* SendPsnBuyGoodsRequest(FString EntitlementLabel = "", FString PsnAccessToken = "", bool UniqueTransactionByPlayer = false,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	
+	void Activate() override;
+	
+	~UGSPsnBuyGoodsRequest();
+
+private:
+	FString entitlementLabel;
+	FString psnAccessToken;
+
+	bool uniqueTransactionByPlayer;
+	
+	UGameSparksScriptData* scriptData;
+	
+	bool durable;
+	int32 requestTimeoutSeconds; 
+	
+};
+
+
+// Generate a delegate for the OnGetResult event
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPushRegistrationRequest_Response, FGSPushRegistrationResponse, PushRegistrationResponse, bool, hasErrors);
 
 UCLASS()
@@ -2369,6 +2559,84 @@ private:
 
 	UGameSparksScriptData* segments;
 	FString userName;
+	
+	UGameSparksScriptData* scriptData;
+	
+	bool durable;
+	int32 requestTimeoutSeconds; 
+	
+};
+
+
+// Generate a delegate for the OnGetResult event
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnRevokePurchaseGoodsRequest_Response, FGSRevokePurchaseGoodsResponse, RevokePurchaseGoodsResponse, bool, hasErrors);
+
+UCLASS()
+class UGSRevokePurchaseGoodsRequest : public UOnlineBlueprintCallProxyBase
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	
+	/* Event which triggers when the content has been retrieved */
+	UPROPERTY(BlueprintAssignable, Category = "GameSparks")
+	FOnRevokePurchaseGoodsRequest_Response OnResponse;
+	
+	/**
+	Revokes the purchase of a good. The items aquired will be removed from remaining items of the player.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS RevokePurchaseGoodsRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Admin")
+	static UGSRevokePurchaseGoodsRequest* SendRevokePurchaseGoodsRequest(FString PlayerId = "", FString StoreType = "", UGameSparksRequestArray* TransactionIds = nullptr,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	
+	void Activate() override;
+	
+	~UGSRevokePurchaseGoodsRequest();
+
+private:
+	FString playerId;
+
+	FString storeType;
+	UGameSparksRequestArray* transactionIds;
+	
+	UGameSparksScriptData* scriptData;
+	
+	bool durable;
+	int32 requestTimeoutSeconds; 
+	
+};
+
+
+// Generate a delegate for the OnGetResult event
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnScheduleBulkJobAdminRequest_Response, FGSScheduleBulkJobAdminResponse, ScheduleBulkJobAdminResponse, bool, hasErrors);
+
+UCLASS()
+class UGSScheduleBulkJobAdminRequest : public UOnlineBlueprintCallProxyBase
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	
+	/* Event which triggers when the content has been retrieved */
+	UPROPERTY(BlueprintAssignable, Category = "GameSparks")
+	FOnScheduleBulkJobAdminRequest_Response OnResponse;
+	
+	/**
+	Schedules a bulk job to be run against multiple players.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS ScheduleBulkJobAdminRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Admin")
+	static UGSScheduleBulkJobAdminRequest* SendScheduleBulkJobAdminRequest(UGameSparksScriptData* Data = nullptr, FString ModuleShortCode = "", UGameSparksScriptData* PlayerQuery = nullptr, FString ScheduledTime = "", FString Script = "",  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	
+	void Activate() override;
+	
+	~UGSScheduleBulkJobAdminRequest();
+
+private:
+	UGameSparksScriptData* data;
+	FString moduleShortCode;
+	UGameSparksScriptData* playerQuery;
+
+	FString scheduledTime;
+	FString script;
 	
 	UGameSparksScriptData* scriptData;
 	
@@ -2565,6 +2833,45 @@ public:
 
 private:
 
+	
+	UGameSparksScriptData* scriptData;
+	
+	bool durable;
+	int32 requestTimeoutSeconds; 
+	
+};
+
+
+// Generate a delegate for the OnGetResult event
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnSteamBuyGoodsRequest_Response, FGSBuyVirtualGoodResponse, BuyVirtualGoodResponse, bool, hasErrors);
+
+UCLASS()
+class UGSSteamBuyGoodsRequest : public UOnlineBlueprintCallProxyBase
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	
+	/* Event which triggers when the content has been retrieved */
+	UPROPERTY(BlueprintAssignable, Category = "GameSparks")
+	FOnSteamBuyGoodsRequest_Response OnResponse;
+	
+	/**
+	Processes a 'orderid' from a Steam.
+	The GameSparks platform will validate the 'orderid' with Steam and process the response. The 'orderid' from the response will be recorded and the request will be rejected, if the 'orderid' has previously been processed, this prevents replay attacks.
+	Once verified, the players account will be credited with the Virtual Good, or Virtual Currency the purchase contains. The virtual good will be looked up by matching the 'itemid' in the response with the 'Steam Product ID' configured against the virtual good.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName="GS SteamBuyGoodsRequest", BlueprintInternalUseOnly = "true"), Category = "GameSparks|Requests|Store")
+	static UGSSteamBuyGoodsRequest* SendSteamBuyGoodsRequest(FString OrderId = "", bool UniqueTransactionByPlayer = false,  UGameSparksScriptData* ScriptData = nullptr, bool Durable = false, int32 RequestTimeoutSeconds = 0);
+	
+	void Activate() override;
+	
+	~UGSSteamBuyGoodsRequest();
+
+private:
+	FString orderId;
+
+	bool uniqueTransactionByPlayer;
 	
 	UGameSparksScriptData* scriptData;
 	

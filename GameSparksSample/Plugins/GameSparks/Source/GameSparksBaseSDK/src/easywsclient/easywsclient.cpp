@@ -100,14 +100,16 @@ namespace { // private module-only namespace
 
 			void thread_join(thread& t)
 			{
-				pthread_join(t, NULL);
+				if ( t != 0 )
+				{
+					pthread_join(t, NULL);
+					t = 0;
+				}
 			}
 
-			bool thread_is_joinable(const thread&)
+			bool thread_is_joinable(const thread& t)
 			{
-				// http://pubs.opengroup.org/onlinepubs/007908799/xsh/pthread_join.html
-				// calling pthread_join twice is apparently ok
-				return true;
+				return t != 0;
 			}
 		#endif
 	}
@@ -849,13 +851,13 @@ namespace { // private module-only namespace
 
 	easywsclient::WebSocket::pointer from_url(const gsstl::string& url, bool useMask, const gsstl::string& origin)
     {
-		char host[128];
+		char host[256];
 		int port;
-		char path[128];
+		char path[256];
 
         bool secure_connection = false;
 		
-        if (url.size() >= 128) {
+        if (url.size() >= 256) {
 			fprintf(stderr, "ERROR: url size limit exceeded: %s\n", url.c_str());
 			return NULL;
 		}

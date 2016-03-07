@@ -386,6 +386,39 @@ namespace GameSparks
 			};
 			
 			/*!
+			\ingroup Admin
+			Performs a request for multiple players.
+			*/
+			class BatchAdminRequest : public GameSparks::Core::GSTypedRequest < BatchAdminRequest, GameSparks::Api::Responses::ScheduleBulkJobAdminResponse >
+			{
+			public:
+				BatchAdminRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".BatchAdminRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// The players to run the request for.
+			/// </summary>
+			BatchAdminRequest& SetPlayerIds( gsstl::vector<gsstl::string> playerIds )
+			{
+				m_Request.AddStringList("playerIds", playerIds);
+				return *this;
+			}
+			/// <summary>
+			/// The request to be run for each player.
+			/// </summary>
+			BatchAdminRequest& SetRequest( const GameSparks::Core::GSRequestData& request )
+			{
+				m_Request.AddObject("request", request);
+				return *this;
+			}
+			};
+			
+			/*!
 			\ingroup Store
 			Purchases a virtual good with an in game currency. Once purchased the virtual good will be added to the players account.
 			*/
@@ -422,6 +455,31 @@ namespace GameSparks
 			BuyVirtualGoodsRequest& SetShortCode( const gsstl::string& shortCode )
 			{
 				m_Request.AddString("shortCode", shortCode);
+				return *this;
+			}
+			};
+			
+			/*!
+			\ingroup Admin
+			Cancel one or more bulk jobs.
+			*/
+			class CancelBulkJobAdminRequest : public GameSparks::Core::GSTypedRequest < CancelBulkJobAdminRequest, GameSparks::Api::Responses::CancelBulkJobAdminResponse >
+			{
+			public:
+				CancelBulkJobAdminRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".CancelBulkJobAdminRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// The IDs of existing bulk jobs to cancel
+			/// </summary>
+			CancelBulkJobAdminRequest& SetBulkJobIds( gsstl::vector<gsstl::string> bulkJobIds )
+			{
+				m_Request.AddStringList("bulkJobIds", bulkJobIds);
 				return *this;
 			}
 			};
@@ -2203,6 +2261,31 @@ namespace GameSparks
 			};
 			
 			/*!
+			\ingroup Admin
+			Lists existing bulk jobs.
+			*/
+			class ListBulkJobsAdminRequest : public GameSparks::Core::GSTypedRequest < ListBulkJobsAdminRequest, GameSparks::Api::Responses::ListBulkJobsAdminResponse >
+			{
+			public:
+				ListBulkJobsAdminRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".ListBulkJobsAdminRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// The IDs of existing bulk jobs to get details for
+			/// </summary>
+			ListBulkJobsAdminRequest& SetBulkJobIds( gsstl::vector<gsstl::string> bulkJobIds )
+			{
+				m_Request.AddStringList("bulkJobIds", bulkJobIds);
+				return *this;
+			}
+			};
+			
+			/*!
 			\ingroup Multiplayer
 			Returns a list of challenges in the state defined in the 'state' field.
 			The response can be further filtered by passing a shortCode field which will limit the returned lists to challenges of that short code.
@@ -2450,6 +2533,63 @@ namespace GameSparks
 			ListTeamChatRequest& SetTeamType( const gsstl::string& teamType )
 			{
 				m_Request.AddString("teamType", teamType);
+				return *this;
+			}
+			};
+			
+			/*!
+			\ingroup Player
+			Returns a list of the current player's transaction history.
+			*/
+			class ListTransactionsRequest : public GameSparks::Core::GSTypedRequest < ListTransactionsRequest, GameSparks::Api::Responses::ListTransactionsResponse >
+			{
+			public:
+				ListTransactionsRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".ListTransactionsRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// Optional date constraint to list transactions from
+			/// </summary>
+			ListTransactionsRequest& SetDateFrom( const GameSparks::Core::GSDateTime& dateFrom )
+			{
+				m_Request.AddDate("dateFrom", dateFrom);
+				return *this;
+			}
+			/// <summary>
+			/// Optional date constraint to list transactions from
+			/// </summary>
+			ListTransactionsRequest& SetDateTo( const GameSparks::Core::GSDateTime& dateTo )
+			{
+				m_Request.AddDate("dateTo", dateTo);
+				return *this;
+			}
+			/// <summary>
+			/// The number of items to return in a page (default=50)
+			/// </summary>
+			ListTransactionsRequest& SetEntryCount( long entryCount )
+			{
+				m_Request.AddNumber("entryCount", entryCount);
+				return *this;
+			}
+			/// <summary>
+			/// An optional filter that limits the transaction types returned
+			/// </summary>
+			ListTransactionsRequest& SetInclude( const gsstl::string& include )
+			{
+				m_Request.AddString("include", include);
+				return *this;
+			}
+			/// <summary>
+			/// The offset (page number) to start from (default=0)
+			/// </summary>
+			ListTransactionsRequest& SetOffset( long offset )
+			{
+				m_Request.AddNumber("offset", offset);
 				return *this;
 			}
 			};
@@ -2801,6 +2941,51 @@ namespace GameSparks
 			};
 			
 			/*!
+			\ingroup Store
+			Processes an update of entitlement in PlayStation network.
+			The GameSparks platform will update the 'use_count' for an entitlement (by default 'use_count' is 1).
+			The request will be rejected if entitlement 'use_limit' is 0
+			GampSparks platform by default will use internally saved PSN user access token
+			*/
+			class PsnBuyGoodsRequest : public GameSparks::Core::GSTypedRequest < PsnBuyGoodsRequest, GameSparks::Api::Responses::BuyVirtualGoodResponse >
+			{
+			public:
+				PsnBuyGoodsRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".PsnBuyGoodsRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// Specify the entitlement label of the entitlement to update. (Not an entitlement ID).
+			/// </summary>
+			PsnBuyGoodsRequest& SetEntitlementLabel( const gsstl::string& entitlementLabel )
+			{
+				m_Request.AddString("entitlementLabel", entitlementLabel);
+				return *this;
+			}
+			/// <summary>
+			/// PlayStations network user access token.
+			/// </summary>
+			PsnBuyGoodsRequest& SetPsnAccessToken( const gsstl::string& psnAccessToken )
+			{
+				m_Request.AddString("psnAccessToken", psnAccessToken);
+				return *this;
+			}
+			/// <summary>
+			/// If set to true, the transactionId from this receipt will not be globally valdidated, this will mean replays between players are possible.
+			/// It will only validate the transactionId has not been used by this player before.
+			/// </summary>
+			PsnBuyGoodsRequest& SetUniqueTransactionByPlayer( bool uniqueTransactionByPlayer )
+			{
+				m_Request.AddBoolean("uniqueTransactionByPlayer", uniqueTransactionByPlayer);
+				return *this;
+			}
+			};
+			
+			/*!
 			\ingroup Misc
 			Registers the current device for push notifications. Currently GameSparks supports iOS, GCM & Microsoft Push notifications.
 			Supply the device type, and the push notification identifier for the device.
@@ -2952,6 +3137,104 @@ namespace GameSparks
 			RegistrationRequest& SetUserName( const gsstl::string& userName )
 			{
 				m_Request.AddString("userName", userName);
+				return *this;
+			}
+			};
+			
+			/*!
+			\ingroup Admin
+			Revokes the purchase of a good. The items aquired will be removed from remaining items of the player.
+			*/
+			class RevokePurchaseGoodsRequest : public GameSparks::Core::GSTypedRequest < RevokePurchaseGoodsRequest, GameSparks::Api::Responses::RevokePurchaseGoodsResponse >
+			{
+			public:
+				RevokePurchaseGoodsRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".RevokePurchaseGoodsRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// The playerId for which to revoke the transaction
+			/// </summary>
+			RevokePurchaseGoodsRequest& SetPlayerId( const gsstl::string& playerId )
+			{
+				m_Request.AddString("playerId", playerId);
+				return *this;
+			}
+			/// <summary>
+			/// The store type for which to revoke these transactions
+			/// </summary>
+			RevokePurchaseGoodsRequest& SetStoreType( const gsstl::string& storeType )
+			{
+				m_Request.AddString("storeType", storeType);
+				return *this;
+			}
+			/// <summary>
+			/// The list of transactionIds to revoke
+			/// </summary>
+			RevokePurchaseGoodsRequest& SetTransactionIds( gsstl::vector<gsstl::string> transactionIds )
+			{
+				m_Request.AddStringList("transactionIds", transactionIds);
+				return *this;
+			}
+			};
+			
+			/*!
+			\ingroup Admin
+			Schedules a bulk job to be run against multiple players.
+			*/
+			class ScheduleBulkJobAdminRequest : public GameSparks::Core::GSTypedRequest < ScheduleBulkJobAdminRequest, GameSparks::Api::Responses::ScheduleBulkJobAdminResponse >
+			{
+			public:
+				ScheduleBulkJobAdminRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".ScheduleBulkJobAdminRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// Optional data to be passed into the script
+			/// </summary>
+			ScheduleBulkJobAdminRequest& SetData( const GameSparks::Core::GSRequestData& data )
+			{
+				m_Request.AddObject("data", data);
+				return *this;
+			}
+			/// <summary>
+			/// The short code of the cloud code module to be executed against each player
+			/// </summary>
+			ScheduleBulkJobAdminRequest& SetModuleShortCode( const gsstl::string& moduleShortCode )
+			{
+				m_Request.AddString("moduleShortCode", moduleShortCode);
+				return *this;
+			}
+			/// <summary>
+			/// The query to be run against the player collection to identify which players to execute the cloud code for
+			/// </summary>
+			ScheduleBulkJobAdminRequest& SetPlayerQuery( const GameSparks::Core::GSRequestData& playerQuery )
+			{
+				m_Request.AddObject("playerQuery", playerQuery);
+				return *this;
+			}
+			/// <summary>
+			/// An optional date and time for this job to be run
+			/// </summary>
+			ScheduleBulkJobAdminRequest& SetScheduledTime( const GameSparks::Core::GSDateTime& scheduledTime )
+			{
+				m_Request.AddDate("scheduledTime", scheduledTime);
+				return *this;
+			}
+			/// <summary>
+			/// The script to be executed against each player
+			/// </summary>
+			ScheduleBulkJobAdminRequest& SetScript( const gsstl::string& script )
+			{
+				m_Request.AddString("script", script);
 				return *this;
 			}
 			};
@@ -3193,6 +3476,42 @@ namespace GameSparks
 			
 
 
+			};
+			
+			/*!
+			\ingroup Store
+			Processes a 'orderid' from a Steam.
+			The GameSparks platform will validate the 'orderid' with Steam and process the response. The 'orderid' from the response will be recorded and the request will be rejected, if the 'orderid' has previously been processed, this prevents replay attacks.
+			Once verified, the players account will be credited with the Virtual Good, or Virtual Currency the purchase contains. The virtual good will be looked up by matching the 'itemid' in the response with the 'Steam Product ID' configured against the virtual good.
+			*/
+			class SteamBuyGoodsRequest : public GameSparks::Core::GSTypedRequest < SteamBuyGoodsRequest, GameSparks::Api::Responses::BuyVirtualGoodResponse >
+			{
+			public:
+				SteamBuyGoodsRequest(Core::GS& gsInstance)
+					: GSTypedRequest(gsInstance, ".SteamBuyGoodsRequest")
+				{
+
+				}
+			
+
+
+			/// <summary>
+			/// Unique 64-bit ID for order
+			/// </summary>
+			SteamBuyGoodsRequest& SetOrderId( const gsstl::string& orderId )
+			{
+				m_Request.AddString("orderId", orderId);
+				return *this;
+			}
+			/// <summary>
+			/// If set to true, the transactionId from this receipt will not be globally valdidated, this will mean replays between players are possible.
+			/// It will only validate the transactionId has not been used by this player before.
+			/// </summary>
+			SteamBuyGoodsRequest& SetUniqueTransactionByPlayer( bool uniqueTransactionByPlayer )
+			{
+				m_Request.AddBoolean("uniqueTransactionByPlayer", uniqueTransactionByPlayer);
+				return *this;
+			}
 			};
 			
 			/*!
@@ -3730,6 +4049,7 @@ namespace GameSparks
 }
 
 /*!
+\addtogroup Admin
 \addtogroup Analytics
 \addtogroup Authentication
 \addtogroup Leaderboards
