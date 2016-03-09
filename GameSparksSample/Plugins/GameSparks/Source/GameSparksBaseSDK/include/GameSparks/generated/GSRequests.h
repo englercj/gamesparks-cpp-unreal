@@ -389,7 +389,7 @@ namespace GameSparks
 			\ingroup Admin
 			Performs a request for multiple players.
 			*/
-			class BatchAdminRequest : public GameSparks::Core::GSTypedRequest < BatchAdminRequest, GameSparks::Api::Responses::ScheduleBulkJobAdminResponse >
+			class BatchAdminRequest : public GameSparks::Core::GSTypedRequest < BatchAdminRequest, GameSparks::Api::Responses::BatchAdminResponse >
 			{
 			public:
 				BatchAdminRequest(Core::GS& gsInstance)

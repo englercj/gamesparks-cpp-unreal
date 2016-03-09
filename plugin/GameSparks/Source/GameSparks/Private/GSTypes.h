@@ -1166,6 +1166,102 @@ struct FGSParticipant
 };
 
 USTRUCT(BlueprintType)
+struct FGSTeam
+{
+	GENERATED_USTRUCT_BODY()
+	
+	FGSTeam(){}
+	
+	FGSTeam(const GameSparks::Core::GSData& wrappedData){
+	
+	JSONData = NewObject<UGameSparksScriptData>();
+	
+	JSONData->SetGSData(wrappedData);
+	
+	
+	if(wrappedData.ContainsKey("members")){
+		HasMembers = true;
+			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
+				FGSPlayer Members_tmp = FGSPlayer(wrappedData.GetGSDataObjectList("members")[i]);
+				Members.Add(Members_tmp);
+            }
+		}
+		
+	
+	if(wrappedData.ContainsKey("owner")){
+		HasOwner = true;
+			Owner = FGSPlayer(wrappedData.GetGSDataObject("owner").GetValue());
+		}
+		
+	
+	if(wrappedData.ContainsKey("teamId")){
+		HasTeamId = true;
+			TeamId = wrappedData.GetString("teamId").GetValue().c_str();
+		}
+		
+	
+	if(wrappedData.ContainsKey("teamName")){
+		HasTeamName = true;
+			TeamName = wrappedData.GetString("teamName").GetValue().c_str();
+		}
+		
+	
+	if(wrappedData.ContainsKey("teamType")){
+		HasTeamType = true;
+			TeamType = wrappedData.GetString("teamType").GetValue().c_str();
+		}
+		
+	
+	    JSONString = wrappedData.GetJSON().c_str();
+	}
+
+	
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	bool HasMembers = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	TArray<FGSPlayer> Members;
+	
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	bool HasOwner = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	FGSPlayer Owner;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	bool HasTeamId = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	FString TeamId;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	bool HasTeamName = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	FString TeamName;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	bool HasTeamType = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+	FString TeamType;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+    FString JSONString;
+    
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
+    UGameSparksScriptData* JSONData = nullptr;
+    
+	void Destroy()
+	{
+		JSONData = nullptr;
+	}
+	
+};
+
+USTRUCT(BlueprintType)
 struct FGSPlayerTurnCount
 {
 	GENERATED_USTRUCT_BODY()
@@ -1534,102 +1630,6 @@ struct FGSChallenge
 };
 
 USTRUCT(BlueprintType)
-struct FGSTeam
-{
-	GENERATED_USTRUCT_BODY()
-	
-	FGSTeam(){}
-	
-	FGSTeam(const GameSparks::Core::GSData& wrappedData){
-	
-	JSONData = NewObject<UGameSparksScriptData>();
-	
-	JSONData->SetGSData(wrappedData);
-	
-	
-	if(wrappedData.ContainsKey("members")){
-		HasMembers = true;
-			for(std::size_t i=0; i < wrappedData.GetGSDataObjectList("members").size(); i++){
-				FGSPlayer Members_tmp = FGSPlayer(wrappedData.GetGSDataObjectList("members")[i]);
-				Members.Add(Members_tmp);
-            }
-		}
-		
-	
-	if(wrappedData.ContainsKey("owner")){
-		HasOwner = true;
-			Owner = FGSPlayer(wrappedData.GetGSDataObject("owner").GetValue());
-		}
-		
-	
-	if(wrappedData.ContainsKey("teamId")){
-		HasTeamId = true;
-			TeamId = wrappedData.GetString("teamId").GetValue().c_str();
-		}
-		
-	
-	if(wrappedData.ContainsKey("teamName")){
-		HasTeamName = true;
-			TeamName = wrappedData.GetString("teamName").GetValue().c_str();
-		}
-		
-	
-	if(wrappedData.ContainsKey("teamType")){
-		HasTeamType = true;
-			TeamType = wrappedData.GetString("teamType").GetValue().c_str();
-		}
-		
-	
-	    JSONString = wrappedData.GetJSON().c_str();
-	}
-
-	
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	bool HasMembers = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	TArray<FGSPlayer> Members;
-	
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	bool HasOwner = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	FGSPlayer Owner;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	bool HasTeamId = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	FString TeamId;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	bool HasTeamName = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	FString TeamName;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	bool HasTeamType = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-	FString TeamType;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-    FString JSONString;
-    
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Helper")
-    UGameSparksScriptData* JSONData = nullptr;
-    
-	void Destroy()
-	{
-		JSONData = nullptr;
-	}
-	
-};
-
-USTRUCT(BlueprintType)
 struct FGSAchievement
 {
 	GENERATED_USTRUCT_BODY()
@@ -1718,86 +1718,6 @@ struct FGSAchievement
 	{
 		JSONData = nullptr;
 		PropertySet = nullptr;
-	}
-	
-};
-
-USTRUCT(BlueprintType)
-struct FGSLocation
-{
-	GENERATED_USTRUCT_BODY()
-	
-	FGSLocation(){}
-	
-	FGSLocation(const GameSparks::Core::GSData& wrappedData){
-	
-	JSONData = NewObject<UGameSparksScriptData>();
-	
-	JSONData->SetGSData(wrappedData);
-	
-	
-	if(wrappedData.ContainsKey("city")){
-		HasCity = true;
-			City = wrappedData.GetString("city").GetValue().c_str();
-		}
-		
-	
-	if(wrappedData.ContainsKey("country")){
-		HasCountry = true;
-			Country = wrappedData.GetString("country").GetValue().c_str();
-		}
-		
-	
-	if(wrappedData.ContainsKey("latitide")){
-		HasLatitide = true;
-			Latitide = wrappedData.GetFloat("latitide").GetValue();
-		}
-		
-	
-	if(wrappedData.ContainsKey("longditute")){
-		HasLongditute = true;
-			Longditute = wrappedData.GetFloat("longditute").GetValue();
-		}
-		
-	
-	    JSONString = wrappedData.GetJSON().c_str();
-	}
-
-	
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-	bool HasCity = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-	FString City;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-	bool HasCountry = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-	FString Country;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-	bool HasLatitide = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-	float Latitide;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-	bool HasLongditute = false;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-	float Longditute;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-    FString JSONString;
-    
-    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
-    UGameSparksScriptData* JSONData = nullptr;
-    
-	void Destroy()
-	{
-		JSONData = nullptr;
 	}
 	
 };
@@ -2174,6 +2094,86 @@ struct FGSLeaderboardRankDetails
     FString JSONString;
     
     UPROPERTY(BlueprintReadOnly, Category = "GameSparks|Leaderboards")
+    UGameSparksScriptData* JSONData = nullptr;
+    
+	void Destroy()
+	{
+		JSONData = nullptr;
+	}
+	
+};
+
+USTRUCT(BlueprintType)
+struct FGSLocation
+{
+	GENERATED_USTRUCT_BODY()
+	
+	FGSLocation(){}
+	
+	FGSLocation(const GameSparks::Core::GSData& wrappedData){
+	
+	JSONData = NewObject<UGameSparksScriptData>();
+	
+	JSONData->SetGSData(wrappedData);
+	
+	
+	if(wrappedData.ContainsKey("city")){
+		HasCity = true;
+			City = wrappedData.GetString("city").GetValue().c_str();
+		}
+		
+	
+	if(wrappedData.ContainsKey("country")){
+		HasCountry = true;
+			Country = wrappedData.GetString("country").GetValue().c_str();
+		}
+		
+	
+	if(wrappedData.ContainsKey("latitide")){
+		HasLatitide = true;
+			Latitide = wrappedData.GetFloat("latitide").GetValue();
+		}
+		
+	
+	if(wrappedData.ContainsKey("longditute")){
+		HasLongditute = true;
+			Longditute = wrappedData.GetFloat("longditute").GetValue();
+		}
+		
+	
+	    JSONString = wrappedData.GetJSON().c_str();
+	}
+
+	
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+	bool HasCity = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+	FString City;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+	bool HasCountry = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+	FString Country;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+	bool HasLatitide = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+	float Latitide;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+	bool HasLongditute = false;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+	float Longditute;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
+    FString JSONString;
+    
+    UPROPERTY(BlueprintReadOnly, Category = "GameSparks|")
     UGameSparksScriptData* JSONData = nullptr;
     
 	void Destroy()

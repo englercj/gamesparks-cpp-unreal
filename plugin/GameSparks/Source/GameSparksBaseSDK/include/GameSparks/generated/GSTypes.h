@@ -739,6 +739,72 @@ namespace GameSparks
 
 			/*!
 			\ingroup Types
+			A nested object that represents the team.
+			*/
+			class Team : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				Team(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				Team(const Team& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The team members
+			/// </summary>
+					// method type 1
+					gsstl::vector<Player> GetMembers() const
+					{
+						gsstl::vector<Player> result;
+						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("getMembers");
+						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
+						{
+							result.push_back(Player(*it));
+						}
+						return result; 
+					}
+			/// <summary>
+			/// A summary of the owner
+			/// </summary>
+					// method type 2
+					Player GetOwner() const
+					{
+						return Player(m_Response.GetGSDataObject("owner").GetValue());
+					}
+			/// <summary>
+			/// The Id of the team
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetTeamId () const
+					{
+						return m_Response.GetString("teamId");
+					}
+			/// <summary>
+			/// The team name
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetTeamName () const
+					{
+						return m_Response.GetString("teamName");
+					}
+			/// <summary>
+			/// The team type
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetTeamType () const
+					{
+						return m_Response.GetString("teamType");
+					}
+			};
+
+			/*!
+			\ingroup Types
 			Represents the number of turns a player has taken in a turn based challenge.
 			*/
 			class PlayerTurnCount : public  GameSparks::Core::GSTypedResponse
@@ -988,72 +1054,6 @@ namespace GameSparks
 
 			/*!
 			\ingroup Types
-			A nested object that represents the team.
-			*/
-			class Team : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				Team(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				Team(const Team& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// The team members
-			/// </summary>
-					// method type 1
-					gsstl::vector<Player> GetMembers() const
-					{
-						gsstl::vector<Player> result;
-						gsstl::vector<GameSparks::Core::GSData> dataList = m_Response.GetGSDataObjectList("getMembers");
-						for (gsstl::vector<GameSparks::Core::GSData>::iterator it = dataList.begin(); it != dataList.end(); ++it)
-						{
-							result.push_back(Player(*it));
-						}
-						return result; 
-					}
-			/// <summary>
-			/// A summary of the owner
-			/// </summary>
-					// method type 2
-					Player GetOwner() const
-					{
-						return Player(m_Response.GetGSDataObject("owner").GetValue());
-					}
-			/// <summary>
-			/// The Id of the team
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamId () const
-					{
-						return m_Response.GetString("teamId");
-					}
-			/// <summary>
-			/// The team name
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamName () const
-					{
-						return m_Response.GetString("teamName");
-					}
-			/// <summary>
-			/// The team type
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetTeamType () const
-					{
-						return m_Response.GetString("teamType");
-					}
-			};
-
-			/*!
-			\ingroup Types
 			A nested object that represents the achievement data.
 			*/
 			class Achievement : public  GameSparks::Core::GSTypedResponse
@@ -1109,58 +1109,6 @@ namespace GameSparks
 					Optional::t_StringOptional GetShortCode () const
 					{
 						return m_Response.GetString("shortCode");
-					}
-			};
-
-			/*!
-			\ingroup Types
-			Location details.
-			*/
-			class Location : public  GameSparks::Core::GSTypedResponse
-			{
-			public:
-				Location(const GameSparks::Core::GSData& data)
-					: GSTypedResponse(data)
-				{
-
-				}
-
-				Location(const Location& other)
-					: GSTypedResponse(other)
-				{
-				}
-
-			/// <summary>
-			/// The city
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetCity () const
-					{
-						return m_Response.GetString("city");
-					}
-			/// <summary>
-			/// The country
-			/// </summary>
-					// method type 4
-					Optional::t_StringOptional GetCountry () const
-					{
-						return m_Response.GetString("country");
-					}
-			/// <summary>
-			/// The latitude
-			/// </summary>
-					// method type 4
-					Optional::t_FloatOptional GetLatitide () const
-					{
-						return m_Response.GetFloat("latitide");
-					}
-			/// <summary>
-			/// The longditute
-			/// </summary>
-					// method type 4
-					Optional::t_FloatOptional GetLongditute () const
-					{
-						return m_Response.GetFloat("longditute");
 					}
 			};
 
@@ -1418,6 +1366,58 @@ namespace GameSparks
 							result.push_back(LeaderboardData(*it));
 						}
 						return result; 
+					}
+			};
+
+			/*!
+			\ingroup Types
+			Location details.
+			*/
+			class Location : public  GameSparks::Core::GSTypedResponse
+			{
+			public:
+				Location(const GameSparks::Core::GSData& data)
+					: GSTypedResponse(data)
+				{
+
+				}
+
+				Location(const Location& other)
+					: GSTypedResponse(other)
+				{
+				}
+
+			/// <summary>
+			/// The city
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetCity () const
+					{
+						return m_Response.GetString("city");
+					}
+			/// <summary>
+			/// The country
+			/// </summary>
+					// method type 4
+					Optional::t_StringOptional GetCountry () const
+					{
+						return m_Response.GetString("country");
+					}
+			/// <summary>
+			/// The latitude
+			/// </summary>
+					// method type 4
+					Optional::t_FloatOptional GetLatitide () const
+					{
+						return m_Response.GetFloat("latitide");
+					}
+			/// <summary>
+			/// The longditute
+			/// </summary>
+					// method type 4
+					Optional::t_FloatOptional GetLongditute () const
+					{
+						return m_Response.GetFloat("longditute");
 					}
 			};
 		}

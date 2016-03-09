@@ -1,24 +1,20 @@
 # ChangeLog
 
-## 1.0.4 (2016-02-17)
+## 1.0.3 (2016-03-09)
 
 ### base SDK (affects all platforms)
+- Fix return type of BatchAdminRequest
 
+## 1.0.2 (2016-03-07)
+
+### base SDK (affects all platforms)
+- Update API to V60
 - moved cJSON symbols into GameSparks namespace to avoid linker errors if the client code also uses cjson.
     If you're using GSData::GetBaseData(), you have to either use auto, using namespace GameSparks or prefix with GameSparks::
-
-
-## 1.0.3 (2016-02-17)
-
-### base SDK (affects all platforms)
-- fixed easywsclient hanging in thread_join in Android and iOS
-
-
-## 1.0.2 (2016-02-05)
+- fixed easywsclient hanging in thread_join in Android and iOS    
 
 ### UE4 (PS4)
 - fixed "Failed to store value to ..." issue
-
 
 ## 1.0.1 (2016-01-28)
 

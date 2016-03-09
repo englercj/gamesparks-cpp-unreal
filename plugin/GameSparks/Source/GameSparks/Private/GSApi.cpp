@@ -601,13 +601,13 @@ UGSAuthenticationRequest::~UGSAuthenticationRequest()
 }
 
 
-void BatchAdminRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::ScheduleBulkJobAdminResponse& response){
+void BatchAdminRequestResponseCallback(GameSparks::Core::GS& gsInstance, const GameSparks::Api::Responses::BatchAdminResponse& response){
     
     if(response.GetUserData() == nullptr) {
     	return;
     }
     
-    FGSScheduleBulkJobAdminResponse unreal_response = FGSScheduleBulkJobAdminResponse(response.GetBaseData());
+    FGSBatchAdminResponse unreal_response = FGSBatchAdminResponse(response.GetBaseData());
     
     UGSBatchAdminRequest* g_UGSBatchAdminRequest = static_cast<UGSBatchAdminRequest*>(response.GetUserData());
                                              

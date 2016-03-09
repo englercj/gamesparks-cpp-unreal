@@ -299,7 +299,7 @@ private:
 
 
 // Generate a delegate for the OnGetResult event
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnBatchAdminRequest_Response, FGSScheduleBulkJobAdminResponse, ScheduleBulkJobAdminResponse, bool, hasErrors);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnBatchAdminRequest_Response, FGSBatchAdminResponse, BatchAdminResponse, bool, hasErrors);
 
 UCLASS()
 class UGSBatchAdminRequest : public UOnlineBlueprintCallProxyBase
